@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageOutputPath>..\..\build\</PackageOutputPath>
+    <PackageId>Scalesoft.DASTA.Definitions</PackageId>
+    <Authors>Scalesoft s.r.o.</Authors>
+    <Company>Scalesoft s.r.o.</Company>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/Scalesoft/DASTA-Definitions</RepositoryUrl>
+    <Description>DASTA (Datový standard) model classes for .NET Standard</Description>
+  </PropertyGroup>
+
+</Project>
