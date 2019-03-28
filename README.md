@@ -1,4 +1,4 @@
-# DASTA
+# DASTA class definitions
 Model classes for platform .NET Standard 2.0. It contains only structure definitions for DASTA DS4
 
 [Original Documentation of DASTA](http://ciselniky.dasta.mzcr.cz/)
