@@ -1,0 +1,969 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:dsComm="urn:cz-mzcr:ns:dasta:ds4:ds_type" xmlns:nkr="urn:cz-mzcr:ns:dasta:ds4:ds_idu_nkr" xmlns:dsiduCis="urn:cz-mzcr:ns:dasta:ds4:ds_cisidu" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:cz-mzcr:ns:dasta:ds4:ds_idu_nkr" elementFormDefault="qualified" version="4.01.01">
+	<xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_cisidu" schemaLocation="ds_cisidu-4.02.01.xsd"/>
+	<xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_type" schemaLocation="ds_type-4.02.10.xsd"/>
+	<xs:complexType name="nkrType">
+		<xs:sequence>
+			<xs:element name="nkrp" type="nkr:nkrpType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Případ NKR</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ico" type="dsComm:icisType" use="required">
+			<xs:annotation>
+				<xs:documentation>IČO (identifikační číslo zdravotnického zařízení)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pcz" type="dsComm:number3de" use="required">
+			<xs:annotation>
+				<xs:documentation>PČZ (pořadové číslo zdravotnického zařízení)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pcpd" type="dsComm:number3d" use="required">
+			<xs:annotation>
+				<xs:documentation>PČDP (pořadové číslo detašovaného pracoviště)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="odd" type="dsComm:str5" use="required">
+			<xs:annotation>
+				<xs:documentation>Posledních 5 znaků kódu oddělení z číselníku <cl>ZdravotnickeOddeleni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="nkr" type="nkr:nkrType"/>
+	<xs:complexType name="nkrpType">
+		<xs:sequence>
+			<xs:element name="pacient" type="nkr:nkrppacType">
+				<xs:annotation>
+					<xs:documentation>Pacient</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="prijem" type="nkr:nkrpprjType">
+				<xs:annotation>
+					<xs:documentation>Příjem k hospitalizaci</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="kardialni" type="nkr:nkrpkarType">
+				<xs:annotation>
+					<xs:documentation>Kardiální anamnéza</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="predchozi" type="nkr:nkrppreType">
+				<xs:annotation>
+					<xs:documentation>Předchozí intervence</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rizikove" type="nkr:nkrprizType">
+				<xs:annotation>
+					<xs:documentation>Rizikové změny pro rozvoj ICHS</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="srdecni" type="nkr:nkrpsrdType">
+				<xs:annotation>
+					<xs:documentation>Srdeční vyšetření</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="predoperacni" type="nkr:nkrppredType">
+				<xs:annotation>
+					<xs:documentation>Předoperační stav a podpora</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="zahajeni" type="nkr:nkrpzahopType">
+				<xs:annotation>
+					<xs:documentation>Zahájení operace</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="bypass" type="nkr:nkrpbypassType">
+				<xs:annotation>
+					<xs:documentation>Aortokoronární bypass</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="chlopen" type="nkr:nkrpchlType">
+				<xs:annotation>
+					<xs:documentation>Výkony na chlopních</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="intervence" type="nkr:nkrpintType">
+				<xs:annotation>
+					<xs:documentation>Jiné provedené intervence</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mo" type="nkr:nkrpmoType">
+				<xs:annotation>
+					<xs:documentation>Mimotělní oběh a ochrana myokardu</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pooperacni" type="nkr:nkrpoopType">
+				<xs:annotation>
+					<xs:documentation>Pooperační informace</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="uzavren" type="dsComm:logical" use="required">
+			<xs:annotation>
+				<xs:documentation>Uzavřený záznam (ano / ne)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nkrppacType">
+		<xs:attribute name="rc" type="dsComm:rodcisType" use="required">
+			<xs:annotation>
+				<xs:documentation>Rodné číslo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vyska" type="dsComm:number1-300">
+			<xs:annotation>
+				<xs:documentation>Výška (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="hmotnost" type="dsComm:number1-600">
+			<xs:annotation>
+				<xs:documentation>Hmotnost (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nkrpprjType">
+		<xs:attribute name="d_prijeti" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Datum přijetí</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="chorobopis" type="dsComm:str50">
+			<xs:annotation>
+				<xs:documentation>Chorobopis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="obec" type="dsComm:str6">
+			<xs:annotation>
+				<xs:documentation>Místo bydliště dle číselníku <cl>Obec</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nkrpkarType">
+		<xs:attribute name="ccs" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Angina pectoris před operací (CCS klasifikace) dle číselníku <cl>AnginaPectorisPredOperaciCCS</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="nyha" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>
+                    Dušnost před operací (NYHA klasifikace) dle číselníku <cl>DusnostPredOperaciNYHA</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pocet_im" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>
+                    Počet předchozích infarktů myokardu v anamnéze dle číselníku <cl>PocetPredchozichInfarktuVAnamneze</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="int_posledni_im" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>
+                    Interval mezi operací a posledním IM dle číselníku <cl>IntervalMeziOperaciAPoslednimIm</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="srd_selhani" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>
+                    Srdeční selhání v posledních 14 dnech (ano / ne) (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nkrppreType">
+		<xs:sequence>
+			<xs:element name="predoperace" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+                        Předchozí srdeční, cévní nebo hrudní operace dle číselníku <cl>SrdecniCevniHrudniOperace</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="predchozi_pci" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>
+                    Předchozí PCI dle číselníku <cl>PredchoziPCI</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="d_pci" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum poslední PCI</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="d_posl_op" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum poslední srdeční operace</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pocet_op" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Počet předchozích srdečních operací dle číselníku <cl>PocetPredchozichSrdecnichOperaci</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nkrprizType">
+		<xs:sequence>
+			<xs:element name="ledvinne" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Ledvinné onemocnění dle číselníku <cl>TypLedvinneOnemocneni</cl> (povinné pro uzavřený záznam)
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="neurologicke" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Anamnéza neurologického onemocnění dle číselníku <cl>NeurologickeOnemocneni</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pridruzena" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Jiná přidružená onemocnění či komplikace dle číselníku <cl>PridruzenaOnemocneniAKomplikace</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="tabak" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>
+                    Abusus tabáku dle číselníku <cl>AbususTabaku</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="lecba_dm" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Léčba diabetu mellitu (ano / ne)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="lecba_dm_kod" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Léčba diabetu mellitu dle číselníku <cl>LecbaDiabetuMellitu</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="hypertenze" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Anamnéza hypertenze dle číselníku <cl>AnamnezaHypertenzie</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dyslipidemie" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Dyslipidemie (ano / ne) (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kreatinin" type="dsComm:number5.3">
+			<xs:annotation>
+				<xs:documentation>Poslední předoperační sérový kreatinin (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="plicni" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Anamnéza plicního onemocnění dle číselníku <cl>AnamnezaPlicnihoOnemocneni (povinné pro uzavřený záznam)</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="neur_dysfunkce" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Anamnéza neurologické dysfunkce (ano / ne) (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="tepen_mozek" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Významné postižení tepen zásobujících mozek (ano / ne) (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="perif_tepen" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Onemocnění (postižení) periferních tepen (ano / ne) (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="rytmus" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Předoperační srdeční rytmus dle číselníku <cl>PredoperacniSrdecniRytmus</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="fib_sini" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Typy fibrilace síní dle číselníku <cl>TypyFibrilaceSini</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="datum_vzniku_fs" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum vzniku (primozáchytu) FS</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nkrpsrdType">
+		<xs:sequence>
+			<xs:element name="katetrizace" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Levostranná nebo pravostranná srdeční katetrizace dle číselníku <cl>SrdecniKatetrizace</cl> (povinné pro uzavřený záznam)
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="d_katetrizace" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum poslední katetrizace</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="postiz_tepen" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Počet postižených koronárních tepen dle číselníku <cl>PocetPostizenychKoronTepen</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kmen" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Postižení kmene levé koronární tepny <cl>PocetPostizeneKmeneLeveKoronTepny</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="tlak" type="dsComm:number0-999">
+			<xs:annotation>
+				<xs:documentation>Systolický tlak v a. pulmonalis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="lvedp" type="dsComm:number0-99">
+			<xs:annotation>
+				<xs:documentation>LVEDP</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pawpla" type="dsComm:number0-99">
+			<xs:annotation>
+				<xs:documentation>Střední hodnota PAWP/LA</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ef" type="dsComm:number0-100">
+			<xs:annotation>
+				<xs:documentation>Ejekční frakce</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kat_ef" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Kategorie ejekční frakce dle číselníku <cl>KategoriaEF</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="gradient_ao" type="dsComm:number0-200">
+			<xs:annotation>
+				<xs:documentation>Stř. gradient na aortální chlopni</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ao_stenosa" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Aortální stenosa (ano / ne) (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="mi_stenosa" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Mitrální stenosa (ano / ne) (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="insuf_ao" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Insuficience aortální chlopně dle číselníku <cl>Insuficience</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="insuf_mi" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Insuficience mitrální chlopně dle číselníku <cl>Insuficience</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="insuf_tr" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Insuficience trikuspidální chlopně dle číselníku <cl>Insuficience</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nkrppredType">
+		<xs:sequence>
+			<xs:element name="duvod_operace" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Důvod současné operace dle číselníku <cl>TypDuvodSoucasneOperace</cl> (povinné pro uzavřený záznam)
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="medikamenty" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Další předoperační medikace během týdne před operací dle číselníku <cl>IntravenozniMedikamenty</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="nitraty" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Intravenózní nitráty nebo jakýkoliv heparin před operací dle číselníku <cl>IntravenozniNnitraty</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="inotropni" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Intravenózní inotropní látky před operací (ano / ne) (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="hemodynamicky" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Hemodynamický stav před operací stabilní 1 (ano - stabilní) / 0 (ne - nestabilní) (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kardio_sok" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Kardiogenní šok před operací (ano / ne) (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="resuscitace" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Kardiopulmonální resuscitace méně než 24 hodin před operací (ano / ne) (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ventilace" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Umělá plicní ventilace před operací (ano / ne) (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vysetrujici" type="dsComm:str200">
+			<xs:annotation>
+				<xs:documentation>Vyšetřující lékař (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nkrpzahopType">
+		<xs:sequence>
+			<xs:element name="oper_pristup" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Operační přístup dle číselníku <cl>TypOperacniPristup</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="datum_op" type="dsComm:dateTime">
+			<xs:annotation>
+				<xs:documentation>Datum a čas zahájení operace (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="operater" type="dsComm:str200">
+			<xs:annotation>
+				<xs:documentation>Operatér (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="typ_op" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Typ operace dle číselníku <cl>TypOperace</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="hlavni_duvod" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Hlavní důvod pro urgentní operaci dle číselníku <cl>HlavniDuvodProUrgentniOperaci</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- Vek v dobe operace sa dopocitava -->
+	</xs:complexType>
+	<xs:complexType name="nkrpbypassType">
+		<xs:sequence>
+			<xs:element name="pouzity_step" type="nkr:pouzity_stepType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Použitý štěp</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="prov_perif_anastomoza" type="nkr:prov_perif_anastomozaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Místo provedení periferních anastomóz</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="tep_stepy" type="dsComm:number0-10">
+			<xs:annotation>
+				<xs:documentation>Počet provedených periferních anastomóz tepennými štěpy</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zil_stepy" type="dsComm:number0-10">
+			<xs:annotation>
+				<xs:documentation>Počet provedených periferních anastomóz žilními štěpy</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="pouzity_stepType">
+		<xs:attribute name="poradi" type="dsComm:number1d" use="required">
+			<xs:annotation>
+				<xs:documentation>Pořadí</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pouzity_step" type="dsComm:number2d" use="required">
+			<xs:annotation>
+				<xs:documentation>Použitý štěp dle číselníku <cl>TypPouzityStep</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="prov_perif_anastomozaType">
+		<xs:attribute name="poradi" type="dsComm:number1d" use="required">
+			<xs:annotation>
+				<xs:documentation>Pořadí</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="misto" type="dsComm:number2d" use="required">
+			<xs:annotation>
+				<xs:documentation>Místo provedení periferních anastomóz dle číselníku <cl>MistoProvedenychPerifernichAnastomoz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nkrpchlType">
+		<xs:sequence>
+			<xs:element name="ao" type="nkr:aoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Výkony na Ao chlopni</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mi" type="nkr:nkrchlopType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Výkony na Mi chlopni</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tr" type="nkr:nkrchlopType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Výkony na Tr chlopni</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pl" type="nkr:nkrchlopType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Výkony na Pl chlopni</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ao_zachovni_op_moz" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Záchovné operace Ao chlopně dle číselníku <cl>ZachovneOperaceMoznosti</cl> (kódy 4,5)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mi_typ_plastika" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Mi - typ plastiky dle číselníku <cl>TypMiTypPlastika</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ao_op" type="dsComm:logical" use="required">
+			<xs:annotation>
+				<xs:documentation>Operace na aortální chlopni (ano / ne)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="mi_op" type="dsComm:logical" use="required">
+			<xs:annotation>
+				<xs:documentation>Operace na mitrální chlopni (ano / ne)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="tr_op" type="dsComm:logical" use="required">
+			<xs:annotation>
+				<xs:documentation>Operace na trikuspidální chlopni (ano / ne)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pl_op" type="dsComm:logical" use="required">
+			<xs:annotation>
+				<xs:documentation>Operace na pulmonální chlopni (ano / ne)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ao_zachovni_op" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Záchovné operace Ao chlopně dle číselníku <cl>ZachovneOperaceMoznosti</cl> (kódy 1,2,3)
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="aoType">
+		<xs:complexContent>
+			<xs:extension base="nkr:nkrchlopType">
+				<xs:attribute name="typ_nahrady_prstenec" type="dsComm:logical">
+					<xs:annotation>
+						<xs:documentation>Typ náhrady - prstenec (ano / ne)</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nkrchlopType">
+		<xs:sequence>
+			<xs:element name="patol_nativni" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Patologie nativní chlopně dle číselníku <cl>PatologieNativniChlopne</cl>(kódy 21, 22)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="patologie" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Hemodynamická patologie dle číselníku <cl>HemodynamickaPatologie</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="nativni" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Patologie nativní chlopně dle číselníku <cl>PatologieNativniChlopne</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="explantace" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Explantace dle číselníku <cl>Explantace</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="duvod_op" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Hlavní důvod pro reoperaci dle číselníku <cl>HlavniDuvodProReoperaci</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="operace" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Typ operace dle číselníku <cl>TypOperaceChlopen</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="nahrada" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>
+                    Typ náhrady dle číselníku <cl>TypNahrady</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="velikost" type="dsComm:number15-42">
+			<xs:annotation>
+				<xs:documentation>Velikost použité chlopně či prstence</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="implantat" type="dsComm:str15">
+			<xs:annotation>
+				<xs:documentation>Kód implantátu dle číselníku <cl>KodImplantatu</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nkrpintType">
+		<xs:sequence>
+			<xs:element name="jintervence" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Jiné intervence dle číselníku <cl>TypJineIntervence</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="segment" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Segment aorty dle číselníku <cl>TypSegmentAorty</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="vykon_aorta" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Provedený výkon na aortě dle číselníku <cl>VykonNaAorte</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="jine_kardio" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Jiné kardiochirurgické intervence dle číselníku <cl>KardiochirurgickeIntervence</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="druh_op" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Druh operace dle číselníku <cl>OperaceDruh</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nkrpmoType">
+		<xs:sequence>
+			<xs:element name="druh_zastavy" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Druh oběhové zástavy dle číselníku <cl>ObehovaZastava</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="casove" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Mechanická srdeční podpora - časově dle číselníku <cl>TypProMechanickouSrdecniPodporuCasove</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="zpusob" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Kardioplegie - způsob podání dle číselníku <cl>TypKardioplegieZpusobPodani</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="teplota" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Kardioplegie - teplota dle číselníku <cl>TypKardioplegieTeplota</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="iabk" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Intraaortální balónková kontrapulzace dle číselníku <cl>TypIntraaortalniBalonkovaKontraPulzace</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="mimotelni_obeh" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Mimotělní oběh dle číselníku <cl>MimotelniObeh</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="svorka" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Použití svorky (ano / ne) (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zastava" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Oběhová zástava (ano / ne) (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="trvani_mo" type="dsComm:number1-999">
+			<xs:annotation>
+				<xs:documentation>Celková doba trvání MO</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="trvani_svorka" type="dsComm:number1-999">
+			<xs:annotation>
+				<xs:documentation>Celková doba trvání svorky</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="trvani_zastava" type="dsComm:number1-999">
+			<xs:annotation>
+				<xs:documentation>Doba - oběhová zástava celková</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="trvani_zastava_s_perfuzi_mozku" type="dsComm:number1-999">
+			<xs:annotation>
+				<xs:documentation>Doba - oběhová zástava s perfúzí mozku</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="myokard" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Ochrana myokardu při použití MO dle číselníku <cl>OchranaMyokardu</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="roztok" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Kardioplegie - roztok dle číselníku <cl>KardioplegieRoztok</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="forma" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Kardioplegie - forma podání dle číselníku <cl>KardioplegieFormaPodani</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ochrana_myokard" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Ochrana myokardu bez použití kardioplegie dle číselníku <cl>OchranaMyokarduBezKardioplegie</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="duvod_iabk" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Důvod pro IABK dle číselníku <cl>DuvodProIabk</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="mech_podpora" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Mechanická srdeční podpora dle číselníku <cl>MechanickaSrdecniPodpora</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nkrpoopType">
+		<xs:sequence>
+			<xs:element name="revize" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Pooperační revize dle číselníku <cl>TypPooperacniRevize</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="jneurkomp" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Jiné neurologické komplikace dle číselníku <cl>TypJinaNeurologickeKomplikace</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rannekomp" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Ranné komplikace a infekce dle číselníku <cl>TypRanneKomplikaceInfekce</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="jkomp" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Jiné komplikace dle číselníku <cl>TypJinaKomplikace</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="terapie" type="nkr:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Terapie na JIP dle číselníku <cl>TypTerapieNaJip</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="renalni" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Renální komplikace dle číselníku <cl>RenalniKomplikace</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="neur_komp" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Neurologické komplikace dle číselníku <cl>NeurologickeKomplikace</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="multiorganove" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Multiorgánové selhání (ano / ne) (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="im" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Ischemie myokardu dle číselníku <cl>IschemieMyokardu</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="stav" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Stav pacienta při propuštění ze zdravotnického zařízení dle číselníku <cl>StavPacientaPriPropusteni</cl> (povinné pro uzavřený záznam)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="d_propusteni" type="dsComm:dateTime">
+			<xs:annotation>
+				<xs:documentation>Datum a čas propuštění (exitu) ze zdravotnického zařízení (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="propusten" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Propuštěn kam dle číselníku <cl>PropustenKam</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ustavni_pece" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Ústavní péče dle číselníku <cl>DruhUstavniPece</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="misto_exitu" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Místo exitu dle číselníku <cl>MistoExitu</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="prim_pricina" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Primární příčina exitu dle číselníku <cl>PrimarniPricinaExitu</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="d_exitu" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum exitu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="poznamky" type="dsComm:str1000">
+			<xs:annotation>
+				<xs:documentation>Poznámky</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="osetrujici" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Ošetřující lékař (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="d_uzavreni" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum vyplnění a uzavření celého formuláře</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kr_derivaty" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Krevní deriváty podány (ano / ne) (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="jednotek" type="dsComm:number1-99">
+			<xs:annotation>
+				<xs:documentation>Počet jednotek krevních derivátů</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ztraty" type="dsComm:number0-25000">
+			<xs:annotation>
+				<xs:documentation>Celkové krevní ztráty (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pobyt_jip" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Pobyt na JIP (ano / ne) (povinné pro uzavřený záznam)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="d_prijem_jip" type="dsComm:dateTime">
+			<xs:annotation>
+				<xs:documentation>Datum a čas příjmu na JIP</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="d_extubace" type="dsComm:dateTime">
+			<xs:annotation>
+				<xs:documentation>Datum a čas extubace</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="reintubace" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Reintubace (ano / ne)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="doba_intubace" type="dsComm:number5.2">
+			<xs:annotation>
+				<xs:documentation>Celková doba intubace</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="d_prop_jip" type="dsComm:dateTime">
+			<xs:annotation>
+				<xs:documentation>Datum a čas propuštění z JIP</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- Doba hospitalizace se vypocita automaticky -->
+		<!-- Doba od operace do propusteni se vypocita automaticky -->
+		<!-- Doba pobytu na jip se vypocita automaticky -->
+		<!-- Status pri ukonceni hospitalizace v ZZ se vypocita automaticky -->
+	</xs:complexType>
+	<xs:complexType name="polozkaCiselnikaType">
+		<xs:attribute name="kod" type="dsComm:number2d" use="required">
+			<xs:annotation>
+				<xs:documentation>Kód číselníkové položky</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,2306 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema targetNamespace="urn:cz-mzcr:ns:dasta:ds4:ds_ip" elementFormDefault="qualified"
+  xmlns:dsip="urn:cz-mzcr:ns:dasta:ds4:ds_ip" xmlns:dsComm="urn:cz-mzcr:ns:dasta:ds4:ds_type"
+  xmlns:dsCis="urn:cz-mzcr:ns:dasta:ds4:ds_cistype" xmlns:ds="urn:cz-mzcr:ns:dasta:ds4:ds_dasta"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"  >
+    <!--                     Import common element types.                      -->
+    <xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_type" schemaLocation="ds_type-4.02.10.xsd"/>
+    <xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_cistype" schemaLocation="ds_cistype-4.01.04.xsd"/>
+    <xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_dasta" schemaLocation="ds_dasta-4.03.16.xsd"/>
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/03/xml.xsd"/>
+    <!--                  end                 -->
+    <!--
+  ****************************
+   IP
+  ****************************
+  -->
+    <xs:element name="ip">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="rodcis" minOccurs="0" type="dsComm:rodcisType"/>
+                <xs:element name="jmeno" minOccurs="0" type="dsComm:str40"/>
+                <xs:element name="prijmeni" type="dsComm:str40"/>
+                <xs:element name="titul_pred" minOccurs="0" type="dsComm:str35"/>
+                <xs:element name="titul_za" minOccurs="0" type="dsComm:str35"/>
+                <xs:element name="dat_dn" minOccurs="0" type="dsComm:dat_xxType"/>
+                <xs:element name="misto_nar" minOccurs="0" type="dsComm:str40"/>
+                <xs:element name="stat_pris" minOccurs="0" type="dsComm:str3"/>
+                <xs:element name="dat_de" minOccurs="0" type="dsComm:dat_xxType"/>
+                <xs:element name="sex" minOccurs="0" type="dsComm:sexType"/>
+                <xs:element name="rod_prijm" minOccurs="0" type="dsComm:str40"/>
+                <xs:element name="jine_idu" minOccurs="0" type="dsComm:str70"/>
+                <xs:element name="typ_sdel" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="ALL"/>
+                            <xs:enumeration value="PS"/>
+                            <xs:enumeration value="KU"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="duvernost" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:restriction base="dsComm:str1">
+                            <xs:pattern value="[123]"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="jazyk" type="dsip:jazykType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="ipi_o" minOccurs="0" type="dsip:ipiType"/>
+                <xs:element name="ipi_v" minOccurs="0" type="dsip:ipiType"/>
+                <xs:element ref="ds:a" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="povolani" type="dsip:povolaniType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="h" minOccurs="0" maxOccurs="unbounded" type="dsip:hType"/>
+                <xs:element name="fyznal" type="dsip:fyznalType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="grav" type="dsip:gravType" minOccurs="0"/>
+                <xs:element name="pv_pac" type="dsip:pv_pacType"/>
+                <xs:element name="p" minOccurs="0" maxOccurs="unbounded" type="dsip:pType"/>
+                <xs:element name="n" minOccurs="0" type="dsip:nType"/>
+                <xs:element name="u" minOccurs="0" type="dsip:uType"/>
+                <xs:element name="an" minOccurs="0" type="dsip:anType"/>
+                <xs:element name="oc" minOccurs="0" type="dsip:ocType"/>
+                <xs:element name="dg" minOccurs="0" type="dsip:dgType"/>
+                <xs:element name="le" minOccurs="0" type="dsip:leType"/>
+                <xs:element name="lek" minOccurs="0" type="dsip:lekType"/>
+                <xs:element name="chv" type="dsip:chvType" minOccurs="0" maxOccurs="unbounded"/>                
+                <xs:element name="fzs" type="dsip:fzsType" minOccurs="0"/>                
+                <xs:element name="ld" type="dsip:ldType" minOccurs="0"/>                
+                <xs:element name="fs" type="dsip:fsType" minOccurs="0"/>                
+                <xs:element name="pn" minOccurs="0" type="dsip:pnType"/>
+                <xs:element name="ku" minOccurs="0" >
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element name="ku_p" maxOccurs="unbounded" type="dsip:ku_pType"/>
+                            <xs:sequence>
+                                <xs:element name="ku_z" type="dsip:ku_zType" minOccurs="0" maxOccurs="unbounded"/>
+                                <xs:element name="ku_o" type="dsip:ku_oType" minOccurs="0" maxOccurs="unbounded"/>
+                                <xs:element name="ku_a" type="dsip:ku_aType" minOccurs="0" maxOccurs="unbounded"/>
+                                <xs:element name="kuAny" type="dsComm:AnyType" minOccurs="0"/>
+                            </xs:sequence>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ipAny" minOccurs="0" type="dsComm:AnyType"/>
+            </xs:sequence>
+            <xs:attribute name="id_pac" type="dsComm:rodcisType" use="required"/>
+            <xs:attribute name="typ_id_pac" default="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+           </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <!--  ************************ -->
+    <!-- ipiType  -->
+    <xs:complexType name="ipiType">
+        <xs:sequence>
+            <xs:element name="ipiAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="nem_cis" type="dsComm:str15"/>
+        <xs:attribute name="kat_pac" type="dsComm:str2"/>
+        <xs:attribute name="cis_chor" type="dsComm:str15"/>
+        <xs:attribute name="cis_is" type="dsComm:str15"/>
+    </xs:complexType>
+    <!--
+        ****************************
+        komplexni typy pro blok H
+        ****************************
+     -->
+    <xs:complexType name="hType">
+        <xs:sequence>
+            <xs:element name="pozn" type="dsComm:str80" minOccurs="0"/>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="hAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="vyska" type="dsComm:number3d"/>
+        <xs:attribute name="hmotnost" type="dsComm:number3.3"/>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+    </xs:complexType>
+    <!-- povolaniType  -->
+    <xs:complexType name="povolaniType">
+        <xs:sequence>
+            <xs:element name="povolani_text" type="dsComm:str80" minOccurs="0"/>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="dat_od" type="dsComm:dat_duType" minOccurs="0"/>
+            <xs:element name="dat_do" type="dsComm:dat_duType" minOccurs="0"/>
+            <xs:element name="povolaniAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+    </xs:complexType>
+    <!-- fyznalType  -->
+    <xs:complexType name="fyznalType">
+        <xs:sequence>
+            <xs:element name="tk_syst" type="dsComm:str3"/>
+            <xs:element name="tk_diast" type="dsComm:str3"/>
+            <xs:element name="pulz" type="dsComm:str3" minOccurs="0"/>
+            <xs:element name="pozn" type="dsComm:str80" minOccurs="0"/>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="dat_vys" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="fyznalAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+        <xs:attribute name="ind_oprav_sd" type="dsComm:indOprSdType" use="required"/>
+    </xs:complexType>
+    <!-- jazykType  -->
+    <xs:complexType name="jazykType">
+        <xs:sequence>
+            <xs:element ref="ds:a" minOccurs="0"/>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="dat_od" type="dsComm:dat_duType" minOccurs="0"/>
+            <xs:element name="dat_do" type="dsComm:dat_duType" minOccurs="0"/>
+            <xs:element name="jazykAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="jazyk_klic" type="dsComm:str10" use="required"/>
+        <xs:attribute name="jazyk_text" type="dsComm:str60"/>
+        <xs:attribute name="pref" use="required">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:pattern value="[PM]"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>        
+        <xs:attribute name="pozn" type="dsComm:str80"/>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+        <xs:attribute name="ind_oprav_sd" type="dsComm:indOprSdType" use="required"/>
+    </xs:complexType>
+    <!-- jazyk_dokType  -->
+    <xs:complexType name="jazyk_dokType">
+        <xs:sequence>
+            <xs:element name="jazyk_orig" type="dsComm:str5" minOccurs="0" default="cs-CZ"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- ident_pacType  -->
+    <xs:complexType name="ident_pacType">
+        <xs:sequence>
+            <xs:element name="autorita" type="dsComm:str10" minOccurs="0"/>
+            <xs:element name="stat" type="dsComm:str2e"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="dsComm:str20" use="required"/>
+        <xs:attribute name="id_typ" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="CI"/>
+                    <xs:enumeration value="HA"/>
+                    <xs:enumeration value="HT"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>        
+    </xs:complexType>
+    <!-- fzsType  -->
+    <xs:complexType name="fzsType">
+        <xs:sequence>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="fzsAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="typ" use="required">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:pattern value="[UNA]"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>        
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+        <xs:attribute name="ind_oprav_sd" type="dsComm:indOprSdType" use="required"/>
+    </xs:complexType>
+    <!-- fsType  -->
+    <xs:complexType name="fsType">
+        <xs:sequence>
+            <xs:element name="text" type="dsip:textType" minOccurs="0"/>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="fsAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="typ" use="required">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:pattern value="[UNA]"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>        
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+        <xs:attribute name="ind_oprav_sd" type="dsComm:indOprSdType" use="required"/>
+    </xs:complexType>
+    <!-- ldType  -->
+    <xs:complexType name="ldType">
+        <xs:sequence>
+            <xs:element name="text" type="dsip:textType" minOccurs="0"/>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="ldAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="typ" use="required">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:pattern value="[UNA]"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>        
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+        <xs:attribute name="ind_oprav_sd" type="dsComm:indOprSdType" use="required"/>
+    </xs:complexType>
+    <!-- idkuglobType  -->
+    <xs:complexType name="idkuglobType">
+        <xs:attribute name="root" type="dsComm:str40" use="required"/>
+        <xs:attribute name="ext" type="dsComm:str40"/>
+    </xs:complexType>
+    <!-- ku_pacType  -->
+    <xs:complexType name="ku_pacType">
+        <xs:sequence>
+            <xs:element name="ident_pac" type="dsip:ident_pacType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="jmeno" type="dsComm:str40" minOccurs="0"/>
+            <xs:element name="prijmeni" type="dsComm:str40"/>
+            <xs:element name="titul_pred" type="dsComm:str35" minOccurs="0"/>
+            <xs:element name="titul_za" type="dsComm:str35" minOccurs="0"/>
+            <xs:element name="dat_dn" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="stat_pris" type="dsComm:str3" minOccurs="0"/>
+            <xs:element name="sex" type="dsComm:sexType" minOccurs="0"/>
+            <xs:element name="rod_prijm" type="dsComm:str40" minOccurs="0"/>
+            <xs:element name="jine_idu" type="dsComm:str70" minOccurs="0"/>
+            <xs:element ref="ds:a" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="id_pac" type="dsComm:str10" use="required"/>
+    </xs:complexType>
+    <!-- zpoType  -->
+    <xs:complexType name="zpoType">
+        <xs:sequence>
+            <xs:element name="nazev" type="dsComm:str255"/>
+            <xs:element name="a_p" type="ds:aType" minOccurs="0"/>
+            <xs:element name="jmeno" type="dsComm:str40" minOccurs="0"/>
+            <xs:element name="prijmeni" type="dsComm:str40"/>
+            <xs:element name="titul_pred" type="dsComm:str35" minOccurs="0"/>
+            <xs:element name="titul_za" type="dsComm:str35" minOccurs="0"/>
+            <xs:element name="a_zo" type="ds:aType" minOccurs="0"/>
+            <xs:element name="zpoAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="ico" type="dsComm:icisType"/>
+        <xs:attribute name="icz" type="dsComm:icisType" use="required"/>
+        <xs:attribute name="id_zp" type="dsComm:str10"/>
+    </xs:complexType>
+    <!-- ku_z_patsumdatType  -->
+    <xs:complexType name="ku_z_patsumdatType">
+        <xs:sequence>
+            <xs:element name="jazyk" type="dsip:jazykType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="povolani" type="dsip:povolaniType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="h" type="dsip:hType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="fyznal" type="dsip:fyznalType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="grav" type="dsip:gravType" minOccurs="0"/>
+            <xs:element name="pv_pac" type="dsip:pv_pacType" minOccurs="0"/>
+            <xs:element name="u" type="dsip:uType" minOccurs="0"/>
+            <xs:element name="an" type="dsip:anType" minOccurs="0"/>
+            <xs:element name="oc" type="dsip:ocType" minOccurs="0"/>
+            <xs:element name="dg" type="dsip:dgType" minOccurs="0"/>
+            <xs:element name="le" type="dsip:leType" minOccurs="0"/>
+            <xs:element name="chv" type="dsip:chvType" minOccurs="0" maxOccurs="unbounded"/>                
+            <xs:element name="fzs" type="dsip:fzsType" minOccurs="0"/>
+            <xs:element name="ld" type="dsip:ldType" minOccurs="0"/>
+            <xs:element name="fs" type="dsip:fsType" minOccurs="0"/>
+            <xs:element name="zdroj_sw" type="ds:zdroj_isType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- ku_z_patsumsestType  -->
+    <xs:complexType name="ku_z_patsumsestType">
+        <xs:sequence>
+            <xs:element name="ktext" type="dsip:ktextType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- chvType  -->
+    <xs:complexType name="chvType">
+        <xs:sequence>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="dat_vyk" type="dsComm:dat_duType" minOccurs="0"/>
+            <xs:element name="chvAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="typ" use="required">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:pattern value="[UNA]"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>        
+        <xs:attribute name="chvps_klic" type="dsComm:str10"/>
+        <xs:attribute name="chvps_text" type="dsComm:str100"/>
+        <xs:attribute name="info_text" type="dsComm:str255"/>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+        <xs:attribute name="ind_oprav_sd" type="dsComm:indOprSdType" use="required"/>
+    </xs:complexType>
+    <!-- gravType  -->
+    <xs:complexType name="gravType">
+        <xs:sequence>
+            <xs:element name="grav_tp" type="dsip:grav_tpType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="dat_poc" type="xs:date" minOccurs="0"/>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="dat_vys" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="gravAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="typ" use="required">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:pattern value="[UNTAG]"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>        
+        <xs:attribute name="info_text" type="dsComm:str250"/>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+        <xs:attribute name="ind_oprav_sd" type="dsComm:indOprSdType" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="grav_tpType">
+        <xs:sequence>
+            <xs:element name="dat_por" type="xs:date"/>
+        </xs:sequence>
+        <xs:attribute name="zutp_klic" type="dsComm:str10"/>
+        <xs:attribute name="zutp_text" type="dsComm:str60"/>
+    </xs:complexType>
+    <!--
+        ****************************
+        komplexni typy pro blok P
+        ****************************
+           -->
+    <xs:complexType name="pType">
+        <xs:sequence>
+            <xs:element name="cispoj" type="dsComm:cisloPojistenceType"/>
+            <xs:element name="kodpoj" type="dsComm:number4d"/>
+            <xs:element name="typpoj" type="dsComm:str2" minOccurs="0"/>
+            <xs:element name="stat_poj" type="dsComm:str2" minOccurs="0"/>
+            <xs:element name="euro_ide" type="dsComm:str20" minOccurs="0"/>
+            <xs:element name="pruk_cis" type="dsComm:str40" minOccurs="0"/>
+            <xs:element name="dat_pp" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="dat_od" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="dat_do" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element ref="ds:a" minOccurs="0"/>
+            <xs:element name="pozn" type="dsComm:str80" minOccurs="0"/>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="pAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="ind_oprav_sd" type="dsComm:indOprSdType" use="required"/>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+    </xs:complexType>
+    <xs:complexType name="pv_pacType">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="pv_zp" type="dsip:pv_zpType" minOccurs="0"/>
+                <xs:element name="pv_zpeu" type="dsip:pv_zpeuType" minOccurs="0"/>
+                <xs:element name="pv_jp" type="dsip:pv_jpType" minOccurs="0"/>
+                <xs:element name="pv_st" type="dsip:studieType" minOccurs="0"/>
+            </xs:choice>
+            <xs:element ref="ds:a" minOccurs="0"/>
+            <xs:element name="pv_pacAny" type="dsComm:AnyType" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="typ_pv" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ZP"/>
+                    <xs:enumeration value="ZPEU"/>
+                    <xs:enumeration value="JP"/>
+                    <xs:enumeration value="ST"/>
+                    <xs:enumeration value="SM"/>
+                    <xs:enumeration value="N"/>
+                    <xs:enumeration value="X"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+    </xs:complexType>
+    <xs:complexType name="pv_kuType">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="pv_zp" type="dsip:pv_zpType" minOccurs="0"/>
+                <xs:element name="pv_zpeu" type="dsip:pv_zpeuType" minOccurs="0"/>
+                <xs:element name="pv_jp" type="dsip:pv_jpType" minOccurs="0"/>
+                <xs:element name="pv_st" type="dsip:studieType" minOccurs="0"/>
+            </xs:choice>
+            <xs:element ref="ds:a" minOccurs="0"/>
+            <xs:element name="pv_kuAny" type="dsComm:AnyType" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="typ_pv" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ZP"/>
+                    <xs:enumeration value="ZPEU"/>
+                    <xs:enumeration value="JP"/>
+                    <xs:enumeration value="ST"/>
+                    <xs:enumeration value="SM"/>
+                    <xs:enumeration value="N"/>
+                    <xs:enumeration value="X"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+    </xs:complexType>
+    <xs:complexType name="pv_zpType">
+        <xs:sequence>
+            <xs:element name="cispoj" type="dsComm:cisloPojistenceType"/>
+            <xs:element name="kodpoj" type="dsComm:number4d"/>
+            <xs:element name="typpoj" type="dsComm:str2" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="pv_zpeuType">
+        <xs:sequence>
+            <xs:element name="euro_ide" type="dsComm:str20"/>
+            <xs:element name="stat_poj" type="dsComm:str2"/>
+            <xs:element name="typpoj" type="dsComm:str2" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="pv_jpType">
+        <xs:sequence>
+            <xs:element name="identifikace" type="dsComm:str10"/>
+            <xs:element name="kod_platce" type="dsComm:str3" minOccurs="0"/>
+            <xs:element name="nazev_platce" type="dsComm:str255" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="studieType">
+        <xs:sequence>
+            <xs:element name="cis_studie" type="dsComm:str10"/>
+            <xs:element name="id_studie" type="dsComm:str20" minOccurs="0"/>
+            <xs:element name="nazev_studie" type="dsComm:str255" minOccurs="0"/>
+            <xs:element name="platnost_od" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="platnost_do" type="dsComm:dat_xxType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!--
+        ****************************
+        komplexni typ pro blok N
+        ****************************
+           -->
+    <xs:complexType name="nType">
+        <xs:sequence>
+            <xs:element name="nAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="zam_text" type="dsComm:str40"/>
+        <xs:attribute name="klas_zam" type="dsComm:number1d"/>
+        <xs:attribute name="rod_stav" type="dsComm:number0-5"/>
+        <xs:attribute name="narodnost" type="dsComm:number1d"/>
+        <xs:attribute name="vzdelani" type="dsComm:number1-9"/>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+    </xs:complexType>
+    <!--
+        ****************************
+        komplexni typy pro blok U
+        ****************************
+           -->
+    <!--                 UA                  -->
+    <xs:complexType name="uaType">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="u_al" type="dsComm:str255"  minOccurs="0"/>
+                <xs:element name="uaf" type="dsip:uafType"  minOccurs="0"/>
+            </xs:choice>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="dat_du" type="dsComm:dat_duType" minOccurs="0"/>
+            <xs:element name="dat_ak" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="uaAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="typ" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="U"/>
+                    <xs:enumeration value="N"/>
+                    <xs:enumeration value="AF"/>
+                    <xs:enumeration value="AN"/>
+                    <xs:enumeration value="AS"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+        <xs:attribute name="ind_oprav_sd" type="dsComm:indOprSdType" use="required"/>
+    </xs:complexType>
+    <!--                 UAF                 -->
+    <xs:complexType name="uafType">
+        <xs:sequence>
+            <xs:element name="alerg_lek_klic" type="dsComm:str10" minOccurs="0"/>
+            <xs:element name="alerg_nelek_klic" type="dsComm:str10" minOccurs="0"/>
+            <xs:element name="alerg_text" type="dsComm:str120" minOccurs="0"/>
+            <xs:element name="uafAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>    
+        <xs:attribute name="typ_agens" use="required">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:pattern value="[LPSN]"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="typ_reakce" use="required">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:pattern value="[AIS]"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="alerg_info" type="dsComm:str255"/>
+        <xs:attribute name="ar_klic" type="dsComm:str10"/>
+        <xs:attribute name="ar_text" type="dsComm:str60"/>
+        <xs:attribute name="szp_klic" type="dsComm:str10"/>
+        <xs:attribute name="szp_text" type="dsComm:str30"/>
+        <xs:attribute name="info_text" type="dsComm:str255"/>
+    </xs:complexType>
+    <!--                  URF                 -->
+    <xs:complexType name="urfType">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="u_rf" type="dsComm:str255" minOccurs="0"/>
+                <xs:element name="urff" type="dsip:urffType" minOccurs="0"/>
+            </xs:choice>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="dat_du" type="dsComm:dat_duType" minOccurs="0"/>
+            <xs:element name="dat_ak" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="urfAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="typ" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="U"/>
+                    <xs:enumeration value="N"/>
+                    <xs:enumeration value="RF"/>
+                    <xs:enumeration value="RN"/>
+                    <xs:enumeration value="RS"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+        <xs:attribute name="ind_oprav_sd" type="dsComm:indOprSdType" use="required"/>
+    </xs:complexType>
+    <!--                 URFF                -->
+    <xs:complexType name="urffType">
+        <xs:sequence>
+            <xs:element name="urffAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>    
+        <xs:attribute name="rf_klic" type="dsComm:str10" use="required"/>
+        <xs:attribute name="rf_text" type="dsComm:str50"/>
+        <xs:attribute name="szrf_klic" type="dsComm:str10"/>
+        <xs:attribute name="szrf_text" type="dsComm:str30"/>
+        <xs:attribute name="info_text" type="dsComm:str255"/>
+    </xs:complexType>
+    <!--                 UTM                 -->
+    <xs:complexType name="utmType">
+        <xs:sequence>
+            <xs:element name="u_tm" type="dsComm:str255"/>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="dat_du" type="dsComm:dat_duType" minOccurs="0"/>
+            <xs:element name="dat_ak" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="utmAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+        <xs:attribute name="ind_oprav_sd" type="dsComm:indOprSdType"  use="required"/>
+    </xs:complexType>
+    <!--                 UKS                 -->
+    <xs:complexType name="uksType">
+        <xs:sequence>
+            <xs:choice>
+                <xs:sequence>
+                    <xs:element name="ks_rh" type="dsComm:str8"/>
+                    <xs:element name="ks_rh_text" type="dsComm:str55" minOccurs="0"/>
+                </xs:sequence>
+                <xs:sequence>
+                    <xs:element name="krevskup" type="dsComm:str3"/>
+                    <xs:element name="rh" type="dsComm:str1" minOccurs="0"/>
+                </xs:sequence>
+            </xs:choice>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="dat_du" type="dsComm:dat_duType" minOccurs="0"/>
+            <xs:element name="dat_ak" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="uksAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+        <xs:attribute name="ind_oprav_sd" type="dsComm:indOprSdType"  use="required"/>
+    </xs:complexType>
+    <!--                 UOT                 -->
+    <xs:complexType name="uotType">
+        <xs:sequence>
+            <xs:element name="dat_du" type="dsComm:dat_duType"/>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="dat_ak" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="uotAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+        <xs:attribute name="ind_oprav_sd" type="dsComm:indOprSdType"  use="required"
+	    />
+    </xs:complexType>
+    <!--                 UNIZF               -->
+    <xs:complexType name="unizfType">
+        <xs:sequence>
+            <xs:element name="unizfAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>    
+        <xs:attribute name="niz_klic" type="dsComm:str10" use="required"/>
+        <xs:attribute name="niz_text" type="dsComm:str50"/>
+        <xs:attribute name="info_text" type="dsComm:str255"/>
+    </xs:complexType>
+    <!--                 UNIZ                -->
+    <xs:complexType name="unizType">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="u_niz" type="dsComm:str255" minOccurs="0"/>
+                <xs:element name="unizf" type="dsip:unizfType" minOccurs="0"/>
+            </xs:choice>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="dat_du" type="dsComm:dat_duType" minOccurs="0"/>
+            <xs:element name="dat_ak" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="unizAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="typ" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="U"/>
+                    <xs:enumeration value="N"/>
+                    <xs:enumeration value="SF"/>
+                    <xs:enumeration value="SN"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+        <xs:attribute name="ind_oprav_sd" type="dsComm:indOprSdType" use="required"/>
+    </xs:complexType>
+    <!--                 U                  -->
+    <xs:complexType name="uType">
+        <xs:sequence>
+            <xs:element name="garant_dat" type="dsComm:garant_datType" minOccurs="0"/>
+            <xs:element name="ua" type="dsip:uaType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="urf" type="dsip:urfType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="uniz" type="dsip:unizType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="utm" type="dsip:utmType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="uks" type="dsip:uksType" minOccurs="0"/>
+            <xs:element name="uot" type="dsip:uotType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="uAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!--
+        *****************************
+        komplexni typ pro blok AN
+        *****************************
+           -->
+    <xs:complexType name="anType">
+        <xs:sequence>
+            <xs:element name="garant_dat" type="dsComm:garant_datType" minOccurs="0"/>
+            <xs:element name="text" type="dsip:textType"/>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="dat_ak" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="anAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+    </xs:complexType>
+    <!--
+        *****************************
+        komplexni typ pro blok OC
+        *****************************
+           -->
+    <xs:complexType name="davkaType">
+        <xs:sequence>
+            <xs:element name="autor" type="dsComm:str35" minOccurs="0"/>
+            <xs:element name="dat_du" type="dsComm:dat_duType"/>
+            <xs:element name="reakce" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="dat_or" type="dsComm:dat_xxType"/>
+                        <xs:element name="vys_or" type="dsComm:str255" minOccurs="0"/>
+                        <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+                        <xs:element name="reakceAny" minOccurs="0" type="dsComm:AnyType"/>
+                    </xs:sequence>
+                    <xs:attribute name="typ" type="dsComm:davkaTypType" use="required"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="davkaAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="cis_davky" type="dsComm:number1d" use="required"/>
+        <xs:attribute name="ind_oprav_sd" type="dsComm:indOprSdType" use="required"/>
+        <xs:attribute name="nazev_ol" type="dsComm:str70" use="required"/>
+        <xs:attribute name="gene_ol" type="dsComm:str70"/>
+        <xs:attribute name="kod_ol" type="dsComm:str7"/>
+        <xs:attribute name="cis_sarze" type="dsComm:str35"/>
+    </xs:complexType>
+    <!--                 OCZ                 -->
+    <xs:complexType name="oczType">
+        <xs:sequence>
+            <xs:element name="davka" type="dsip:davkaType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="dat_po" type="xs:date" minOccurs="0"/>
+            <xs:element name="pozn" type="dsComm:str255" minOccurs="0"/>
+            <xs:element name="oczAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="typ_oc_kod" type="dsComm:str8"  use="required"/>
+        <xs:attribute name="typ_oc_text" type="dsComm:str55"  use="required"/>
+    </xs:complexType>
+    <!--                  OC                 -->
+    <xs:complexType name="ocType">
+        <xs:sequence>
+            <xs:element name="garant_dat" type="dsComm:garant_datType" minOccurs="0"/>
+            <xs:element name="ocz" type="dsip:oczType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="dat_ak" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="ocAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="typ" use="required">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:pattern value="[UPDA]"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>        
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+    </xs:complexType>
+    <!--
+        *****************************
+        komplexni typ pro blok DG
+        *****************************
+           -->
+    <!--            dgzType            -->
+    <xs:complexType name="dgzType">
+        <xs:sequence>
+            <xs:element name="diag">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="dsComm:str5">
+                            <xs:attribute name="mkn_verze" type="dsComm:str40"/>
+                            <xs:attribute name="poradi" type="dsComm:number1-99" use="required"/>
+                            <xs:attribute name="nazev" type="dsComm:str250"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="stav_dg" type="dsComm:str20" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="zavaz_dg" type="dsComm:str20" minOccurs="0"/>
+            <xs:element name="dat_du" type="dsComm:dat_duType" minOccurs="0"/>
+            <xs:element name="dat_up" type="dsComm:dat_duType" minOccurs="0"/>
+            <xs:element name="spec_dg" type="dsComm:str1000" minOccurs="0"/>
+            <xs:element name="pozn" type="dsComm:str80" minOccurs="0"/>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="dat_vb" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="dgzAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="typ_dg">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:pattern value="[TP]"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="duvernost">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="1"/>
+                    <xs:enumeration value="2"/>
+                    <xs:enumeration value="3"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="duverne" type="dsComm:logicalA"/>        
+    </xs:complexType>
+    <!--            dgType            -->
+    <xs:complexType name="dgType">
+        <xs:sequence>
+            <xs:element name="dgz" type="dsip:dgzType" maxOccurs="unbounded"/>
+            <xs:element name="dgAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+    </xs:complexType>
+    <!--
+        *****************************
+        komplexni typy pro blok LE
+        *****************************
+           -->
+    <xs:complexType name="leType">
+        <xs:sequence>
+            <xs:element name="lez" minOccurs="0" maxOccurs="unbounded">
+                <!--              BEGIN OF anonymni komplexni typ LEZ              -->
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="dat_od" type="dsComm:dat_xxType" minOccurs="0"/>
+                        <xs:element name="dat_do" type="dsComm:dat_xxType" minOccurs="0"/>
+                        <xs:element name="rozpis_v" type="dsComm:str50" minOccurs="0"/>
+                        <xs:element name="magistraliter" type="dsComm:str255" minOccurs="0"/>
+                        <xs:element name="pozn" type="dsComm:str80" minOccurs="0"/>
+                        <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+                        <xs:element name="dat_vb" type="dsComm:dat_xxType" minOccurs="0"/>
+                        <xs:element name="lezAny" minOccurs="0" type="dsComm:AnyType"/>
+                    </xs:sequence>
+                    <xs:attribute name="typ_med" use="required">
+                        <xs:simpleType>
+                            <xs:restriction base="dsComm:str1">
+                                <xs:pattern value="[TP]"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="ind_oprav_sd" type="dsComm:indOprSdType" use="required"/>
+                    <xs:attribute name="nazev_lek" type="dsComm:str120" use="required"/>
+                    <xs:attribute name="gene_lek" type="dsComm:str70"/>
+                    <xs:attribute name="kod_lek" type="dsComm:str7"/>
+                    <xs:attribute name="cis_kod_lek">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="KLK"/>
+                                <xs:enumeration value="SCAU"/>
+                                <xs:enumeration value="SCAU_BEZ_UHRAD"/>
+                                <xs:enumeration value="LEKY"/>
+                                <xs:enumeration value="NHVLP"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="cis_kod_lek_v" type="dsComm:str40"/>
+                    <xs:attribute name="kod_atc" type="dsComm:str10"/>
+                    <xs:attribute name="kod_atb" type="dsComm:str3"/>
+                </xs:complexType>
+                <!--               END OF anonymni komplexni typ LEZ              -->
+            </xs:element>
+            <xs:element name="leAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="typ" use="required">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:pattern value="[UNMA]"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+    </xs:complexType>
+    <!--
+        *******************************
+        komplexni typy pro blok LEK
+        *******************************
+           -->
+    <xs:complexType name="lekType">
+        <xs:sequence>
+            <xs:element name="garant_dat" type="dsComm:garant_datType" minOccurs="0"/>
+            <xs:element name="lek_v" maxOccurs="unbounded">
+                <!--               BEGIN OF anonymni komplexni typ LEKV               -->
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="dat_du" type="dsComm:dat_duType" minOccurs="0"/>
+                        <xs:element name="rozpis_v" type="dsComm:str50" minOccurs="0"/>
+                        <xs:element name="vydal" type="dsComm:str35" minOccurs="0"/>
+                        <xs:element name="magistraliter" type="dsComm:str255" minOccurs="0"/>
+                        <xs:element name="pozn" type="dsComm:str80" minOccurs="0"/>
+                        <xs:element name="lekvAny" minOccurs="0" type="dsComm:AnyType"/>
+                    </xs:sequence>
+                    <xs:attribute name="nazev_lek" type="dsComm:str70" use="required"/>
+                    <xs:attribute name="ind_oprav_sd" type="dsComm:indOprSdType" use="required"/>
+                    <xs:attribute name="poc_bal" type="dsComm:number2d" use="required"/>
+                    <xs:attribute name="gene_lek" type="dsComm:str70"/>
+                    <xs:attribute name="kod_lek" type="dsComm:str7"/>
+                    <xs:attribute name="kod_atc" type="dsComm:str10"/>
+                    <xs:attribute name="kod_pdk" type="dsComm:str15"/>
+                    <xs:attribute name="id_dok_is" type="dsComm:str35"/>
+                    <xs:attribute name="cena" type="dsComm:number6.2"/>
+                    <xs:attribute name="icl" type="dsComm:icisType"/>
+                </xs:complexType>
+                <!--               END OF anonymni komplexni typ LEKV               -->
+            </xs:element>
+            <xs:element name="lekAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+    </xs:complexType>
+    <!--
+        ******************************
+        komplexni typy pro blok PN
+        ******************************
+           -->
+    <xs:complexType name="pnType">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="pnz" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="dat_od" type="dsComm:dat_xxType"/>
+                            <xs:element name="dat_du" type="dsComm:dat_duType" minOccurs="0"/>
+                            <xs:element name="dat_do" type="dsComm:dat_xxType" minOccurs="0"/>
+                            <xs:element name="pozn" type="dsComm:str255" minOccurs="0"/>
+                            <xs:element name="pnzAny" minOccurs="0" type="dsComm:AnyType"/>
+                        </xs:sequence>
+                        <xs:attribute name="cislo_tiskopisu" type="dsComm:str12"/>
+                        <xs:attribute name="ind_oprav_sd" type="dsComm:indOprSdType" use="required"/>
+                        <xs:attribute name="diag_poc" type="dsComm:str5"/>
+                        <xs:attribute name="uraz_prac" type="dsComm:logicalA" default="N"/>
+                        <xs:attribute name="uraz_ostatni" type="dsComm:logicalA" default="N"/>
+                        <xs:attribute name="uraz_zavineny" type="dsComm:logicalA" default="N"/>
+                        <xs:attribute name="nemoc_povol" type="dsComm:logicalA" default="N"/>
+                        <xs:attribute name="alkohol" type="dsComm:logicalA" default="N"/>
+                        <xs:attribute name="drogy" type="dsComm:logicalA" default="N"/>
+                        <xs:attribute name="jinemu_lekari" type="dsComm:logicalA" default="N"/>
+                        <xs:attribute name="diag_kon" type="dsComm:str5"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="hpn" type="dsip:hpnType"/>
+                <xs:element name="pdhpn" type="dsip:pdhpnType"/>
+            </xs:choice>
+            <xs:element name="pnAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="dat_ab" type="xs:dateTime"/>
+    </xs:complexType>
+    <!--
+        *****************************
+        komplexni typy pro blok AU
+        *****************************
+           -->
+    <xs:group name="zadatelElemGroup">
+        <xs:sequence>
+            <xs:element name="jmeno" type="dsComm:str255" minOccurs="0"/>
+            <xs:element name="pozn" type="dsComm:str255" minOccurs="0"/>
+            <xs:element name="dat_za" type="dsComm:dat_xxType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:group>
+    <!--               zadatelType               -->
+    <xs:complexType name="zadatelType">
+        <xs:sequence>
+            <xs:group ref="dsip:zadatelElemGroup"/>
+            <xs:element name="zadatelAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="icz" type="dsComm:number8d"/>
+        <xs:attribute name="icp" type="dsComm:number8d" use="required"/>
+        <xs:attribute name="odb" type="dsComm:number3d" use="required"/>
+        <xs:attribute name="icl" type="dsComm:number8d"/>
+        <xs:attribute name="ns" type="dsComm:number8d"/>
+    </xs:complexType>
+    <!--               zadatelSkType               -->
+    <xs:complexType name="zadatelSkType">
+        <xs:sequence>
+            <xs:group ref="dsip:zadatelElemGroup"/>
+            <xs:element name="zadatelSkAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="sr_typ" type="dsComm:sr_typType" use="required"/>
+        <xs:attribute name="sr_pois" type="dsComm:str4" use="required"/>
+        <xs:attribute name="sr_kod" type="dsComm:str9e" use="required"/>
+        <xs:attribute name="sr_lekar" type="dsComm:str12e" use="required"/>
+        <xs:attribute name="odb" type="dsComm:number3d" use="required"/>
+        <xs:attribute name="ns" type="dsComm:number8d"/>
+    </xs:complexType>
+    <!--
+        ****************************
+        komplexni typy pro blok Z
+        ****************************
+           -->
+    <!--            textType            -->
+    <xs:element name="ptext">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute ref="xml:space" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="textType">
+        <xs:sequence>
+	          <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element ref="dsip:ptext" />
+            <xs:choice>
+                <xs:element name="ktext" type="dsip:ktextType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="priloha" type="dsComm:prilohaType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:choice>
+            <xs:element name="textAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ktextType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="encode" use="required">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="NONE"/>
+                            <xs:enumeration value="Base64"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute name="typ" type="xs:string" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <!--          nazvyType          -->
+    <xs:complexType name="nazvyType">
+        <xs:sequence>
+            <xs:element name="nazvyAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="typ_cispol">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="N"/>
+                    <xs:enumeration value="L"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="nadpis_nal" type="dsComm:str55"/>
+        <xs:attribute name="nadpis_nal_dop" type="dsComm:str55"/>
+        <xs:attribute name="system" type="dsComm:str32"/>
+        <xs:attribute name="material" type="dsComm:str32"/>
+        <xs:attribute name="komponenta" type="dsComm:str55"/>
+        <xs:attribute name="druh_veliciny" type="dsComm:str32"/>
+        <xs:attribute name="jednotka" type="dsComm:str20"/>
+        <xs:attribute name="procedura" type="dsComm:str32"/>
+    </xs:complexType>
+    <!--          vrsType          -->
+    <xs:complexType name="vrsType">
+        <xs:sequence>
+            <xs:element name="nazvy" minOccurs="0" type="dsip:nazvyType"/>
+            <xs:element name="vrs_h" maxOccurs="unbounded" type="dsip:vrs_hType"/>
+            <xs:element name="pozn" minOccurs="0" type="dsComm:str255"/>
+            <xs:element name="vrsAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!--          vrs_hType          -->
+    <xs:complexType name="vrs_hType">
+        <xs:sequence>
+            <xs:element name="vrshAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="hodnota1_klic" type="dsComm:str8" use="required"/>
+        <xs:attribute name="hodnota1_text" type="dsComm:str32"/>
+        <xs:attribute name="priznak2_kvant" type="dsCis:LVPHKN"/>
+        <xs:attribute name="hodnota2_cislo" type="dsComm:str8"/>
+        <xs:attribute name="hodnota2_klic" type="dsComm:str8"/>
+        <xs:attribute name="hodnota2_text" type="dsComm:str32"/>
+    </xs:complexType>
+    <!--          sciType          -->
+    <xs:complexType name="sciType">
+        <xs:sequence>
+            <xs:element name="sciAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="id_sci_is" type="dsComm:str15" use="required"/>
+        <xs:attribute name="klic_nclp" type="dsComm:klic_nclpType" use="required"/>
+        <xs:attribute name="krok" use="required" type="dsComm:number2d"/>
+        <xs:attribute name="prubeh" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Z"/>
+                    <xs:enumeration value="P"/>
+                    <xs:enumeration value="K"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <!--        typy pouzivane ve vrnType        -->
+    <!--        prepocetType        -->
+    <xs:complexType name="prepocetType">
+        <xs:sequence>
+            <xs:element name="skala_lok"  minOccurs="0" type="dsip:skalaType"/>
+            <xs:element name="prepocetAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="hodnota_lok" type="dsComm:number6.2" use="required"/>
+        <xs:attribute name="jednotka_lclp" type="dsComm:str20" use="required"/>
+        <xs:attribute name="prepfak" type="dsComm:str16" use="required"/>
+        <xs:attribute name="typpol_fh_lclp" type="dsComm:str2" use="required"/>
+    </xs:complexType>
+    <!--        nejistotaType        -->
+    <xs:complexType name="nejistotaType">
+        <xs:sequence>
+            <xs:element name="nejist_var1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="nejistvar1Any" minOccurs="0" type="dsComm:AnyType"/>
+                    </xs:sequence>
+                    <xs:attribute name="t_nejist" type="dsComm:number1-2"/>
+                    <xs:attribute name="h_nejist" type="dsComm:number6.2" use="required"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="nejist_var2">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="nejistvar2Any" minOccurs="0" type="dsComm:AnyType"/>
+                    </xs:sequence>
+                    <xs:attribute name="t_nejist_n" type="dsComm:number1-2"/>
+                    <xs:attribute name="h_nejist_n" type="dsComm:number6.2" use="required"/>
+                    <xs:attribute name="k_anal_n" type="dsComm:number6.2" use="required"/>
+                    <xs:attribute name="t_nejist_v" type="dsComm:number1-2"/>
+                    <xs:attribute name="h_nejist_v" type="dsComm:number6.2" use="required"/>
+                    <xs:attribute name="k_anal_v" type="dsComm:number6.2" use="required"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="nejistotaAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!--        skalaType        -->
+    <xs:complexType name="skalaType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="s1" type="dsComm:number6.6semilog"/>
+            <xs:element minOccurs="0" name="s2" type="dsComm:number6.6semilog"/>
+            <xs:element minOccurs="0" name="s3" type="dsComm:number6.6semilog"/>
+            <xs:element name="s4" type="dsComm:number6.6semilog"/>
+            <xs:element name="s5" type="dsComm:number6.6semilog"/>
+            <xs:element minOccurs="0" name="s6" type="dsComm:number6.6semilog"/>
+            <xs:element minOccurs="0" name="s7" type="dsComm:number6.6semilog"/>
+            <xs:element minOccurs="0" name="s8" type="dsComm:number6.6semilog"/>
+            <xs:element minOccurs="0" name="interpret_g_z" type="dsComm:str35"/>
+            <xs:element name="skalaAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="formrm" type="dsComm:str1"/>
+        <xs:attribute name="typ" type="dsCis:LVVIST"/>
+        <xs:attribute name="atribut" type="dsCis:multi8LVVISA"/>
+        <xs:attribute name="udalost" type="dsCis:NCLPUVIS"/>
+        <xs:attribute name="algoritmus" type="dsComm:str8"/>
+        <xs:attribute name="s_hodn_o" type="dsComm:sHodnotaType"/>
+        <xs:attribute name="t_hodn_o" type="dsComm:tHodnotaType"/>
+    </xs:complexType>
+    <!--        hodnoceniType        -->
+    <xs:complexType name="hodnoceniType">
+        <xs:sequence>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="hodnoceniAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="hodn_vysl" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="negativni"/>
+                    <xs:enumeration value="hranicni"/>
+                    <xs:enumeration value="reaktivni"/>
+                    <xs:enumeration value="slabe_poz"/>
+                    <xs:enumeration value="pozitivni"/>
+                    <xs:enumeration value="silne_poz"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>        
+    </xs:complexType>
+    <!--       vrnType       -->
+    <xs:complexType name="vrnType">
+        <xs:sequence>
+            <xs:element name="nazvy" type="dsip:nazvyType" minOccurs="0"/>
+            <xs:element name="prepocet" type="dsip:prepocetType" minOccurs="0"/>
+            <xs:element name="hodnota" type="dsComm:number6.6semilog"/>
+            <xs:element name="jednotka" type="dsComm:str20"/>
+            <xs:element name="nejistota" type="dsip:nejistotaType" minOccurs="0"/>
+            <xs:choice>
+                <xs:element name="hodnoceni" type="dsip:hodnoceniType" minOccurs="0"/>
+                <xs:element name="skala" type="dsip:skalaType" minOccurs="0"/>
+            </xs:choice>
+            <xs:element name="pozn" type="dsComm:str255" minOccurs="0"/>
+            <xs:element name="vrnAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="priznak_kvant" type="dsCis:LVPHKN" use="required"/>
+    </xs:complexType>
+    <!--       vrfType       -->
+    <xs:complexType name="vrfType">
+        <xs:sequence>
+            <xs:element name="nazvy" type="dsip:nazvyType" minOccurs="0"/>
+            <xs:element name="hodnota_kod" type="dsComm:str8"/>
+            <xs:element name="hodnota_text" type="dsComm:str32" minOccurs="0"/>
+            <xs:element name="pozn" type="dsComm:str255" minOccurs="0"/>
+            <xs:element name="vrfAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="s_hodn_ko" type="dsComm:sHodnotaType"/>
+    </xs:complexType>
+    <!--      vrxType      -->
+    <xs:complexType name="vrxType">
+        <xs:sequence>
+            <xs:element name="nazvy" type="dsip:nazvyType" minOccurs="0"/>
+            <xs:element name="hodnota_nt" type="dsComm:str255"/>
+            <xs:element name="pozn" type="dsComm:str255" minOccurs="0"/>
+            <xs:element name="vrxAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!--      vrbType      -->
+    <xs:complexType name="vrbType">
+        <xs:sequence>
+            <xs:element name="nazvy" type="dsip:nazvyType" minOccurs="0"/>
+            <xs:element name="text" type="dsip:textType"/>
+            <xs:element name="text_obj" type="dsip:textType" minOccurs="0"/>
+            <xs:element name="vrbAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="typ_vzniku" type="dsComm:typVznikuType" use="required"/>
+        <xs:attribute name="misto_vzniku" type="dsComm:mistoVznikuType" use="required"/>
+        <xs:attribute name="autorizace" type="dsComm:logicalA" use="required"/>
+    </xs:complexType>
+    <!--      vrrType      -->
+    <xs:complexType name="vrrType">
+        <xs:sequence>
+            <xs:element name="text" type="dsip:textType"/>
+            <xs:element name="vrrAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="rad_zahlavi" type="dsComm:str1" default="0"/>
+        <xs:attribute name="rad_paty" type="dsComm:str1" default="0"/>
+        <xs:attribute name="poc_stran" type="dsComm:number2d"/>
+        <xs:attribute name="autorizace" type="dsComm:logicalA" use="required"/>
+    </xs:complexType>
+    <!--       vrpType      -->
+    <xs:complexType name="vrpType">
+        <xs:sequence>
+            <xs:element name="nazvy" type="dsip:nazvyType" minOccurs="0"/>
+            <xs:element name="vrpAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!--       vrdType      -->
+    <xs:complexType name="vrdType">
+        <xs:sequence>
+            <xs:element name="nazvy" type="dsip:nazvyType" minOccurs="0"/>
+            <xs:element name="dat_dv" type="xs:date"/>
+            <xs:element name="vrdAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!--       komplexni typy pouzivane ve vrkType      -->
+    <!--      lopokType      -->
+    <xs:complexType name="lopokType">
+        <xs:sequence>
+            <xs:element name="lopokAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="obj_mv_kod" type="dsCis:NCMPOBJK" use="required"/>
+        <xs:attribute name="obj_mv_text" type="dsComm:str55"/>
+        <xs:attribute name="upresneni" type="dsComm:str55"/>
+    </xs:complexType>
+    <!--     kvantitaType     -->
+    <xs:complexType name="kvantitaType">
+        <xs:simpleContent>
+            <xs:extension base="dsComm:number6.6semilog">
+                <xs:attribute name="priznak" type="dsCis:LMPHKN" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <!--     vrkpaType     -->
+    <xs:complexType name="vrkpaType">
+        <xs:sequence>
+            <xs:element name="kvantita" type="dsip:kvantitaType" minOccurs="0"/>
+            <xs:element name="vrav" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="vravAny" minOccurs="0" type="dsComm:AnyType"/>
+                    </xs:sequence>
+                    <xs:attribute name="vl_kod" type="dsCis:NCMPAGV" use="required"/>
+                    <xs:attribute name="vl_text" type="dsComm:str55"/>
+                    <xs:attribute name="pritomnost" type="dsCis:LMHPUVN" use="required"/>
+                    <xs:attribute name="dodatek" type="dsComm:str55"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="vrac" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="kvantita" type="dsip:kvantitaType" minOccurs="0"/>
+                        <xs:element name="vracAny" minOccurs="0" type="dsComm:AnyType"/>
+                    </xs:sequence>
+                    <xs:attribute name="latka_kod" type="dsComm:str8" use="required"/>
+                    <xs:attribute name="latka_text" type="dsComm:str55"/>
+                    <xs:attribute name="hod_citlivosti" type="dsCis:LMHCN" use="required"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="doruceni" type="dsComm:str255" minOccurs="0"/>
+            <xs:element name="vrmahn" type="dsComm:str255" minOccurs="0"/>
+            <xs:element name="vrmlpn" type="dsComm:str255" minOccurs="0"/>
+            <xs:element name="vrmzhl" type="dsComm:str255" minOccurs="0"/>
+            <xs:element name="vrkpaAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="agens_kod" type="dsComm:str8" use="required"/>
+        <xs:attribute name="agens_text" type="dsComm:str55" use="required"/>
+        <xs:attribute name="dalsi_vys" type="dsCis:LMIDVAN" use="required"/>
+        <xs:attribute name="pritomnost" type="dsCis:LMIPAN" use="required"/>
+        <xs:attribute name="druh_veliciny" type="dsComm:str32"/>
+        <xs:attribute name="jednotka" type="dsComm:str20"/>
+    </xs:complexType>
+    <!--       vrkType      -->
+    <xs:complexType name="vrkType">
+        <xs:sequence>
+            <xs:element name="nazvy" type="dsip:nazvyType" minOccurs="0"/>
+            <xs:element name="lopok" type="dsip:lopokType" maxOccurs="unbounded"/>
+            <xs:element name="vrmmn" type="dsComm:str255" maxOccurs="unbounded"/>
+            <xs:element name="vrkpa" type="dsip:vrkpaType" maxOccurs="unbounded"/>
+            <xs:element name="vrmahn" type="dsComm:str255" minOccurs="0"/>
+            <xs:element name="vrmlpn" type="dsComm:str255" minOccurs="0"/>
+            <xs:element name="vrmzhl" type="dsComm:str255" minOccurs="0"/>
+            <xs:element name="vrkAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="spec_kod" type="dsComm:str8"/>
+        <xs:attribute name="spec_text" type="dsComm:str55"/>
+        <xs:attribute name="subspec_text" type="dsComm:str55"/>
+        <xs:attribute name="ziskmat_kod" type="dsCis:NCMPZZM"/>
+        <xs:attribute name="ziskmat_text" type="dsComm:str55"/>
+        <xs:attribute name="stav_mat" type="dsCis:NCMPSTM"/>
+        <xs:attribute name="stav_zprac" type="dsCis:LMSZMMN" use="required"/>
+    </xs:complexType>
+    <!--       vroType      -->
+    <xs:complexType name="vroType">
+        <xs:sequence>
+            <xs:element name="nazvy" type="dsip:nazvyType" minOccurs="0"/>
+            <xs:element name="text" type="dsip:textType" minOccurs="0"/>
+            <xs:element name="priloha" type="dsComm:prilohaType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="int_pril" type="dsComm:int_prilType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="vroAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!--       vrzType      -->
+    <xs:complexType name="vrzType">
+        <xs:sequence>
+            <xs:element name="text" type="dsip:textType"/>
+            <xs:element name="vrzAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!--
+  *****************************
+  komplexni typy pro blok LO
+  *****************************
+  -->
+    <!-- losType -->
+    <xs:complexType name="losType">
+        <xs:sequence>
+            <xs:element name="losAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="prijeti" type="dsCis:LOPPP" default="B"/>
+        <xs:attribute name="kolize" type="dsCis:LOZRK" default="B"/>
+        <xs:attribute name="urg_vysled" type="dsCis:LOZDV" default="B"/>
+        <xs:attribute name="rut_vysled" type="dsCis:LOZDV" default="B"/>
+        <xs:attribute name="ext_vysled" type="dsCis:LOZDVE" default="B"/>
+        <xs:attribute name="dodsest" type="dsCis:LOZDSEC" default="B"/>
+        <xs:attribute name="dodform" type="dsCis:LOZDFVEC" default="B"/>
+        <xs:attribute name="dodnadpis" type="dsCis:LOZDN" default="B"/>
+        <xs:attribute name="dodskal" type="dsCis:LOZDS" default="B"/>
+        <xs:attribute name="typskal" type="dsCis:LOZTS" default="B"/>
+        <xs:attribute name="dodkoment" type="dsCis:LOZDK" default="N"/>
+        <xs:attribute name="dodgraf" type="dsCis:LOZDG" default="B"/>
+        <xs:attribute name="fsvku" default="B" >
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="P"/>
+                    <xs:enumeration value="F"/>
+                    <xs:enumeration value="B"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <!-- lipType -->
+    <xs:complexType name="lipType">
+        <xs:sequence>
+            <xs:element name="lipAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="klic_nclp" type="dsComm:str5e" use="required"/>
+        <xs:attribute name="priznak_kvant" type="dsCis:LVPHKN"/>
+        <xs:attribute name="hodnota" type="dsComm:str8" use="required"/>
+    </xs:complexType>
+    <!-- lodType (prakticky kopie lipType, predp. nejakeho rozdilu) -->
+    <xs:complexType name="lodType">
+        <xs:sequence>
+            <xs:element name="lodAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="klic_nclp" type="dsComm:str5e" use="required"/>
+        <xs:attribute name="priznak_kvant" type="dsCis:LVPHKN"/>
+        <xs:attribute name="hodnota" type="dsComm:str8" use="required"/>
+    </xs:complexType>
+    <!-- lopType -->
+    <xs:complexType name="lopType">
+        <xs:sequence>
+            <xs:element name="lopAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="klic_nclp" type="dsComm:str5e" use="required"/>
+        <xs:attribute name="urg" type="dsCis:LOUP" default="R"/>
+        <xs:attribute name="pozn_lop" type="dsComm:str255" />
+        <xs:attribute name="pozn_lop_lab" type="dsComm:str255" />
+    </xs:complexType>
+    <!-- loiType -->
+    <xs:complexType name="loiType">
+        <xs:sequence>
+            <xs:element name="o_pracovnik" type="dsip:pracovnikType" minOccurs="0"/>
+            <xs:element name="text" type="dsip:textType" minOccurs="0"/>
+            <xs:element name="sci" type="dsip:sciType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="dat_zt" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="lod" type="dsip:lodType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="lop" type="dsip:lopType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="loiAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="typ_znac" type="dsCis:LOTOZ" use="required"/>
+        <xs:attribute name="id_loi_is" type="dsComm:str15" use="required"/>
+        <xs:attribute name="typ_obalu" type="dsComm:str8" use="required"/>
+        <xs:attribute name="poc_obalu" type="dsComm:number1d" default="1"/>
+        <xs:attribute name="material" type="dsComm:str8" use="required"/>
+        <xs:attribute name="anal_vzorek" type="dsCis:NCLPTAV"/>
+        <xs:attribute name="indikace" type="dsCis:indikaceLOIType" default="N"/>
+        <xs:attribute name="urg" type="dsCis:LOUP" default="R"/>
+        <xs:attribute name="pozn_loi" type="dsComm:str255" />
+    </xs:complexType>
+    <!-- lopkType -->
+    <xs:complexType name="lopkType">
+        <xs:complexContent>
+            <xs:extension base="dsip:lopType">
+                <xs:sequence>
+                    <xs:element name="lopok" type="dsip:lopokType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="lopkAny" minOccurs="0" type="dsComm:AnyType"/>
+                </xs:sequence>
+                <xs:attribute name="spec_kod" type="dsComm:str8"/>
+                <xs:attribute name="spec_text" type="dsComm:str55"/>
+                <xs:attribute name="subspec_text" type="dsComm:str55"/>
+                <xs:attribute name="ziskmat_kod" type="dsCis:NCMPZZM"/>
+                <xs:attribute name="ziskmat_text" type="dsComm:str55"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- lopzType -->
+    <xs:complexType name="lopzType">
+        <xs:complexContent>
+            <xs:extension base="dsip:lopType">
+                <xs:sequence>
+                    <xs:element name="text" type="dsip:textType" minOccurs="0"/>
+                    <xs:element name="lopzAny" minOccurs="0" type="dsComm:AnyType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- loprType (kopie lopzType)-->
+    <xs:complexType name="loprType">
+        <xs:complexContent>
+            <xs:extension base="dsip:lopzType"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <!--
+  *********************************
+  komplexni typy pro blok LOI_P
+  *********************************
+  -->
+    <!-- kolize_vType -->
+    <xs:complexType name="kolize_vType">
+        <xs:simpleContent>
+            <xs:extension base="dsComm:str1">
+                <xs:attribute name="stav" type="dsComm:number1-7" use="required"/>
+                <xs:attribute name="err" type="dsComm:str3e" use="required"/>
+                <xs:attribute name="klic_nclp" type="dsComm:str5e"/>
+                <xs:attribute name="klic_nclp_novy" type="dsComm:str5e"/>
+                <xs:attribute name="pozn" type="dsComm:str50"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <!-- Vyadil LW
+  *****************************
+  komplexni typy pro blok XX
+  *****************************
+  <xs:complexType name="xxType">
+    <xs:sequence>
+      <xs:element name="text" type="dsip:textType"/>
+    </xs:sequence>
+    <xs:attribute name="kod_firmy" type="dsComm:str8e" use="required"/>
+    <xs:attribute name="spec_firmy" type="dsComm:str8" use="required"/>
+  </xs:complexType>
+  -->
+    <!--
+  *********************************************************
+  komplexni typy pro klinicke udalosti, blok KU
+  *********************************************************
+  -->
+    <!--    *********      ku_zType  *********     -->
+    <xs:complexType name="ku_zType">
+        <xs:sequence >
+            <xs:element name="idkuglob" type="dsip:idkuglobType" minOccurs="0"/>
+            <xs:element name="nazev" type="dsComm:str80" minOccurs="0"/>
+            <xs:element name="jazyk_dok" type="dsip:jazyk_dokType" minOccurs="0"/>
+            <xs:element name="dat_prov" type="dsComm:dat_xxType"/>
+            <xs:element name="dat_real_od" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="dat_real_do" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="dat_vydani" type="dsComm:dat_xxType"/>
+            <xs:element name="dat_poz" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="z_pracoviste" type="dsip:pracovisteType" minOccurs="0"/>
+            <xs:element name="z_pracovnik" type="dsip:pracovnikType" minOccurs="0"/>
+            <xs:element name="p_pracoviste" type="dsip:pracovisteType"/>
+            <xs:element name="p_pracovnik" type="dsip:pracovnikType" minOccurs="0"/>
+            <xs:element name="zpo" type="dsip:zpoType" minOccurs="0"/>
+            <xs:element name="pv_ku" type="dsip:pv_kuType" minOccurs="0"/>
+            <xs:element name="studie" type="dsip:studieType" minOccurs="0"/>
+            <xs:element name="dg_poz" type="dsip:dgzType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="lek_poz" type="dsip:leType" minOccurs="0"/>
+            <xs:element name="urg_poz" type="dsip:uType" minOccurs="0"/>
+            <xs:element name="leg_vyk" type="dsip:legVykType" minOccurs="0"/>
+            <xs:element name="text"  type="dsip:textType"/>
+            <xs:element name="text_zaver" type="dsip:textType" minOccurs="0"/>
+            <xs:element name="text_pp" type="dsip:textType" minOccurs="0"/>
+            <xs:element name="dg_vys" type="dsip:dgzType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="le_vys" type="dsip:leType" minOccurs="0"/>
+            <xs:choice >
+                <xs:element name="ku_z_rdg" type="dsip:ku_z_rdgType" minOccurs="0"/>
+                <xs:element name="ku_z_lab" type="dsip:ku_z_labType" minOccurs="0"  maxOccurs="unbounded"/>
+                <xs:element name="ku_z_pat_n" type="dsip:ku_z_pat_nType" minOccurs="0"  maxOccurs="unbounded"/>
+                <xs:element name="ku_z_soupis" type="dsip:ku_z_soupisType" minOccurs="0"/>
+                <xs:element name="ku_pac" type="dsip:ku_pacType" minOccurs="0"/>
+                <xs:element name="ku_z_patsumdat" type="dsip:ku_z_patsumdatType" minOccurs="0"/>
+                <xs:element name="ku_z_patsumsest" type="dsip:ku_z_patsumsestType" minOccurs="0"/>
+            </xs:choice>
+            <xs:element name="auzku" type="dsip:auzkuType" minOccurs="0"  maxOccurs="unbounded"/>
+            <xs:element name="kuzAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="typku" type="dsComm:str20" use="required" />
+        <xs:attribute name="typkuspeclok" type="dsComm:str40"/>
+        <xs:attribute name="fazespec" use="required" >
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ZP"/>
+                    <xs:enumeration value="ZF"/>
+                    <xs:enumeration value="ZO"/>
+                    <xs:enumeration value="ZK"/>
+                    <xs:enumeration value="ZR"/>
+                    <xs:enumeration value="ZS"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="idku" type="dsip:idkuType" />
+        <xs:attribute name="idsub" type="dsip:idkuType" />
+        <xs:attribute name="idkulok" type="dsComm:str40" />
+        <xs:attribute name="urgentni">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="V"/>
+                    <xs:enumeration value="S"/>
+                    <xs:enumeration value="N"/>
+                </xs:restriction>
+           </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="urg_info" type="dsCis:LVUIN"/>
+        <xs:attribute name="duvernost">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="1"/>
+                    <xs:enumeration value="2"/>
+                    <xs:enumeration value="3"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="duverne" type="dsComm:logicalA"  />
+    </xs:complexType>
+    <!--          ku_z_rdg radiologie     -->
+    <xs:complexType name="ku_z_rdgType">
+        <xs:sequence>
+            <xs:element name="id_study" minOccurs="0" type="dsComm:str64"/>
+            <xs:element name="ozareni_celkem" minOccurs="0" type="dsComm:realNumber8"/>
+            <xs:element name="ku_z_rdg_e" minOccurs="0" maxOccurs="unbounded" type="dsip:ku_z_rdg_eType"/>
+            <xs:element name="ku_z_rdg_o" minOccurs="0" maxOccurs="unbounded" type="dsip:ku_z_rdg_oType"/>
+            <xs:element name="kuzrdgAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="modalita" type="dsComm:str16"/>
+        <xs:attribute name="stanice" type="dsComm:str16"/>
+    </xs:complexType>
+    <!--   ku_z_rdg_e radiologie expozice   -->
+    <xs:complexType name="ku_z_rdg_eType">
+        <xs:sequence>
+            <xs:element name="kuzrdgeAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="projekce" type="dsComm:projekceType"/>
+        <xs:attribute name="napeti" type="dsComm:realNumber8"/>
+        <xs:attribute name="proud" type="dsComm:realNumber8"/>
+        <xs:attribute name="el_mnozstvi" type="dsComm:realNumber8"/>
+        <xs:attribute name="doba" type="dsComm:realNumber8"/>
+        <xs:attribute name="komprese" type="dsComm:realNumber8"/>
+        <xs:attribute name="davka_ozareni" type="dsComm:realNumber8"/>
+    </xs:complexType>
+    <!--   ku_z_rdg_e radiologie expozice   -->
+    <xs:complexType name="ku_z_rdg_oType">
+        <xs:sequence>
+            <xs:element name="id_image" minOccurs="0" type="dsComm:str64"/>
+            <xs:element name="id_serie" minOccurs="0" type="dsComm:str64"/>
+            <xs:element name="ku_o_rdg_lokal" minOccurs="0" type="dsip:rdg_lokalType"/>
+            <xs:element name="text" minOccurs="0" type="dsip:textType" />
+            <xs:element name="priloha" minOccurs="0" type="dsComm:prilohaType" />
+            <xs:element name="int_pril" type="dsComm:int_prilType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="kuzrdgoAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="rdg_lokalType">
+        <xs:sequence>
+            <xs:element name="rdglokalAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="lokalita" type="dsComm:str16"/>
+        <xs:attribute name="lateralita" >
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="L"/>
+                    <xs:enumeration value="R"/>
+                    <xs:enumeration value="B"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <!-- ku_z_pat_n -->
+    <xs:complexType name="ku_z_pat_nType">
+        <xs:sequence>
+            <xs:element name="kuzpatnAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="verze_mkn" type="dsComm:str4" use="required"/>
+        <xs:attribute name="verze_mkno" type="dsComm:str4" use="required"/>
+        <xs:attribute name="verze_tnm" type="dsComm:str4" use="required"/>
+        <xs:attribute name="dg_nov" type="dsComm:str4" use="required"/>
+        <xs:attribute name="morfo" type="dsComm:str5" use="required"/>
+        <xs:attribute name="grade">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="GX"/>
+                    <xs:enumeration value="G1"/>
+                    <xs:enumeration value="G2"/>
+                    <xs:enumeration value="G3"/>
+                    <xs:enumeration value="G4"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>        
+        <xs:attribute name="topo" type="dsComm:str4" use="required"/>
+        <xs:attribute name="pt" type="dsComm:str5"/>
+        <xs:attribute name="pnrn" type="dsComm:str4"/>
+        <xs:attribute name="pn" type="dsComm:str4"/>
+        <xs:attribute name="pvu" type="dsComm:str2"/>
+        <xs:attribute name="ppu" type="dsComm:str2"/>
+        <xs:attribute name="pm" type="dsComm:str4"/>
+        <xs:attribute name="rn" type="dsComm:str2"/>
+        <xs:attribute name="info_text" type="dsComm:str255"/>
+    </xs:complexType>
+        
+    <!--   ku_z_lab laboratorni vysetreni, (drive vr)          -->
+    <xs:complexType name="ku_z_labType">
+        <xs:sequence>
+            <xs:element name="dat_du" type="dsComm:dat_duType"/>
+            <xs:element name="dat_zt" minOccurs="0" type="dsComm:dat_xxType"/>
+            <xs:element name="dat_pl" minOccurs="0" type="dsComm:dat_xxType"/>
+            <xs:element name="dat_vv" minOccurs="0" type="dsComm:dat_xxType"/>
+            <xs:element name="autor" minOccurs="0" type="dsComm:autorType"/>
+            <xs:element name="odeslal" minOccurs="0" type="dsComm:odeslalType"/>
+            <!-- <xs:element name="nazev_nclp" minOccurs="0" type="dsComm:str120"/> -->
+            <xs:element name="sci" type="dsip:sciType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="nazev_lclp" type="dsComm:str120"/>
+            <xs:element name="text" type="dsip:textType" minOccurs="0"/>
+            <xs:choice >
+                <xs:element name="vrn" type="dsip:vrnType"/>
+                <xs:element name="vrf" type="dsip:vrfType"/>
+                <xs:element name="vrs" type="dsip:vrsType"/>
+                <xs:element name="vrx" type="dsip:vrxType"/>
+                <xs:element name="vrk" type="dsip:vrkType"/>
+                <xs:element name="vrb" type="dsip:vrbType"/>
+                <xs:element name="vrr" type="dsip:vrrType"/>
+                <xs:element name="vrd" type="dsip:vrdType"/>
+                <xs:element name="vrp" type="dsip:vrpType"/>
+                <xs:element name="vro" type="dsip:vroType"/>
+                <xs:element name="vrz" type="dsip:vrzType"/>
+            </xs:choice>
+            <xs:element name="kuzlabAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="klic_nclp" type="dsComm:klic_nclpType" use="required"/>
+        <xs:attribute name="nclp_verze" type="dsComm:str8"/>
+        <xs:attribute name="klic_nclp_o" type="dsComm:klic_nclpType"/>
+        <xs:attribute name="typ_cispol" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="N"/>
+                    <xs:enumeration value="L"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="typpol_fh" type="xs:NMTOKEN" use="required"/>
+        <xs:attribute name="stav_vys" type="dsCis:LVSVN" use="required"/>
+        <xs:attribute name="urg_info" type="dsCis:LVUIN"/>
+        <xs:attribute name="urg_zprac" type="dsCis:LVUZN"/>
+        <xs:attribute name="typ_sdel_vys" type="dsCis:LVTSVN" use="required"/>
+        <xs:attribute name="ind_vazb_fv" type="dsCis:LVIVFVN"/>
+        <xs:attribute name="ind_test_nf" type="dsComm:number0-2"/>
+        <xs:attribute name="spec_proc" type="dsComm:str8"/>
+        <xs:attribute name="kolize" type="dsComm:str8"/>
+        <xs:attribute name="akreditace" type="dsComm:logicalA"/>
+        <xs:attribute name="akreditace_t" type="dsComm:str255"/>
+        <xs:attribute name="duverne" type="dsComm:logicalA"/>
+        <xs:attribute name="id_lis" type="dsComm:str64"/>
+        <xs:attribute name="id_lo_is" type="dsComm:str40"/>
+    </xs:complexType>
+    <!--   ku_z_soupis          -->
+    <xs:complexType name="ku_z_soupisType">
+        <xs:sequence>
+            <xs:element name="ku_z_soupis_u" type="dsip:ku_z_soupis_uType" maxOccurs="unbounded"/>
+            <xs:element name="dat_vb" type="dsComm:dat_xxType"/>
+            <xs:element name="kuzlabAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ku_z_soupis_uType">
+        <xs:sequence >
+            <xs:element name="nazev" minOccurs="0" type="dsComm:str80"/>
+            <xs:element name="dat_prov" type="dsComm:dat_xxType"/>
+            <xs:element name="dat_real_od" minOccurs="0" type="dsComm:dat_xxType"/>
+            <xs:element name="dat_real_do" minOccurs="0" type="dsComm:dat_xxType"/>
+            <xs:element name="dat_vydani" type="dsComm:dat_xxType"/>
+            <xs:element name="p_pracoviste" type="dsip:pracovisteType"/>
+            <xs:element name="p_pracovnik" minOccurs="0" type="dsip:pracovnikType"/>
+            <xs:element name="dg_vys" minOccurs="0" maxOccurs="unbounded" type="dsip:dgzType"/>
+            <xs:element name="kuzAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="typku" type="dsComm:str20" use="required" />
+        <xs:attribute name="typkuspeclok" type="dsComm:str40"/>
+        <xs:attribute name="fazespec" use="required" >
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ZP"/>
+                    <xs:enumeration value="ZF"/>
+                    <xs:enumeration value="ZO"/>
+                    <xs:enumeration value="ZK"/>
+                    <xs:enumeration value="ZR"/>
+                    <xs:enumeration value="ZS"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="idku" type="dsip:idkuType" />
+        <xs:attribute name="idsub" type="dsip:idkuType" />
+        <xs:attribute name="idkulok" type="dsip:idkuType" />
+        <xs:attribute name="urgentni">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="V"/>
+                    <xs:enumeration value="S"/>
+                    <xs:enumeration value="N"/>
+                </xs:restriction>
+           </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="duvernost">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="1"/>
+                    <xs:enumeration value="2"/>
+                    <xs:enumeration value="3"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="duverne" type="dsComm:logicalA" />
+    </xs:complexType>
+    <!--               auzType, typ pouzity i v bloku FA resp. FAZ (viz. nize)               -->
+    <xs:complexType name="auzType">
+        <xs:sequence>
+            <xs:element name="dat_du" type="dsComm:dat_duType" minOccurs="0"/>
+            <xs:element name="auzAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="indikace" type="dsCis:indikaceAUZType" use="required"/>
+        <xs:attribute name="doklad" type="dsComm:number2de"/>
+        <xs:attribute name="polozka" type="dsComm:polozkaType" use="required"/>
+        <xs:attribute name="diag" type="dsComm:str5"/>
+        <xs:attribute name="kod_vykonu" type="dsComm:str5" use="required"/>
+        <xs:attribute name="lok_zubu" type="dsComm:str4"/>
+        <xs:attribute name="mnozstvi" type="dsComm:number8.3"/>
+        <xs:attribute name="cena" type="dsComm:number8d"/>
+        <xs:attribute name="kod_lab" type="dsComm:str4"/>
+        <xs:attribute name="sr_cito" type="dsComm:str1" fixed="C"/>
+        <xs:attribute name="sr_nahrady" type="dsComm:str2"/>
+        <xs:attribute name="sr_kod_lek" type="dsComm:str6"/>
+        <xs:attribute name="sr_mnozstvi" type="dsComm:number6.2"/>
+        <xs:attribute name="sr_cena" type="dsComm:number6.2"/>
+    </xs:complexType>
+    <!--               auzkuType, typ pouzity pro KU               -->
+    <xs:complexType name="auzkuType" >
+        <xs:sequence>
+            <xs:element name="dat_du" type="dsComm:dat_duType"/>
+            <xs:choice >
+                <xs:element name="vykon" type="dsip:vykonType" />
+                <xs:element name="zum" type="dsip:zumType" />
+            </xs:choice>
+            <xs:element name="p_pracoviste" type="dsip:pracovisteType"/>
+            <xs:element name="p_pracovnik" minOccurs="0" type="dsip:pracovnikType"/>
+            <xs:element name="pozn" type="dsComm:str255" minOccurs="0"/>
+            <xs:element name="auzkuAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="indikace" type="dsCis:indikaceAUZType" use="required"/>
+        <xs:attribute name="doklad_typ" type="dsComm:number2de" />
+        <xs:attribute name="doklad_kod" type="dsComm:str7" />
+        <xs:attribute name="typpol_vz" type="dsComm:polozkaType" use="required" />
+        <xs:attribute name="diag" type="dsComm:str5" use="required" />
+    </xs:complexType>
+    <!--               zumType, typ pouzity pro auzku -->
+    <xs:complexType name="zumType" >
+        <xs:sequence>
+            <xs:element name="zumAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="skupina" type="dsComm:number1-4" use="required"/>
+        <xs:attribute name="kod_zumu" type="dsComm:str7" use="required"/>
+        <xs:attribute name="mnozstvi" type="dsComm:number8.3" use="required"/>
+        <xs:attribute name="cena" type="dsComm:number8.2" use="required"/>
+        <xs:attribute name="uctujici" type="dsComm:uctujiciType" use="required" />
+        <xs:attribute name="uctovatelnost" type="dsComm:uctovatelnostType" />
+        <xs:attribute name="typ_omezeni">
+            <xs:simpleType >
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="R|A|J"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <!--               vykonType, typ pouzity pro auzku               -->
+    <xs:complexType name="vykonType" >
+        <xs:sequence>
+            <xs:element name="vykonAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="kod_vykonu" type="dsComm:str5" use="required"/>
+        <xs:attribute name="lok_zubu" type="dsComm:str4"/>
+        <xs:attribute name="pocet" type="dsComm:number3d" use="required" />
+        <xs:attribute name="uctujici" type="dsComm:uctujiciType" use="required" />
+        <xs:attribute name="uctovatelnost" type="dsComm:uctovatelnostType" />
+        <xs:attribute name="typ_omezeni">
+            <xs:simpleType >
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="A|F|O|Q|J"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="legVykType">
+        <xs:sequence>
+            <xs:element name="nahrady" minOccurs="0" maxOccurs="unbounded" type="dsComm:str255"/>
+            <xs:element name="legVykAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="uraz" type="dsComm:logicalA"/>
+    </xs:complexType>
+    <xs:complexType name="pracovnikType">
+        <xs:sequence>
+            <xs:element name="titul_pred" type="dsComm:str35" minOccurs="0"/>
+            <xs:element name="jmeno" type="dsComm:str40" minOccurs="0"/>
+            <xs:element name="prijmeni" type="dsComm:str40"/>
+            <xs:element name="titul_za" type="dsComm:str35" minOccurs="0"/>
+            <xs:element ref="ds:a" minOccurs="0"/>
+            <xs:element name="pracovnikAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="id_zp" type="dsComm:str10"/>
+        <xs:attribute name="icl" type="dsComm:icisType"/>
+        <xs:attribute name="odbornost" type="dsComm:str3e"/>
+        <xs:attribute name="id_pracovnik" type="dsComm:str20"/>
+        <xs:attribute name="id_clk" type="dsComm:icis10Type"/>
+        <xs:attribute name="role_klic" type="dsComm:str10"/>
+        <xs:attribute name="role_text" type="dsComm:str80"/>
+    </xs:complexType>
+    <xs:complexType name="pracovisteType">
+        <xs:sequence>
+            <xs:element name="nazev" type="dsComm:str255"/>
+            <xs:element name="oddel" type="dsComm:str2" minOccurs="0"/>
+            <xs:element name="pozn" type="dsComm:str255" minOccurs="0"/>
+            <xs:element ref="ds:a" minOccurs="0" />
+            <xs:element name="pracovisteAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="kod_lok" type="dsComm:str15"/>
+        <xs:attribute name="ico" type="dsComm:icisType"/>
+        <xs:attribute name="icz" type="dsComm:icisType" use="required"/>
+        <xs:attribute name="icp" type="dsComm:icisType" use="required"/>
+        <xs:attribute name="odb" type="dsComm:str3" use="required"/>
+        <xs:attribute name="ns" type="dsComm:str8"/>
+    </xs:complexType>
+    <xs:simpleType name="idkuType">
+        <xs:restriction base="dsComm:str40">
+            <xs:pattern value="[_0-9A-Z:.\-]{8,}\.[0-9]{1,10}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!--  ******      ku_oType    *******   -->
+    <xs:complexType name="ku_oType">
+        <xs:sequence>
+            <xs:element name="dat_poz" type="dsComm:dat_xxType"/>
+            <xs:element name="dat_prov_od" minOccurs="0" type="dsComm:dat_xxType"/>
+            <xs:element name="dat_prov_do" minOccurs="0" type="dsComm:dat_xxType"/>
+            <xs:element name="z_pracoviste" type="dsip:pracovisteType"/>
+            <xs:element name="z_pracovnik" minOccurs="0" type="dsip:pracovnikType"/>
+            <xs:element name="p_pracoviste" minOccurs="0" type="dsip:pracovisteType"/>
+            <xs:element name="p_pracovnik" minOccurs="0" type="dsip:pracovnikType"/>
+            <xs:element name="pv_ku" minOccurs="0" type="dsip:pv_kuType"/>
+            <xs:element name="studie" minOccurs="0" type="dsip:studieType"/>
+            <xs:element name="dg_poz" minOccurs="0" maxOccurs="unbounded" type="dsip:dgzType"/>
+            <xs:element name="lek_poz" minOccurs="0" type="dsip:leType"/>
+            <xs:element name="urg_poz" minOccurs="0" type="dsip:uType"/>
+            <xs:element name="leg_vyk" minOccurs="0" type="dsip:legVykType"/>
+            <xs:element name="ku_prilohy" minOccurs="0"  maxOccurs="unbounded" type="dsComm:str64" />
+            <xs:element name="text_zadosti" minOccurs="0" type="dsip:textType"/>
+            <xs:choice >
+                <xs:element name="ku_o_rdg" minOccurs="0" type="dsip:ku_o_rdgType" />
+                <xs:element name="ku_o_lab" minOccurs="0" maxOccurs="unbounded" type="dsip:ku_o_labType" />
+                <xs:element name="ku_o_vypis" minOccurs="0" maxOccurs="unbounded" type="dsip:ku_o_vypisType" />
+                <xs:element name="ku_o_soupis" minOccurs="0" maxOccurs="unbounded" type="dsip:ku_o_soupisType" />
+            </xs:choice>
+            <xs:element name="kuoAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="typku" type="dsComm:str20" use="required" />
+        <xs:attribute name="typkuspeclok" type="dsComm:str40"/>
+        <xs:attribute name="fazespec" use="required" >
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="OR"/>
+                    <xs:enumeration value="OO"/>
+                    <xs:enumeration value="OS"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="idku" type="dsip:idkuType" />
+        <xs:attribute name="idsub" type="dsip:idkuType" />
+        <xs:attribute name="idkulok" type="dsip:idkuType" />
+        <xs:attribute name="urgentni">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="V"/>
+                    <xs:enumeration value="S"/>
+                    <xs:enumeration value="N"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="duvernost">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="1"/>
+                    <xs:enumeration value="2"/>
+                    <xs:enumeration value="3"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="handicap" type="dsComm:str80"  />
+    </xs:complexType>
+    <xs:complexType name="ku_o_rdgType" >
+        <xs:sequence>
+            <xs:element name="ku_o_rdg_lokal"  minOccurs="0"  maxOccurs="unbounded" type="dsip:rdg_lokalType"/>
+            <xs:element name="kuordgAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="modalita" type="dsComm:str16"/>
+        <xs:attribute name="kontrast" type="dsComm:str255"/>
+    </xs:complexType>
+    <xs:complexType name="ku_o_labType" >
+        <xs:sequence>
+            <xs:element name="dat_poc_hosp" type="dsComm:dat_xxType" minOccurs="0" />
+            <xs:element name="los" type="dsip:losType" minOccurs="0" />
+            <xs:element name="dat_du" type="dsComm:dat_duType" />
+            <xs:element name="lip" type="dsip:lipType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="loi" type="dsip:loiType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:choice>
+                <xs:element name="lop" type="dsip:lopType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="lopk" type="dsip:lopkType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="lopz" type="dsip:lopzType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="lopr" type="dsip:loprType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:choice>
+            <xs:element name="kuolabAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="id_lo_is" type="dsComm:str40" />
+        <xs:attribute name="urg" type="dsCis:LOUP" default="R"/>
+        <xs:attribute name="dodani" type="dsCis:LOTDV" default="B"/>
+        <xs:attribute name="duv_objed" type="dsCis:LODO" default="B"/>
+    </xs:complexType>
+    <xs:complexType name="ku_o_vypisType" >
+        <xs:sequence>
+            <xs:element name="dat_vypis_od" type="dsComm:dat_xxType" minOccurs="0" />
+            <xs:element name="dat_vypis_do" type="dsComm:dat_xxType" minOccurs="0" />
+            <xs:element name="typ_ku" type="dsComm:str20" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="max_pocet" type="dsComm:number6d" minOccurs="0"/>
+            <xs:element name="min_pocet" type="dsComm:number6d" minOccurs="0"/>
+            <xs:element name="idku" type="dsip:idkuType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="kuovypisAny" type="dsComm:AnyType" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="typ_puvod">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="I"/>
+                    <xs:enumeration value="E"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="typ_urg">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="V"/>
+                    <xs:enumeration value="S"/>
+                    <xs:enumeration value="A"/>
+                    <xs:enumeration value="N"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="ku_o_soupisType" >
+        <xs:sequence>
+            <xs:element name="dat_soupis_od" type="dsComm:dat_xxType" minOccurs="0" />
+            <xs:element name="dat_soupis_do" type="dsComm:dat_xxType" minOccurs="0" />
+            <xs:element name="typ_ku" type="dsComm:str20" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="max_pocet" type="dsComm:number6d" minOccurs="0"/>
+            <xs:element name="min_pocet" type="dsComm:number6d" minOccurs="0"/>
+            <xs:element name="kuosoupisAny" type="dsComm:AnyType" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="typ_puvod">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="I"/>
+                    <xs:enumeration value="E"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="typ_urg">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="V"/>
+                    <xs:enumeration value="S"/>
+                    <xs:enumeration value="A"/>
+                    <xs:enumeration value="N"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <!--  ******      ku_aType    *******   -->
+    <xs:complexType name="ku_aType">
+        <xs:sequence>
+            <xs:element name="dat_akc" type="dsComm:dat_xxType"/>
+            <xs:element name="akc_pracoviste" type="dsip:pracovisteType"/>
+            <xs:element name="akc_pracovnik" minOccurs="0" type="dsip:pracovnikType"/>
+            <xs:element name="text" minOccurs="0" type="dsip:textType"/>
+            <xs:element name="ku_ao_lab" minOccurs="0" maxOccurs="unbounded" type="dsip:ku_ao_labType"/>
+            <xs:element name="kuaAny" minOccurs="0" type="dsComm:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="typku" type="dsComm:str20" use="required" />
+        <xs:attribute name="typkuspeclok" type="dsComm:str40"/>
+        <xs:attribute name="fazespec" use="required" >
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="AO"/>
+                    <xs:enumeration value="AZ"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="idku" type="dsip:idkuType" use="required" />
+        <xs:attribute name="idsub" type="dsip:idkuType" />
+        <xs:attribute name="idkulok" type="dsip:idkuType" />
+        <xs:attribute name="stavakcept" use="required" >
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="A"/>
+                    <xs:enumeration value="V"/>
+                    <xs:enumeration value="N"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="chyba_ao">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="NT01"/>
+                    <xs:enumeration value="VP01"/>
+                    <xs:enumeration value="NP01"/>
+                    <xs:enumeration value="NP02"/>
+                    <xs:enumeration value="NP03"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="chyba_az">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="NT01"/>
+                    <xs:enumeration value="NP01"/>
+                    <xs:enumeration value="NU01"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="ku_ao_labType">
+        <xs:sequence>
+           <xs:choice>
+                <xs:element name="prijato_ok"/>
+                <xs:element name="kolize_v" type="dsip:kolize_vType" maxOccurs="unbounded"/>
+            </xs:choice>
+            <xs:element name="lop" type="dsip:lopType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="dat_akc" type="dsComm:dat_xxType"/>
+        </xs:sequence>
+        <xs:attribute name="id_loi_is" type="dsComm:str15" use="required"/>
+        <xs:attribute name="id_lis" type="dsComm:str15"/>
+    </xs:complexType>
+    <!--  ******      ku_pType    *******   -->
+    <xs:complexType name="ku_pType">
+        <xs:attribute name="idku" type="dsip:idkuType" use="required" />
+        <xs:attribute name="id_pac_puv" type="dsComm:rodcisType" />
+    </xs:complexType>
+    <!-- dath_xx format - jen hodnota D  -->
+    <xs:complexType name="dath_xxType">
+        <xs:simpleContent>
+            <xs:extension base="xs:date">
+	        <xs:attribute name="format">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="D"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="chyba_pdType" >
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+	        <xs:attribute name="kod" type="dsComm:str3" use="required"/>
+	        <xs:attribute name="lokalizace" type="dsComm:str64" />
+	        <xs:attribute name="osetreni">
+                    <xs:simpleType>
+                        <xs:restriction base="dsComm:str1">
+                            <xs:enumeration value="O"/>
+                            <xs:enumeration value="I"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+	        <xs:attribute name="popis" type="dsComm:str255" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="pdhpnType" >
+        <xs:sequence>
+            <xs:element name="chyba_pd" type="dsip:chyba_pdType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="stav" use="required">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:enumeration value="A"/>
+                    <xs:enumeration value="N"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="hpnType" >
+        <xs:sequence>
+            <xs:element name="chpn" type="dsip:chpnType"/>
+            <xs:element name="idl" type="dsip:idlType"/>
+            <xs:element name="ahpn" type="dsip:ahpnType" minOccurs="0" />
+            <xs:element name="izam" type="dsip:izamType" minOccurs="0" />
+            <xs:element name="vchz" type="dsip:vchzType" minOccurs="0" />
+            <xs:element name="hsp" type="dsip:hspType" minOccurs="0" />
+            <xs:element name="zpshl" type="dsip:zpshlType" minOccurs="0" />
+            <xs:element name="astat" type="dsComm:str2e" minOccurs="0" />
+            <xs:element name="dath_diag_zm" type="dsip:dath_xxType" minOccurs="0" />
+            <xs:element name="urssz" type="dsip:ursszType" minOccurs="0" />
+            <xs:element name="pece_zm" type="dsip:pece_zmType" minOccurs="0" />
+            <xs:element name="porus_rzm_pozn" type="dsComm:str200" minOccurs="0" />
+            <xs:element name="dath_od" type="dsip:dath_xxType" minOccurs="0" />
+            <xs:element name="dath_du" type="dsip:dath_xxType" minOccurs="0" />
+            <xs:element name="dath_ru" type="dsip:dath_xxType" minOccurs="0" />
+            <xs:element name="dath_do" type="dsip:dath_xxType" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="cfrm" type="dsComm:number4d" use="required"/>
+        <xs:attribute name="tfrm" use="required">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:enumeration value="1"/>
+                    <xs:enumeration value="2"/>
+                    <xs:enumeration value="H"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="ind_oprav_sd">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:enumeration value="N"/>
+                    <xs:enumeration value="E"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="diag_poc" type="dsComm:str4"/>
+        <xs:attribute name="uraz_kod">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:enumeration value="N"/>
+                    <xs:enumeration value="P"/>
+                    <xs:enumeration value="J"/>
+                    <xs:enumeration value="O"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="alkoml">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:enumeration value="A"/>
+                    <xs:enumeration value="N"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="diag_kon" type="dsComm:str4"/>
+        <xs:attribute name="diag_zm" type="dsComm:str4"/>
+        <xs:attribute name="ind_diag_zm">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:enumeration value="A"/>
+                    <xs:enumeration value="N"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="uk_duvod" type="dsComm:str1"/>
+        <xs:attribute name="ind_porus_rzm">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:enumeration value="A"/>
+                    <xs:enumeration value="N"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="izamType" >
+        <xs:attribute name="zam_text" type="dsComm:str40"/>
+        <xs:attribute name="klas_zam" type="dsComm:str1" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="chpnType" >
+        <xs:attribute name="cpn" type="dsComm:str8"/>
+        <xs:attribute name="ecnicpe" type="dsComm:str8"/>
+        <xs:attribute name="ecnpc" type="dsComm:str10"/>
+    </xs:complexType>
+    <xs:complexType name="ahpnType" >
+        <xs:sequence>
+            <xs:element ref="ds:a" />
+            <xs:element name="astat" type="dsComm:str2e" minOccurs="0" />
+            <xs:element name="dath_od" type="dsip:dath_xxType" minOccurs="0" />
+            <xs:element name="dath_do" type="dsip:dath_xxType" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="acp" type="dsComm:str12"/>
+        <xs:attribute name="aco" type="dsComm:str4"/>
+        <xs:attribute name="az">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:enumeration value="A"/>
+                    <xs:enumeration value="N"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="idlType" >
+        <xs:sequence>
+            <xs:element name="idlp" type="dsip:idlpType"  maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="idlpType" >
+        <xs:attribute name="typ" use="required">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str10">
+                    <xs:enumeration value="CSSZ_ICPE"/>
+                    <xs:enumeration value="ICZ"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="vyst" type="dsComm:str10"/>
+        <xs:attribute name="hod" type="dsComm:str50" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="vchzType" >
+        <xs:sequence>
+            <xs:element name="dath_od" type="dsip:dath_xxType" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="vch1_od" type="dsComm:str8e"/>
+        <xs:attribute name="vch1_do" type="dsComm:str8e"/>
+        <xs:attribute name="vch2_od" type="dsComm:str8e"/>
+        <xs:attribute name="vch2_do" type="dsComm:str8e"/>
+        <xs:attribute name="ind_vch_pvl">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:enumeration value="A"/>
+                    <xs:enumeration value="N"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="ind_vch_zrs">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:enumeration value="A"/>
+                    <xs:enumeration value="N"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="hspType" >
+        <xs:sequence>
+            <xs:element name="dath_od" type="dsip:dath_xxType" minOccurs="0" />
+            <xs:element name="dath_do" type="dsip:dath_xxType" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="ind_hsp_zm">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:enumeration value="A"/>
+                    <xs:enumeration value="N"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="zpshlType" >
+        <xs:sequence>
+            <xs:element name="dath_vy" type="dsip:dath_xxType" />
+        </xs:sequence>
+        <xs:attribute name="ssz_kod" type="dsComm:str3" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="ursszType" >
+        <xs:sequence>
+            <xs:element name="dath_uk" type="dsip:dath_xxType" />
+        </xs:sequence>
+        <xs:attribute name="ssz_kod" type="dsComm:str3" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="pece_zmType" >
+        <xs:sequence>
+            <xs:element name="dath_zm" type="dsip:dath_xxType" />
+            <xs:element name="idl" type="dsip:idlType" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="ind_p_pzt" use="required">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:enumeration value="A"/>
+                    <xs:enumeration value="N"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="ind_p_pdn" use="required">
+            <xs:simpleType>
+                <xs:restriction base="dsComm:str1">
+                    <xs:enumeration value="A"/>
+                    <xs:enumeration value="N"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+</xs:schema>

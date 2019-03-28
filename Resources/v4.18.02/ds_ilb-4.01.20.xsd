@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:cz-mzcr:ns:dasta:ds4:ds_ilb"
+	xmlns:dsilb="urn:cz-mzcr:ns:dasta:ds4:ds_ilb" xmlns:dsComm="urn:cz-mzcr:ns:dasta:ds4:ds_type"
+	xmlns:dsCis="urn:cz-mzcr:ns:dasta:ds4:ds_cistype" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+    <!-- Import common element types. -->
+    <xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_type" schemaLocation="ds_type-4.02.10.xsd"/>
+    <xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_cistype" schemaLocation="ds_cistype-4.01.04.xsd"/>
+    <!-- Definice komplexnich typu -->
+    <xs:complexType name="lpType">
+        <xs:sequence>
+            <xs:element name="lp_zp">
+                <xs:complexType>
+                    <xs:attribute name="klic_nclp" type="dsComm:number5de" use="required"/>
+                    <xs:attribute name="nclpnazlpk" type="dsComm:str90" use="required"/>
+                    <xs:attribute name="lclpnazevlp1" type="dsComm:str90"/>
+                    <xs:attribute name="lclpnazevlp2" type="dsComm:str55"/>
+                    <xs:attribute name="nclpsyst32" type="dsComm:str32"/>
+                    <xs:attribute name="nclpkomp32" type="dsComm:str32"/>
+                    <xs:attribute name="nclpdrvl32" type="dsComm:str32"/>
+                    <xs:attribute name="nclpjedn" type="dsComm:str20"/>
+                    <xs:attribute name="lclpjednl" type="dsComm:str20"/>
+                    <xs:attribute name="lclpprepfak" type="dsComm:str8"/>
+                    <xs:attribute name="nclpproc32" type="dsComm:str32"/>
+                    <xs:attribute name="lclpmat32l" type="dsComm:str32"/>
+                    <xs:attribute name="lclpodb_do32l" type="dsComm:str32"/>
+                    <xs:attribute name="lclpodb_mnj" type="dsComm:str56"/>
+                    <xs:attribute name="lclpanal_mnj" type="dsComm:str56"/>
+                    <xs:attribute name="lclpodbpozn" type="dsComm:str255"/>
+                    <xs:attribute name="lclpklin_info" type="dsComm:str255"/>
+                    <xs:attribute name="lclptransport" type="dsComm:str255"/>
+                    <xs:attribute name="lclpintozjt" type="dsComm:str56"/>
+                    <xs:attribute name="lclppaupozn" type="dsComm:str255"/>
+                    <xs:attribute name="lclpstbpozn" type="dsComm:str255"/>
+                    <xs:attribute name="lclpdosr" type="dsComm:str55"/>
+                    <xs:attribute name="lclpdoss" type="dsComm:str55"/>
+                    <xs:attribute name="lclpdosodezpozn" type="dsComm:str255"/>
+                    <xs:attribute name="lclpodezr" type="dsComm:str55"/>
+                    <xs:attribute name="lclpodezs" type="dsComm:str55"/>
+                    <xs:attribute name="lclptextlp" type="dsComm:str255"/>
+                    <xs:attribute name="lclpmez_stand" type="dsComm:str8"/>
+                    <xs:attribute name="lclpmez_stanh" type="dsComm:str8"/>
+                    <xs:attribute name="lclppokpac1" type="dsComm:str45"/>
+                    <xs:attribute name="lclppokpac2" type="dsComm:str45"/>
+                    <xs:attribute name="lclppokpac3" type="dsComm:str45"/>
+                    <xs:attribute name="lclppokodd1" type="dsComm:str45"/>
+                    <xs:attribute name="lclppokodd2" type="dsComm:str45"/>
+                    <xs:attribute name="lclppokodd3" type="dsComm:str45"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="dat_vb" type="xs:dateTime"/>
+        </xs:sequence>
+        <xs:attribute name="typ_s_lp" use="required" type="dsCis:typSdeleniLP"/>
+        <xs:attribute name="duvod" type="dsComm:str255"/>
+    </xs:complexType>
+    <xs:complexType name="lphType">
+        <xs:sequence>
+            <xs:element name="lphsb" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="priloha" type="dsComm:prilohaType"/>
+                        <xs:element name="int_pril" type="dsComm:int_prilType" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                    <xs:attribute name="oznaceni" type="dsComm:str40"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="dat_vb" type="xs:dateTime"/>
+        </xs:sequence>
+        <xs:attribute name="typ_s_lph" use="required" type="dsCis:typSdeleniLPH"/>
+        <xs:attribute name="duvod" type="dsComm:str255"/>
+        <xs:attribute name="verze_lp" type="dsComm:verzeLPType" use="required"/>
+        <xs:attribute name="start_heslo" type="dsComm:str40" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="ehkType">
+        <xs:sequence>
+            <xs:element name="priloha" type="dsComm:prilohaType"/>
+            <xs:element name="int_pril" type="dsComm:int_prilType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="typ_s_ehk" type="dsCis:typSdeleniEHK" use="required"/>
+        <xs:attribute name="spec_syst" type="dsCis:specKS" use="required"/>
+        <xs:attribute name="kod_k_c" type="dsComm:str32" use="required"/>
+    </xs:complexType>
+    <!--  
+		***********************************************************************
+		* KORENOVY ELEMENT ILB (kompozice vyse definovanych komplexnich typu) *                                  *
+		***********************************************************************
+	-->
+    <xs:element name="ilb">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="lp" type="dsilb:lpType" minOccurs="0"/>
+                <xs:element name="lph" type="dsilb:lphType" minOccurs="0"/>
+                <xs:element name="ehk" type="dsilb:ehkType" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
