@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:dsComm="urn:cz-mzcr:ns:dasta:ds4:ds_type" xmlns:nrpot="urn:cz-mzcr:ns:dasta:ds4:ds_idu_nrpot" xmlns:dsiduCis="urn:cz-mzcr:ns:dasta:ds4:ds_cisidu" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:cz-mzcr:ns:dasta:ds4:ds_idu_nrpot" elementFormDefault="qualified" version="4.01.01">
+	<xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_cisidu" schemaLocation="ds_cisidu-4.02.01.xsd"/>
+	<xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_type" schemaLocation="ds_type-4.02.11.xsd"/>
+	<xs:complexType name="nrtType">
+		<xs:sequence>
+			<xs:element name="nrpot" type="nrpot:nrpotType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Hlášení potratu a mimoděložního těhotenství</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="picov" type="dsComm:icisType" use="required">
+			<xs:annotation>
+				<xs:documentation>IČ (identifikační číslo zařízení, které výkon provedlo)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ppczv" type="dsComm:number3de" use="required">
+			<xs:annotation>
+				<xs:documentation>PČZ (pořadové číslo zařízení, které výkon provedlo)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+  <xs:element name="nrt" type="nrpot:nrtType" />
+	<xs:complexType name="nrpotType">
+		<xs:attribute name="picok" type="dsComm:icisType" use="required">
+			<xs:annotation>
+				<xs:documentation>IČ (identifikační číslo zařízení, kde byl výkon proveden)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ppczk" type="dsComm:number3de" use="required">
+			<xs:annotation>
+				<xs:documentation>PČZ (pořadové číslo zařízení, kde byl výkon proveden)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="prodcis" type="dsComm:rodcisType" use="required">
+			<xs:annotation>
+				<xs:documentation>Rodné číslo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pobec" type="dsComm:number6de" use="required">
+			<xs:annotation>
+				<xs:documentation>Obec bydliště dle číselníku <cl>Obec</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pbydl" type="dsComm:str6">
+			<xs:annotation>
+				<xs:documentation>Číslo kraje a okresu bydliště (NUTS3 a NUTS4) dle číselníku <cl>KrajOkres</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="porp" type="dsComm:number4de">
+			<xs:annotation>
+				<xs:documentation>Číslo obce s rozšířenou působností</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pkzam" type="dsComm:number1d" use="required">
+			<xs:annotation>
+				<xs:documentation>Klasifikace zaměstnání dle číselníku <cl>KlasifikaceZamestnaniJednomistna</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="prostav" type="dsComm:number0-5" use="required">
+			<xs:annotation>
+				<xs:documentation>Rodinný stav dle číselníku <cl>Stav</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pstaobc" type="dsComm:str3" use="required">
+			<xs:annotation>
+				<xs:documentation>Státní občanství dle číselníku <cl>Zeme</cl>, kód a2
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pvzdela" type="dsComm:number1-9" use="required">
+			<xs:annotation>
+				<xs:documentation>Vzdělání dle číselníku <cl>Vzdelani</cl>, skupina platnosti 02</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ppopor" type="dsComm:number1d" use="required">
+			<xs:annotation>
+				<xs:documentation>Počet porodů</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ppozive" type="dsComm:number1d" use="required">
+			<xs:annotation>
+				<xs:documentation>Počet živě narozených dětí</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ppoint" type="dsComm:number1d" use="required">
+			<xs:annotation>
+				<xs:documentation>Počet dosavadních UPT</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pposap" type="dsComm:number1d" use="required">
+			<xs:annotation>
+				<xs:documentation>Počet dosavadních samovolných potratů</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pdrupot" type="dsComm:number1-5" use="required">
+			<xs:annotation>
+				<xs:documentation>Druh potratu dle číselníku <cl>DruhPotratu</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pzduupt" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>UPT ze zdravotních důvodů matky (ano / ne)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pzduuptp" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>UPT ze zdravotních důvodů plodu (ano / ne)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pdg" type="dsComm:str5">
+			<xs:annotation>
+				<xs:documentation>Dg zdravotních důvodů UPT dle číselníku <cl>MKN10_5</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pdapot" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Datum provedení potratu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pstari" type="dsComm:number2de" use="required">
+			<xs:annotation>
+				<xs:documentation>Stáří plodu v týdnech</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="phmot" type="dsComm:number4d">
+			<xs:annotation>
+				<xs:documentation>Hmotnost (v gramech) plodu nad 17 týdnů</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pdelka" type="dsComm:number2de">
+			<xs:annotation>
+				<xs:documentation>Délka (v cm) plodu nad 17 týdnů</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pantiko" type="dsComm:number1-4" use="required">
+			<xs:annotation>
+				<xs:documentation>Antikoncepce dle číselníku <cl>Antikoncepce</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ppopupt" type="dsComm:number1-2">
+			<xs:annotation>
+				<xs:documentation>Poplatek za UPT dle číselníku <cl>PoplatekZaUpt</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pnyngrav" type="dsComm:number2d" use="required">
+			<xs:annotation>
+				<xs:documentation>Nynější gravidita dle číselníku <cl>NynejsiGravidita</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pinprediag" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Invazivní prenatální diagnostika dle číselníku <cl>InvazivniPrenatalniDiagnostika</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pstargrav" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>UPT podle stáří gravidity dle číselníku <cl>StariGravidity</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pzpprov" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>UPT podle způsobu provedení dle číselníku <cl>ZpusobProvedeni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pduvukon" type="dsComm:number2d" use="optional">
+			<xs:annotation>
+				<xs:documentation>UPT podle důvodu ukončení dle číselníku <cl>DuvodKUkonceni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pdatfeto" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum fetoskopie</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,435 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:dsComm="urn:cz-mzcr:ns:dasta:ds4:ds_type" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:nrlud="urn:cz-mzcr:ns:dasta:ds4:ds_idu_nrlud" targetNamespace="urn:cz-mzcr:ns:dasta:ds4:ds_idu_nrlud" elementFormDefault="qualified" version="4.01.01">
+	<xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_type" schemaLocation="ds_type-4.02.11.xsd"/>
+	<xs:element name="nrlud" type="nrlud:nrludType"/>
+	<xs:complexType name="nrludType">
+		<xs:sequence>
+			<xs:element name="hlaseni_lecby" type="nrlud:hlaseniLecbyType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="hlaseniLecbyType">
+		<xs:annotation>
+			<xs:documentation>Společná část hlášení pro ostatní i substituční léčbu.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="hodn_zdra_zivo_soc_fung" type="nrlud:hodnoceniZdraviZivotaSocFungovaniType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="ukonceni_lecby" type="nrlud:ukonceniLecbyType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="uzivani" type="nrlud:uzivaniType" minOccurs="0" maxOccurs="5"/>
+			<xs:element name="vyse_na_hiv_viro_hepa" type="nrlud:vysetreniNaHIVAViroveHepatitidyType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ico" type="dsComm:icisType" use="required">
+			<xs:annotation>
+				<xs:documentation>IČO hlásicího zařízení (8 číslic).</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pcz" type="dsComm:number3de" use="required">
+			<xs:annotation>
+				<xs:documentation>Pořadové číslo hlásicího zařízení (3 číslice).</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="inicialy" type="dsComm:str3" use="required">
+			<xs:annotation>
+				<xs:documentation>První tři písmena jména.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pohlavi_kod" type="dsComm:str1" use="required">
+			<xs:annotation>
+				<xs:documentation>Pohlaví, odkaz do číselníku <cl>Pohlavi</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="datum_narozeni" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Datum narození.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="misto_narozeni_obec_kod" type="dsComm:str6" use="required">
+			<xs:annotation>
+				<xs:documentation>Obec narození, odkaz do číselníku <cl>Obec</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="trvale_bydliste_obec_kod" type="dsComm:str6" use="optional">
+			<xs:annotation>
+				<xs:documentation>Obec (trvalého) bydliště, odkaz do číselníku <cl>Obec</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="narodnost_kod" type="dsComm:str1" use="optional">
+			<xs:annotation>
+				<xs:documentation>Národnost, odkaz do číselníku <cl>Narodnost</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zeme_kod" type="dsComm:str2" use="optional">
+			<xs:annotation>
+				<xs:documentation>Země, odkaz do číselníku <cl>Zeme</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="datum_hlaseni" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Datum hlášení.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="datum_posl_over_lecby" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Datum posledního potvrzení probíhající léčby pracovníkem.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="predch_lecba_kod" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Byl klient již dříve léčen, odkaz do číselníku <cl>PredchoziLecba</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="doporuceni_kod" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Klient přichází na doporučení (je odeslán z), odkaz do číselníku.<cl>Doporuceni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="charakter_bydl_kde_kod" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Charakter bydlení (kde), odkaz do číselníku <cl>CharakterBydleniKde</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="charak_bydl_s_kym_kod" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Charakter bydlení (s kým), odkaz do číselníku <cl>CharakterBydleniSKym</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="deti_ma_kod" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Klient s vlastními dětmi, odkaz do číselníku <cl>MaDeti</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="deti_ziji_kod" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Klient s dětmi, odkaz do číselníku <cl>ZijeSDetmi</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zije_s_osob_uziv_drogy_kod" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Klient žije s osobou užívající drogy, odkaz do číselníku <cl>ZijeSOsobouUzDrog</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="statut_zamestnani_kod" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Statut zaměstnání, odkaz do číselníku <cl>StatutZamestnani</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vzdelani_kod" type="dsComm:str2" use="optional">
+			<xs:annotation>
+				<xs:documentation>Nejvyšší dosažené vzdělání - Odkaz do číselníku <cl>VzdelaniLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="polydruguse" type="dsComm:logical" use="optional">
+			<xs:annotation>
+				<xs:documentation>Informace, zda se jedná o "Polydrug use".</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="injekcni_aplikace_kod" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Injekční aplikace, odkaz do číselníku <cl>InjekcniAplikace</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="spolecne_strikacky_kod" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Užívání společných stříkaček/jehel, odkaz do číselníku <cl>SpolecneStrikacky</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vek_prvn_uziti_injekcni" type="dsComm:number3d" use="optional">
+			<xs:annotation>
+				<xs:documentation>Věk prvního injekčního užití.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="realiz_subst_lecba_kod" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Odkaz do číselníku <cl>RealizovanaSubstitucniLecba</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vek_pri_prv_subs_lecbe" type="dsComm:number3d" use="optional">
+			<xs:annotation>
+				<xs:documentation>Věk při první opiátové substituční léčbě.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="test_hiv_kod" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Byl klient někdy testován na HIV, odkaz do číselníku <cl>TestyProvedeny</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="test_vha_kod" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Byl klient někdy testován na hepatitidu A, odkaz do číselníku <cl>TestyProvedeny</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="test_vhb_kod" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Byl klient někdy testován na hepatitidu B, odkaz do číselníku <cl>TestyProvedeny</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="test_vhc_kod" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Byl klient někdy testován na hepatitidu C, odkaz do číselníku <cl>TestyProvedeny</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="poskytnuta_intervence_kod" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Intervence poskytnutá při zahájení léčby, odkaz do číselníku <cl>Intervence</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="poznamka" type="dsComm:str500" use="optional">
+			<xs:annotation>
+				<xs:documentation>Poznámka.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="rodinny_stav_kod" type="dsComm:str1" use="optional">
+			<xs:annotation>
+				<xs:documentation>Rodinný stav, odkaz do číselníku <cl>Stav</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kod_klienta_v_zarizeni" type="dsComm:str50" use="optional">
+			<xs:annotation>
+				<xs:documentation>Kód klienta v zařízení.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="smazano" type="dsComm:dateTimeMin" use="optional">
+			<xs:annotation>
+				<xs:documentation>Datum a čas smazání záznamu.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="hodnoceniZdraviZivotaSocFungovaniType">
+		<xs:annotation>
+			<xs:documentation>Jaká je situace klienta v následujících oblastech. Vstupně výstupní dotazník pro léčené osoby. Školní hodnocení 1-5, 0 = neznámo</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="psych_zdrav_skol_hodn_kod" type="dsComm:str10" use="required">
+			<xs:annotation>
+				<xs:documentation>Psychické zdraví <cl>SkolniHodnoceni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="fyzi_zdrav_skol_hodn_kod" type="dsComm:str10" use="required">
+			<xs:annotation>
+				<xs:documentation>Fyzické zdraví <cl>SkolniHodnoceni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="soci_situ_skoln_hodn_kod" type="dsComm:str10" use="required">
+			<xs:annotation>
+				<xs:documentation>Sociální fungování <cl>SkolniHodnoceni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="rodin_situ_skoln_hodn_kod" type="dsComm:str10" use="required">
+			<xs:annotation>
+				<xs:documentation>Vztahy s blízkými <cl>SkolniHodnoceni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="konfl_se_zakon_skoln_hodn_kod" type="dsComm:str10" use="required">
+			<xs:annotation>
+				<xs:documentation>Konflikt se zákonem <cl>SkolniHodnoceni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kval_zivo_skoln_hodn_kod" type="dsComm:str10" use="required">
+			<xs:annotation>
+				<xs:documentation>Kvalita života <cl>SkolniHodnoceni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ukonceniLecbyType">
+		<xs:annotation>
+			<xs:documentation>Společná část hlášení o ukončení léčby pro ostatní i substituční léčbu.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dotaznik_uzivani" type="nrlud:dotaznikUzivaniType" minOccurs="0" maxOccurs="5"/>
+			<xs:element name="hodn_zdrav_zivo_soc_fung" type="nrlud:hodnoceniZdraviZivotaSocFungovaniType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="duvod_ukon_kod" type="dsComm:str10" use="required">
+			<xs:annotation>
+				<xs:documentation>Důvody ukončení, odkaz do číselníku <cl>DuvodUkonceniLecbyUzivateleDrog</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="jiny_duvod" type="dsComm:str50" use="optional">
+			<xs:annotation>
+				<xs:documentation>Jiný důvod ukončení.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="datum_ukonceni" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Datum ukončení léčby.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="inje_apli_hodn_v_souc_kod" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Injekční aplikace v současnosti – poslední měsíc, odkaz do číselníku <cl>InjekcniAplikace</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="spol_strik_hodn_v_souc_kod" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Užívání společných stříkaček/jehel v posledním měsíci, odkaz do číselníku <cl>SpolecneStrikacky</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="poznamka" type="dsComm:str500" use="optional">
+			<xs:annotation>
+				<xs:documentation>Poznámka.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="dotaznikUzivaniType">
+		<xs:annotation>
+			<xs:documentation>Dotazník o užívání při ukončování léčby.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="droga_kod" type="dsComm:str10" use="required">
+			<xs:annotation>
+				<xs:documentation>Droga, odkaz do číselníku.<cl>Droga</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cetnost_uzivani_kod" type="dsComm:str10" use="required">
+			<xs:annotation>
+				<xs:documentation>Četnost užívání, odkaz do číselníku <cl>CetnostUzivani</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="poznamka" type="dsComm:str50" use="optional">
+			<xs:annotation>
+				<xs:documentation>Poznámka.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="smazano" type="dsComm:dateTimeMin" use="optional">
+			<xs:annotation>
+				<xs:documentation>Datum a čas smazání záznamu.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="uzivaniType">
+		<xs:annotation>
+			<xs:documentation>Užívání jednotlivých návykových látek.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence/>
+		<xs:attribute name="droga_kod" type="dsComm:str10" use="required">
+			<xs:annotation>
+				<xs:documentation>Droga, odkaz do číselníku <cl>Droga</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zakladni_droga" type="dsComm:logical" use="required">
+			<xs:annotation>
+				<xs:documentation>Označení základní drogy.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpusob_aplikace_kod" type="dsComm:str10" use="required">
+			<xs:annotation>
+				<xs:documentation>Způsob aplikace, odkaz do číselníku <cl>ZpusobAplikace</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cetnost_uzivani_kod" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Četnost užívání, odkaz do číselníku <cl>CetnostUzivani</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kolik_denne_tydne" type="dsComm:number5d" use="optional">
+			<xs:annotation>
+				<xs:documentation>kolik týdně … (mg, ks, ml,…)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vek_prvniho_uziti" type="dsComm:number3d" use="optional">
+			<xs:annotation>
+				<xs:documentation>Věk prvního užití.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vek_pravidelneho_uzivani" type="dsComm:number3d" use="optional">
+			<xs:annotation>
+				<xs:documentation>Věk zahájení pravidelného užívání.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="doba_pravidelneho_uzivani" type="dsComm:number2d" use="optional">
+			<xs:annotation>
+				<xs:documentation>Doba pravidelného užívání.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="poznamka" type="dsComm:str500" use="optional">
+			<xs:annotation>
+				<xs:documentation>Poznámka.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="jine_drogy_leky_vypsat" type="dsComm:str50" use="optional">
+			<xs:annotation>
+				<xs:documentation>Jiné drogy - vypište.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="smazano" type="dsComm:dateTimeMin" use="optional">
+			<xs:annotation>
+				<xs:documentation>Datum a čas smazání záznamu.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="vysetreniNaHIVAViroveHepatitidyType">
+		<xs:annotation>
+			<xs:documentation>Jednotlivá evidovaná vyšetření na HIV a virové hepatitidy.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="vysetreni_kod" type="dsComm:str10" use="required">
+			<xs:annotation>
+				<xs:documentation>Vyšetření, odkaz do číselníku.<cl>DruhVysetreni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vysledek_kod" type="dsComm:str1" use="required">
+			<xs:annotation>
+				<xs:documentation>Výsledek vyšetření na infekce, odkaz do číselníku.<cl>VysledekVysetreni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="rok" type="dsComm:number4de" use="required">
+			<xs:annotation>
+				<xs:documentation>Rok vyšetření.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="mesic" type="dsComm:number2d" use="optional">
+			<xs:annotation>
+				<xs:documentation>Měsíc vyšetření.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="den" type="dsComm:number2d" use="optional">
+			<xs:annotation>
+				<xs:documentation>Den vyšetření.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="poznamka" type="dsComm:str500" use="optional">
+			<xs:annotation>
+				<xs:documentation>Poznámka.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="smazano" type="dsComm:dateTimeMin" use="optional">
+			<xs:annotation>
+				<xs:documentation>Datum a čas smazání záznamu.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

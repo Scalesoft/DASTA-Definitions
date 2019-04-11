@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema targetNamespace="urn:cz-mzcr:ns:dasta:ds4:ds_ido" 
+  xmlns:dsido="urn:cz-mzcr:ns:dasta:ds4:ds_ido" 
+  xmlns:dsComm="urn:cz-mzcr:ns:dasta:ds4:ds_type"
+  xmlns:dsip="urn:cz-mzcr:ns:dasta:ds4:ds_ip"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified">
+<!-- Import common element types. -->
+    <xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_type" schemaLocation="ds_type-4.02.11.xsd"/>
+    <xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_ip" schemaLocation="ds_ip-4.08.04.xsd"/>
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/03/xml.xsd"/>
+    <!--                  end                 -->
+    <!--
+  ****************************
+   IDO
+  ****************************
+  -->
+
+    <xs:complexType name="zzs_luzkaType">
+        <xs:attribute name="vl_sum" type="dsComm:number3d" use="required"/>
+        <xs:attribute name="vl_vent" type="dsComm:number2d"/>
+        <xs:attribute name="vl_sum_uv" type="dsComm:number2d"/>
+        <xs:attribute name="vl_vent_uv" type="dsComm:number2d"/>
+    </xs:complexType>
+
+    <xs:complexType name="zzs_vl_osType">
+        <xs:sequence>
+            <xs:element name="pocet" type="dsComm:number3d" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="typ_prac" type="dsComm:str3e" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="zzs_vl_oType">
+        <xs:sequence>
+            <xs:element name="zzs_vl_os" type="dsido:zzs_vl_osType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="text" type="dsip:textType" minOccurs="0"/>
+            <xs:element name="dat_vb" type="dsComm:dat_xxType"/>
+            <xs:element name="zzs_vl_oAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="typ_zadosti" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="VLP"/>
+                    <xs:enumeration value="VLS"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="zzs_vl_zType">
+        <xs:sequence>
+            <xs:element name="pracoviste" type="dsip:pracovisteType"/>
+            <xs:choice>
+                <xs:element name="zzs_luzka" type="dsido:zzs_luzkaType" minOccurs="0"/>
+                <xs:element name="zzs_chyba" type="dsComm:str3e" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:choice>
+            <xs:element name="text" type="dsip:textType" minOccurs="0"/>
+            <xs:element name="garant_dat" type="dsComm:garant_datType" minOccurs="0"/>
+            <xs:element name="zzs_vl_zAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="stav_prac" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="P"/>
+                    <xs:enumeration value="N"/>
+                    <xs:enumeration value="Z"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="dat_vb" type="xs:dateTime"/>
+        <xs:attribute name="dat_stav_prac" type="xs:dateTime"/>
+        <xs:attribute name="dat_ab" type="xs:dateTime" use="required"/>
+    </xs:complexType>
+
+    <xs:element name="ido">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element name="zzs_vl_o" type="dsido:zzs_vl_oType" minOccurs="0"/>
+                <xs:element name="zzs_vl_z" type="dsido:zzs_vl_zType" maxOccurs="unbounded"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
