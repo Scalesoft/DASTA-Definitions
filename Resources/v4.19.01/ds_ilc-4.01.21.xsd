@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:cz-mzcr:ns:dasta:ds4:ds_ilc" xmlns:dsilc="urn:cz-mzcr:ns:dasta:ds4:ds_ilc" xmlns:dsComm="urn:cz-mzcr:ns:dasta:ds4:ds_type" xmlns:dsCis="urn:cz-mzcr:ns:dasta:ds4:ds_cistype" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+    <!-- Import common element types. -->
+    <xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_type" schemaLocation="ds_type-4.02.11.xsd"/>
+    <xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_cistype" schemaLocation="ds_cistype-4.01.04.xsd"/>
+    <!--  
+        ***********************************************************************
+        * KORENOVY ELEMENT ILC (matrjoska)                                    *
+        ***********************************************************************
+    -->
+    <xs:element name="ilc">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="lc" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="priloha" type="dsComm:prilohaType"/>
+                            <xs:element name="int_pril" type="dsComm:int_prilType" minOccurs="0" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                        <xs:attribute name="typ_s_lc" use="required" type="dsCis:typSdeleniLC"/>
+                        <xs:attribute name="vyznam" type="dsCis:vyznObsahSdeleni" use="required"/>
+                        <xs:attribute name="verze_puv" type="dsComm:verzeLPType" use="required"/>
+                        <xs:attribute name="verze_akt" type="dsComm:verzeLPType"/>
+                        <xs:attribute name="ciselnik" type="dsComm:str20" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
