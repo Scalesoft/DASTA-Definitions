@@ -846,6 +846,7 @@
                     <xs:attribute name="cis_kod_lek">
                         <xs:simpleType>
                             <xs:restriction base="xs:string">
+                                <xs:enumeration value="DLP"/>
                                 <xs:enumeration value="KLK"/>
                                 <xs:enumeration value="SCAU"/>
                                 <xs:enumeration value="SCAU_BEZ_UHRAD"/>
