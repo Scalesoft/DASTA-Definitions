@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:dsComm="urn:cz-mzcr:ns:dasta:ds4:ds_type" xmlns:nrar="urn:cz-mzcr:ns:dasta:ds4:ds_idu_nrar" xmlns:dsiduCis="urn:cz-mzcr:ns:dasta:ds4:ds_cisidu" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:cz-mzcr:ns:dasta:ds4:ds_idu_nrar" elementFormDefault="qualified" version="4.01.03">
+	<xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_cisidu" schemaLocation="ds_cisidu-4.03.01.xsd"/>
+	<xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_type" schemaLocation="ds_type-4.02.11.xsd"/>
+	<xs:complexType name="nraType">
+		<xs:sequence>
+			<xs:element name="nrar" type="nrar:nrarType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Záznam cyklu AR</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="aico" type="dsComm:icisType" use="required">
+			<xs:annotation>
+				<xs:documentation>IČO (identifikační číslo zdravotnického zařízení)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="apcz" type="dsComm:number3de" use="required">
+			<xs:annotation>
+				<xs:documentation>PČZ (pořadové číslo zdravotnického zařízení)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="apcpd" type="dsComm:str3" use="required">
+			<xs:annotation>
+				<xs:documentation>PČDP (pořadové číslo detašovaného pracoviště)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="aodd" type="dsComm:str5" use="required">
+			<xs:annotation>
+				<xs:documentation>5-znakový kód oddělení</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="nra" type="nrar:nraType"/>
+	<xs:complexType name="nrarType">
+		<xs:sequence>
+			<xs:element name="kod_vykonu_zp" type="nrar:kodVykonuType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+                        Kód výkonu dle číselníku <cl>CisloVykonu</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="zdroj_cyklu" type="nrar:zdroj_cykluType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Zdroj cyklu</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="cy_vnitrni_cislo_zz" type="xs:integer" use="required">
+			<xs:annotation>
+				<xs:documentation>Vnitřní číslo cyklu zdrav zařízení</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cy_kontrolni_koncovka" type="dsComm:str4" use="required">
+			<xs:annotation>
+				<xs:documentation>Kontrolní koncovka cyklu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cy_poznamka" type="dsComm:str255">
+			<xs:annotation>
+				<xs:documentation>Poznámka k záznamu cyklu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zena_rodne_cislo" type="dsComm:rodcisType" use="required">
+			<xs:annotation>
+				<xs:documentation>Identifikace ženy - Rodné číslo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zena_datum_narozeni" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Identifikace ženy - Datum narození</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+    <xs:attribute name="zena_datum_narozeni_rok" type="dsComm:number4d">
+			<xs:annotation>
+				<xs:documentation>Identifikace ženy - Rok narození</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zena_stat_obc" type="dsComm:str3" use="required">
+			<xs:annotation>
+				<xs:documentation>Identifikace ženy - Státní občanství dle číselníku <cl>Zeme</cl>, kód a2
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zena_bydl_stat" type="dsComm:str3" use="required">
+			<xs:annotation>
+				<xs:documentation>Identifikace ženy - Stát současného pobytu ženy dle číselníku <cl>Zeme</cl>, kód a2
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zena_duvod_vek" type="dsComm:str50">
+			<xs:annotation>
+				<xs:documentation>Důvod překročení věkové hranice (vyplňuje se pokud věk je méně než 18 nebo více než 50 let)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zena_byla_jiz_teh" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Byla již těhotná (ano / ne) (povinné pokud cíl cyklu není ED)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zena_indik_hlavni" type="dsComm:str5">
+			<xs:annotation>
+				<xs:documentation>Indikace ženy - hlavní dle číselníku <cl>IndikaceZeny</cl> (povinné pokud cíl cyklu není ED)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zena_indik_jina_poznamka" type="dsComm:str255">
+			<xs:annotation>
+				<xs:documentation>Poznámka k dg. ženy</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zena_indik_vedlej" type="dsComm:str5">
+			<xs:annotation>
+				<xs:documentation>Indikace ženy - vedlejší dle číselníku <cl>IndikaceZeny</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="muz_indik" type="dsComm:str5">
+			<xs:annotation>
+				<xs:documentation>Indikace muže dle číselníku <cl>IndikaceMuze</cl>  (povinné pokud cíl cyklu není ED)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="akt_lec_neplod" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Aktuelně přítomná a nyní léčená neplodnost ženy (ano / ne)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cy_datum_zahaj" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Datum zahájení cyklu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cy_cil" type="dsComm:str5" use="required">
+			<xs:annotation>
+				<xs:documentation>Zamýšlený cíl cyklu dle číselníku <cl>CilCyklu</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cil_cy_jina_poznamka" type="dsComm:str255">
+			<xs:annotation>
+				<xs:documentation>Poznámka k Zamýšlený cíl cyklu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zamysl_pocet_emb_pro_et" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Zamýšlený počet embryí pro ET</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="stimul_ovar_nebo_endom" type="dsComm:str5">
+			<xs:annotation>
+				<xs:documentation>Stimulace ovarií dle číselníku <cl>StimulaceOvariiEndometriaKet</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="icsi_zamysleno" type="dsComm:str5">
+			<xs:annotation>
+				<xs:documentation>Je zamýšleno ICSI dle číselníku <cl>ZamyslenoICSI</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cy_co_skut_provedeno" type="dsComm:str5">
+			<xs:annotation>
+				<xs:documentation>Skutečně v cyklu provedeno dle číselníku <cl>SkutecneVCykluProvedeno</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ohss_tretiho_stup" type="dsComm:logical" use="required">
+			<xs:annotation>
+				<xs:documentation>Byl OHSS III. st? (ano / ne)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="krvac_po_odb_oo" type="dsComm:logical" use="required">
+			<xs:annotation>
+				<xs:documentation>Bylo závažné krvácení po odběru oocytů? (ano / ne)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="infek_po_odb_oo" type="dsComm:logical" use="required">
+			<xs:annotation>
+				<xs:documentation>Byla infekce po odběru oocytů? (ano / ne)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zamysl_pgt" type="dsComm:str5" use="required">
+			<xs:annotation>
+				<xs:documentation>Je zamýšleno PGT dle číselníku <cl>ZamyslenoPGTesting</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cy_co_skut_provedeno_pozn" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Skutečný cíl cyklu - poznámka</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cy_hradi" type="dsComm:number3d" use="required">
+			<xs:annotation>
+				<xs:documentation>Kdo hradí cyklus dle číselníku <cl>ZdravotniPojistovna</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vykaz_cy_zp_datum" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum vykázání cyklu zdrav. Poj</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ukonceni_cy_datum" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum ukončení cyklu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="odber_oo_datum" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum odběru oocytů z ovarií</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="odber_oo_pocet" type="dsComm:number0-99">
+			<xs:annotation>
+				<xs:documentation>Počet nalezených oocytů</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmrazenych_oo_pocet" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Zmrazeno oocytů pro tuto ženu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="darovala_cerstvych_oo_pocet" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Darovala čerstvých oocytů</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="darovala_ke_zmraz_pocet" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Darovala ke zmrazení počet oocytů</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vlast_oo_emb_rozmraz_pocet" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Počet rozmražených vlastních oo. či emb.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="prijate_oo_od_dar_pocet" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Počet cizích přijatých oocytů čerstvých</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="prijata_oo_emb_od_dar_pocet" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Počet cizích přijatých oo. či emb. rozmražených z kryokontejneru</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="oploz_datum" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum oplození oocytů</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="oplozovano_oo_ivf" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Počet oplozovaných IVF</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="oplozovano_oo_icsi" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Počet oplozovaných ICSI</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dipl_zygot_pocet" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Počet diplodiních zygot</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pgt_provedeno" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>Bylo provedeno PGT (ano / ne)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pgt_pocet_emb_ci_oo" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Počet emb./ oo bioptovaných pro PGT</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pgt_cil" type="dsComm:str5">
+			<xs:annotation>
+				<xs:documentation>Cíl PGT dle číselníku <cl>CilPGT</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pgt_jak_ziskan_mat" type="dsComm:str5">
+			<xs:annotation>
+				<xs:documentation>Způsob získání DNA či šířeji genetického materiálu (buněk emb, pol tělíska) k analýze dle číselníku <cl>ZpusobZiskaniDNA</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pgt_analyza" type="dsComm:str5">
+			<xs:annotation>
+				<xs:documentation>Metoda analyzy získané DNA dle číselníku <cl>MetodaAnalyzyDNA</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pgt_pocet_oo_ci_emb_s_vysl" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Počet všech emb. s použitelným výsledkem analyzy PGT</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pgt_pocet_bpm" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Počet PGT emb. vhodných k ET</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmrazeno_bez_pgd" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Počet zmrazených emb (zygot) bez PGT</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmrazeno_s_pgd" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Počet zmrazených emb (zygot) s PGT</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="et_datum" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum embryotransferu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="et_pocet" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Počet tranferovaných embryí</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="et_pocet_pgt_emb" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Počet emb testovaných PGT</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="et_emb_stari" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Počet dnů vývoje transferovaných embryí</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="uz_datum" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum UZ prokazujícího graviditu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="uz_gest_sac_pocet" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Počet plod. vajec</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="plodu_s_akci_pocet" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Počet plodů s akcí srd.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="mimodel_pocet" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Počet mimoděl. úhnízděných plod. vajec</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="grav_klinicka_zda_vznikla" type="dsComm:str5">
+			<xs:annotation>
+				<xs:documentation>Byla dosažena klin. gravidita dle číselníku <cl>BylaDosazenaGravidita</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="artef_redukce_datum" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Indikovaná redukce mnohočet těh. provedena dne</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="artef_redukce_o_kolik" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Redukováno o kolik plodů</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="grav_vysledek" type="dsComm:str5">
+			<xs:annotation>
+				<xs:documentation>Výsledek gravidity dle číselníku <cl>VysledekGravidity</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="grav_datum_ukonc" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum ukončení gravidity</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="grav_pocet_poroz_plodu" type="dsComm:number0-5">
+			<xs:annotation>
+				<xs:documentation>Počet porozených plodů</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ukonceno_sklad_emb" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum ukončení skladování embryí (oocytů)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="darovano_emb_pocet" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Počet darovaných původně svých skladovaných embryí (oocytů)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ukonceno_sklad_emb_bez_darovani" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Počet ukonč. skladování (emb, oo) jinak než darováním</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="metoda_zisk_sp1" type="dsComm:str5">
+			<xs:annotation>
+				<xs:documentation>Metoda získanií spermií 1 dle číselníku <cl>MetodaZiskaniSpermii</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="metoda_zisk_sp2" type="dsComm:str5">
+			<xs:annotation>
+				<xs:documentation>Metoda získanií spermií 2 dle číselníku <cl>MetodaZiskaniSpermii</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="zdroj_cykluType">
+		<xs:attribute name="oznaceni" type="dsComm:str20">
+			<xs:annotation>
+				<xs:documentation>Identifikátor záznamu cyklu zdroje</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zdroj_cy_emb" type="dsComm:str5">
+			<xs:annotation>
+				<xs:documentation>Detail co to bylo dle číselníku <cl>ZdrojCykluOoEmb</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vyvoj_faze_dnu" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Vývojová fáze dnů</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="kodVykonuType">
+		<xs:attribute name="kod" type="dsComm:str5" use="required">
+			<xs:annotation>
+				<xs:documentation>Kód výkonu dle číselníku <cl>CisloVykonu</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

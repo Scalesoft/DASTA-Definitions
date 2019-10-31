@@ -1,0 +1,1116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name="_nclpver">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="_nclpverVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpavis">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpavisVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpaz">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpazVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpazp">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpazpVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpdrvl">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpdrvlVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpdrz">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpdrzVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpfh">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpfhVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpfrm">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpfrmVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpjedn">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpjednVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpjvp">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpjvpVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpkomp">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpkompVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpktv">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpktvVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpmat">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpmatVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpmtv">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpmtvVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpnduv">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpnduvVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclponp">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclponpVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclppol">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclppolVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclppolr">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclppolrVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpproc">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpprocVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclprcvu">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclprcvuVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpskal">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpskalVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpskup">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpskupVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpsp">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpspVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpsts">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpstsVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpsvs">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpsvsVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpsyst">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpsystVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclptav">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclptavVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclptds">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclptdsVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclptk">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclptkVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclptng">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclptngVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclptos">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclptosVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclptps">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclptpsVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclptypd">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclptypdVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpuvis">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpuvisVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpvazb">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpvazbVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpveov">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpveovVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="nclpvznk">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="nclpvznkVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="ncmpag">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="ncmpagVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="ncmpagv">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="ncmpagvVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="ncmpatml">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="ncmpatmlVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="ncmpobjk">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="ncmpobjkVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="ncmpspm">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="ncmpspmVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="ncmpstm">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="ncmpstmVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="ncmpsyst">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="ncmpsystVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="ncmpzzm">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="ncmpzzmVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:attributeGroup name="DScisAttrGroup">
+	<xs:attribute name="dat_gen" type="datetype" use="required" />
+	<xs:attribute name="cas_gen" type="timetype" use="required" />
+	<xs:attribute name="ver_nclp" type="str8type" use="required" />
+	<xs:attribute name="ver_ds" type="str8type" use="required" />
+	<xs:attribute name="uzivatel" type="str50type" use="optional" />
+</xs:attributeGroup>
+
+<xs:complexType name="_nclpverVetaType">
+		<xs:attribute name="jm_prog" type="str8type" use="required" />
+		<xs:attribute name="lic_c" type="str10type" use="optional" />
+		<xs:attribute name="ver_prog" type="str8type" use="optional" />
+		<xs:attribute name="ver_nclp" type="str8type" use="required" />
+		<xs:attribute name="dat_gen" type="datetype" use="required" />
+		<xs:attribute name="cas_gen" type="timetype" use="required" />
+		<xs:attribute name="kod_ces" type="str6type" use="required" />
+		<xs:attribute name="xsd" type="str70type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpavisVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpazVetaType">
+		<xs:attribute name="klic" type="str1type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpazpVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpdrvlVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="kod" type="str8type" use="optional" />
+		<xs:attribute name="n24" type="str24type" use="optional" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+		<xs:attribute name="aktual" type="int123type" use="required" />
+		<xs:attribute name="kodl" type="str8type" use="optional" />
+		<xs:attribute name="n32l" type="str32type" use="optional" />
+		<xs:attribute name="n55l" type="str55type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpdrzVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpfhVetaType">
+		<xs:attribute name="klic" type="str2type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpfrmVetaType">
+		<xs:attribute name="klic" type="str1type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpjednVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n20" type="str20type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+		<xs:attribute name="n20l" type="str20type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpjvpVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpkompVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="kod" type="str8type" use="optional" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55r" type="str55type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+		<xs:attribute name="aktual" type="int123type" use="required" />
+		<xs:attribute name="kodl" type="str8type" use="optional" />
+		<xs:attribute name="n32l" type="str32type" use="optional" />
+		<xs:attribute name="n55rl" type="str55type" use="optional" />
+		<xs:attribute name="n55l" type="str55type" use="optional" />
+		<xs:attribute name="synon1l" type="str55type" use="optional" />
+		<xs:attribute name="synon2l" type="str55type" use="optional" />
+		<xs:attribute name="synon3l" type="str55type" use="optional" />
+		<xs:attribute name="synon4l" type="str55type" use="optional" />
+		<xs:attribute name="druhotna" type="str1type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpktvVetaType">
+		<xs:attribute name="klic" type="str2type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpmatVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="kod" type="str8type" use="optional" />
+		<xs:attribute name="n24" type="str24type" use="optional" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+		<xs:attribute name="kodl" type="str8type" use="optional" />
+		<xs:attribute name="n32l" type="str32type" use="optional" />
+		<xs:attribute name="n55l" type="str55type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpmtvVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="kod" type="str8type" use="optional" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+		<xs:attribute name="klico" type="str8type" use="required" />
+		<xs:attribute name="kodo" type="str8type" use="optional" />
+		<xs:attribute name="n32o" type="str32type" use="optional" />
+		<xs:attribute name="n55o" type="str55type" use="optional" />
+		<xs:attribute name="poradio" type="str6type" use="optional" />
+		<xs:attribute name="kodol" type="str8type" use="optional" />
+		<xs:attribute name="n32ol" type="str32type" use="optional" />
+		<xs:attribute name="n55ol" type="str55type" use="optional" />
+		<xs:attribute name="aktual" type="int123type" use="required" />
+</xs:complexType>
+
+<xs:complexType name="nclpnduvVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclponpVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="kod" type="str8type" use="optional" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+		<xs:attribute name="kodl" type="str8type" use="optional" />
+		<xs:attribute name="n32l" type="str32type" use="optional" />
+		<xs:attribute name="n55l" type="str55type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclppolVetaType">
+		<xs:attribute name="klic" type="str5type" use="required" />
+		<xs:attribute name="kodskp" type="str26type" use="optional" />
+		<xs:attribute name="klicsyst" type="str8type" use="required" />
+		<xs:attribute name="kodsyst" type="str8type" use="optional" />
+		<xs:attribute name="nsyst" type="str32type" use="optional" />
+		<xs:attribute name="klickomp" type="str8type" use="required" />
+		<xs:attribute name="kodkomp" type="str8type" use="optional" />
+		<xs:attribute name="nkomp" type="str55type" use="optional" />
+		<xs:attribute name="klicdrvl" type="str8type" use="required" />
+		<xs:attribute name="koddrvl" type="str8type" use="optional" />
+		<xs:attribute name="ndrvl" type="str32type" use="optional" />
+		<xs:attribute name="klicproc" type="str8type" use="required" />
+		<xs:attribute name="kodproc" type="str8type" use="optional" />
+		<xs:attribute name="nproc" type="str32type" use="optional" />
+		<xs:attribute name="klicjedn" type="str8type" use="optional" />
+		<xs:attribute name="njedn" type="str20type" use="optional" />
+		<xs:attribute name="nazev" type="str120type" use="optional" />
+		<xs:attribute name="typ" type="str1NLtype" use="required" />
+		<xs:attribute name="gesce" type="str1type" use="optional" />
+		<xs:attribute name="vznik" type="str1type" use="optional" />
+		<xs:attribute name="typdial" type="str2type" use="optional" />
+		<xs:attribute name="formrm" type="str1type" use="optional" />
+		<xs:attribute name="formh" type="str2type" use="optional" />
+		<xs:attribute name="dseobj" type="str3type" use="optional" />
+		<xs:attribute name="md" type="dec12-4type" use="optional" />
+		<xs:attribute name="min" type="dec12-4type" use="optional" />
+		<xs:attribute name="max" type="dec12-4type" use="optional" />
+		<xs:attribute name="mh" type="dec12-4type" use="optional" />
+		<xs:attribute name="mtv1" type="str8type" use="optional" />
+		<xs:attribute name="mtv2" type="str8type" use="optional" />
+		<xs:attribute name="mtv3" type="str8type" use="optional" />
+		<xs:attribute name="mtv4" type="str8type" use="optional" />
+		<xs:attribute name="skala" type="str26type" use="optional" />
+		<xs:attribute name="skalast" type="str1type" use="optional" />
+		<xs:attribute name="algzpr" type="str8type" use="optional" />
+		<xs:attribute name="katnal" type="str8type" use="optional" />
+		<xs:attribute name="klicmat" type="str8type" use="optional" />
+		<xs:attribute name="kliconp" type="str8type" use="optional" />
+		<xs:attribute name="plati_od" type="datetype" use="optional" />
+		<xs:attribute name="plati_do" type="datetype" use="optional" />
+		<xs:attribute name="dat_zmen" type="datetype" use="optional" />
+		<xs:attribute name="stav" type="int1234type" use="required" />
+		<xs:attribute name="aktual" type="int123type" use="required" />
+		<xs:attribute name="pristup" type="inttype" use="required" />
+		<xs:attribute name="info" type="str75type" use="optional" />
+		<xs:attribute name="resjako" type="str5type" use="optional" />
+		<xs:attribute name="druhotna" type="str1type" use="optional" />
+		<xs:attribute name="neaktduv" type="str8type" use="optional" />
+		<xs:attribute name="kateg" type="str8type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+		<xs:attribute name="skup1" type="str8type" use="optional" />
+		<xs:attribute name="skup2" type="str8type" use="optional" />
+		<xs:attribute name="skup3" type="str8type" use="optional" />
+		<xs:attribute name="skup4" type="str8type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclppolrVetaType">
+		<xs:attribute name="klic" type="str5type" use="required" />
+		<xs:attribute name="nsyst" type="str32type" use="optional" />
+		<xs:attribute name="nkomp" type="str55type" use="optional" />
+		<xs:attribute name="klicproc" type="str8type" use="required" />
+		<xs:attribute name="kodproc" type="str8type" use="optional" />
+		<xs:attribute name="nproc" type="str32type" use="optional" />
+		<xs:attribute name="njedn" type="str20type" use="optional" />
+		<xs:attribute name="nazev" type="str120type" use="optional" />
+		<xs:attribute name="typ" type="str1NLtype" use="required" />
+		<xs:attribute name="vznik" type="str1type" use="optional" />
+		<xs:attribute name="dseobj" type="str3type" use="optional" />
+		<xs:attribute name="md" type="dec12-4type" use="optional" />
+		<xs:attribute name="min" type="dec12-4type" use="optional" />
+		<xs:attribute name="max" type="dec12-4type" use="optional" />
+		<xs:attribute name="mh" type="dec12-4type" use="optional" />
+		<xs:attribute name="mtv1" type="str8type" use="optional" />
+		<xs:attribute name="katnal" type="str8type" use="optional" />
+		<xs:attribute name="klicmat" type="str8type" use="optional" />
+		<xs:attribute name="druhotna" type="str1type" use="optional" />
+		<xs:attribute name="aktual" type="int123type" use="required" />
+</xs:complexType>
+
+<xs:complexType name="nclpprocVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="kod" type="str8type" use="optional" />
+		<xs:attribute name="n24" type="str24type" use="optional" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+		<xs:attribute name="aktual" type="int123type" use="required" />
+		<xs:attribute name="kodl" type="str8type" use="optional" />
+		<xs:attribute name="n32l" type="str32type" use="optional" />
+		<xs:attribute name="n55l" type="str55type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclprcvuVetaType">
+		<xs:attribute name="klic" type="str1type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpskalVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="kodskal" type="str26type" use="required" />
+		<xs:attribute name="kodskall" type="str26type" use="optional" />
+		<xs:attribute name="sex" type="str1type" use="optional" />
+		<xs:attribute name="vekd" type="str5type" use="optional" />
+		<xs:attribute name="vekh" type="str5type" use="optional" />
+		<xs:attribute name="odbtd" type="str2type" use="optional" />
+		<xs:attribute name="odbth" type="str2type" use="optional" />
+		<xs:attribute name="udal" type="str8type" use="optional" />
+		<xs:attribute name="udalj" type="str1type" use="optional" />
+		<xs:attribute name="udaltd" type="str5type" use="optional" />
+		<xs:attribute name="udalth" type="str5type" use="optional" />
+		<xs:attribute name="stavtyp" type="str8type" use="optional" />
+		<xs:attribute name="odber" type="str8type" use="optional" />
+		<xs:attribute name="dieta" type="str8type" use="optional" />
+		<xs:attribute name="algskal" type="str8type" use="optional" />
+		<xs:attribute name="pcassb" type="str2type" use="optional" />
+		<xs:attribute name="phmot" type="str1type" use="optional" />
+		<xs:attribute name="pploch" type="str1type" use="optional" />
+		<xs:attribute name="vaha" type="str3type" use="optional" />
+		<xs:attribute name="s1" type="number6.6semilogtype" use="optional" />
+		<xs:attribute name="s2" type="number6.6semilogtype" use="optional" />
+		<xs:attribute name="s3" type="number6.6semilogtype" use="optional" />
+		<xs:attribute name="s4" type="number6.6semilogtype" use="optional" />
+		<xs:attribute name="s5" type="number6.6semilogtype" use="optional" />
+		<xs:attribute name="s6" type="number6.6semilogtype" use="optional" />
+		<xs:attribute name="s7" type="number6.6semilogtype" use="optional" />
+		<xs:attribute name="s8" type="number6.6semilogtype" use="optional" />
+		<xs:attribute name="druhz" type="str1type" use="optional" />
+		<xs:attribute name="plati_od" type="datetype" use="optional" />
+		<xs:attribute name="plati_do" type="datetype" use="optional" />
+		<xs:attribute name="dat_zmen" type="datetype" use="optional" />
+		<xs:attribute name="stav" type="int1234type" use="required" />
+		<xs:attribute name="aktual" type="int123type" use="required" />
+		<xs:attribute name="njl" type="str20type" use="optional" />
+		<xs:attribute name="prepfak" type="str16type" use="optional" />
+		<xs:attribute name="labl" type="str1type" use="optional" />
+		<xs:attribute name="frml" type="str1type" use="optional" />
+		<xs:attribute name="hodtext" type="str8type" use="optional" />
+		<xs:attribute name="hodod" type="str8type" use="optional" />
+		<xs:attribute name="hoddo" type="str8type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpskupVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpspVetaType">
+		<xs:attribute name="klic16" type="str16type" use="required" />
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="klicsp" type="str8type" use="required" />
+		<xs:attribute name="kodsp" type="str8type" use="optional" />
+		<xs:attribute name="n32sp" type="str32type" use="optional" />
+		<xs:attribute name="n55sp" type="str55type" use="optional" />
+		<xs:attribute name="poradisp" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpstsVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpsvsVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpsystVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="kod" type="str8type" use="optional" />
+		<xs:attribute name="n24" type="str24type" use="optional" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+		<xs:attribute name="mater" type="str8type" use="optional" />
+		<xs:attribute name="indmat" type="inttype" use="optional" />
+		<xs:attribute name="indmic" type="inttype" use="optional" />
+		<xs:attribute name="aktual" type="int123type" use="required" />
+		<xs:attribute name="kodl" type="str8type" use="optional" />
+		<xs:attribute name="n32l" type="str32type" use="optional" />
+		<xs:attribute name="n55l" type="str55type" use="optional" />
+		<xs:attribute name="materl" type="str8type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclptavVetaType">
+		<xs:attribute name="klic" type="str1type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclptdsVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclptkVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclptngVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclptosVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclptpsVetaType">
+		<xs:attribute name="klic" type="str1type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclptypdVetaType">
+		<xs:attribute name="klic" type="str3type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpuvisVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpvazbVetaType">
+		<xs:attribute name="klic" type="str5type" use="required" />
+		<xs:attribute name="n90" type="str120type" use="optional" />
+		<xs:attribute name="kvalv" type="str2type" use="required" />
+		<xs:attribute name="klicv" type="str5type" use="required" />
+		<xs:attribute name="n90v" type="str120type" use="optional" />
+		<xs:attribute name="tdif" type="str5type" use="optional" />
+		<xs:attribute name="jtdif" type="str1type" use="optional" />
+		<xs:attribute name="dat_zmen" type="datetype" use="optional" />
+		<xs:attribute name="stav" type="int1234type" use="required" />
+		<xs:attribute name="aktual" type="int123type" use="required" />
+</xs:complexType>
+
+<xs:complexType name="nclpveovVetaType">
+		<xs:attribute name="klic" type="str3type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="nclpvznkVetaType">
+		<xs:attribute name="klic" type="str1type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="ncmpagVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="ncmpagvVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="ncmpatmlVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="ncmpobjkVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="ncmpspmVetaType">
+		<xs:attribute name="klic16" type="str16type" use="required" />
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="klicsyst" type="str8type" use="required" />
+		<xs:attribute name="kod" type="str8type" use="optional" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="ncmpstmVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="ncmpsystVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="kod" type="str8type" use="optional" />
+		<xs:attribute name="n24" type="str24type" use="optional" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+		<xs:attribute name="kodl" type="str8type" use="optional" />
+		<xs:attribute name="n32l" type="str32type" use="optional" />
+		<xs:attribute name="n55l" type="str55type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="ncmpzzmVetaType">
+		<xs:attribute name="klic" type="str8type" use="required" />
+		<xs:attribute name="n32" type="str32type" use="optional" />
+		<xs:attribute name="n55" type="str55type" use="optional" />
+		<xs:attribute name="poradi" type="str6type" use="optional" />
+</xs:complexType>
+
+<xs:simpleType name="datetype">
+	<xs:restriction base="xs:date">
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="dec12-4type">
+	<xs:restriction base="xs:decimal">
+		<xs:totalDigits value="12" />
+		<xs:fractionDigits value="4" />
+		<xs:maxExclusive value="100000000" />
+		<xs:minExclusive value="-100000000" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str1type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="1" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str1NLtype">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="N" />
+		<xs:enumeration value="L" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str2type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="2" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str3type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="3" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str4type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="4" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str5type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="5" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str6type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="6" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str8type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="8" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str10type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="10" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str16type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="16" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str20type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="20" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str24type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="24" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str26type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="26" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str32type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="32" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str50type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="50" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str55type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="55" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str70type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="70" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str75type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="75" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str80type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="80" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str120type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="120" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str240type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="240" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="inttype">
+	<xs:restriction base="xs:positiveInteger">
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="int123type">
+	<xs:restriction base="xs:positiveInteger">
+		<xs:minInclusive value="1" />
+		<xs:maxInclusive value="3" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="int1234type">
+	<xs:restriction base="xs:positiveInteger">
+		<xs:minInclusive value="1" />
+		<xs:maxInclusive value="4" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="number6.6semilogtype">
+	<xs:union>
+		<xs:simpleType>
+			<xs:restriction base="xs:decimal">
+				<xs:totalDigits value="12"/>
+				<xs:fractionDigits value="6"/>
+				<xs:maxExclusive value="1000000"/>
+				<xs:minExclusive value="-1000000"/>
+			</xs:restriction>
+		</xs:simpleType>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:pattern value="-?[1-9]{1}E-?[0-9]{1,2}"/>
+			</xs:restriction>
+		</xs:simpleType>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:pattern value="-?[1-9]{1}.[0-9]{1,4}E-?[0-9]{1,2}"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:union>
+</xs:simpleType>
+
+<xs:simpleType name="timetype">
+	<xs:restriction base="xs:time">
+	</xs:restriction>
+</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:dsComm="urn:cz-mzcr:ns:dasta:ds4:ds_type" xmlns:nrki="urn:cz-mzcr:ns:dasta:ds4:ds_idu_nrki" xmlns:dsiduCis="urn:cz-mzcr:ns:dasta:ds4:ds_cisidu" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:cz-mzcr:ns:dasta:ds4:ds_idu_nrki" elementFormDefault="qualified" version="4.01.01">
+	<xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_cisidu" schemaLocation="ds_cisidu-4.03.01.xsd"/>
+	<xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_type" schemaLocation="ds_type-4.02.11.xsd"/>
+	
+	<xs:complexType name="nrkiType">
+		<xs:sequence>
+			<xs:element name="nrkip" type="nrki:nrkipType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Případ NRKI</xs:documentation>
+				</xs:annotation>
+			</xs:element>			
+		</xs:sequence>
+		<xs:attribute name="ico" type="dsComm:icisType" use="required">
+			<xs:annotation>
+				<xs:documentation>IČO (identifikační číslo zdravotnického zařízení)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pcz" type="dsComm:number3de" use="required">
+			<xs:annotation>
+				<xs:documentation>PČZ (pořadové číslo zdravotnického zařízení)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pcpd" type="dsComm:number3d" use="required">
+			<xs:annotation>
+				<xs:documentation>PČDP (pořadové číslo detašovaného pracoviště)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="odd" type="dsComm:str5" use="required">
+			<xs:annotation>
+				<xs:documentation>Posledních 5 znaků kódu oddělení z číselníku <cl>ZdravotnickeOddeleni</cl></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="nrki" type="nrki:nrkiType" />
+	<xs:complexType name="nrkipType">
+		<xs:sequence>
+			<xs:element name="pacient" type="nrki:pacientType">
+				<xs:annotation>
+					<xs:documentation>
+                        Pacient
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="anamneza" type="nrki:anamnezaType">
+				<xs:annotation>
+					<xs:documentation>
+                        Anamnéza
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="koronarni_intervence" type="nrki:nrkipintType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+                        Koronární intervence
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nekoronarni_intervence" type="nrki:nrkinekiType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+                        Nekoronární intervence
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="intervence_VV" type="nrki:nrkinekiVVType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+                        Intervence vrozené srdeční vady
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="komplikace" type="nrki:nrkiKomplikaceType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+                        Komplikace výkonu
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="datum_intervence" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>
+                    Datum intervence
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="katetrizujici" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>
+                    Katetrizující
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="katetrizujici_ucet" type="dsComm:str50">
+			<xs:annotation>
+				<xs:documentation>
+                    Katetrizující účet
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="typ_vykonu" type="dsComm:number1-3">
+			<xs:annotation>
+				<xs:documentation>
+                    Typ výkonu
+                    1 - pouze koronární intervence
+                    2 - pouze nekoronární intervence
+                    3 - kombinace koronární a nekoronární intervence
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kod_pripadu_lokal" type="dsComm:str50">
+			<xs:annotation>
+				<xs:documentation>
+                    Lokální kód případu
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kompl_vykonu" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>
+                    Komplikace výkonu (ano / ne)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+    <xs:attribute name="datum_umrti" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>
+                    Datum úmrtí
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="uzavren" type="dsComm:logical" use="required">
+			<xs:annotation>
+				<xs:documentation>
+                    Uzavřený záznam (ano - Uzavřen / ne - Rozpracován)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="datum_uzavreni" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>
+                    Datum ukončení zpracování formuláře
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="pacientType">
+		<xs:attribute name="rc" type="dsComm:rodcisType" use="required">
+			<xs:annotation>
+				<xs:documentation>
+                    Rodné číslo
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="obec" type="dsComm:str6">
+			<xs:annotation>
+				<xs:documentation>
+                    Místo bydliště dle číselníku <cl>Obec</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="anamnezaType">
+		<xs:attribute name="diab_mellitus" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>
+                    Diabetes mellitus (ano / ne)
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+        <xs:attribute name="renalni_selh" type="dsComm:logical">
+            <xs:annotation>
+                <xs:documentation>
+                    Renální selhání (ano / ne)
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="predch_kardio" type="dsComm:logical">
+            <xs:annotation>
+                <xs:documentation>
+                    Předchozí kardiochirurgický výkon (ano / ne)
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="predch_pci" type="dsComm:logical">
+            <xs:annotation>
+                <xs:documentation>
+                    Předchozí PCI (ano / ne)
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+		<xs:attribute name="druh_lecby" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>
+                    Druh léčby dle číselníku <cl>SubTypAnamnezy</cl> (položky číselníka, u kterých TypAnamnezyKod = 31)
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+        <xs:attribute name="dialyza" type="dsComm:number2d">
+            <xs:annotation>
+                <xs:documentation>
+                    Dialýza dle číselníku <cl>SubTypAnamnezy</cl> (položky číselníka, u kterých TypAnamnezyKod = 32)
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nrkipintType">
+		<xs:sequence>
+			<xs:element name="pci" type="nrki:pciType" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>
+                        Pci procedura
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="typ_indikace" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>
+                    Typ indikace dle číselníku <cl>TypIndikace</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="subtyp_indikace" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>
+                    Subtyp indikace dle číselníku <cl>SubTypIndikace</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="stemi_lokal" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>
+                    AKS - STEMI - lokalizace ischemie dle číselníku <cl>TypAksStemiLokalizace</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="stemi_killip" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>
+                    AKS - STEMI - Killip třída dle číselníku <cl>TypAksStemiKillipTrida</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="aks_stavpores" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>
+                    AKS - stav po resuscitaci pro oběhovou zástavu (ano / ne)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="aks_plicven" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>
+                    AKS - plicní ventilace (ano / ne)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cs_zac_bolesti" type="dsComm:dateTime">
+			<xs:annotation>
+				<xs:documentation>
+                    Začátek bolesti
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cs_ekg" type="dsComm:dateTime">
+			<xs:annotation>
+				<xs:documentation>
+                    Diagnostické EKG
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cs_prijezd_pci" type="dsComm:dateTime">
+			<xs:annotation>
+				<xs:documentation>
+                    Příjezd na PCI centrum
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cs_rekanalizace" type="dsComm:dateTime">
+			<xs:annotation>
+				<xs:documentation>
+                    Rekanalizace
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="typ_rozpostiz" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>
+                    Rozsah koronárního postižení (Postižená povodí) dle číselníku <cl>TypRozsahuPostizeni</cl>, kódy 1-3
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="typ_rozpostiz_lmn" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>
+                    Rozsah koronárního postižení (Postižená povodí) - LM nad 50% 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="typ_ang_eflk" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>
+                    EF LK v době výkonu dle číselníku <cl>TypAngiografieEFLK</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="typ_prist_cesty" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>
+                    Přístupová cesta (finální) dle číselníku <cl>TypPristupoveCesty</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="pciType">
+		<xs:sequence>
+			<xs:element name="typ_jiny_vykon" type="nrki:nrkiJinyVykonType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Typ jiného výkonu</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="segment" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>
+                    Segment dle číselníku <cl>TypSegmentu</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kalibr_cevy" type="dsComm:number2.2">
+			<xs:annotation>
+				<xs:documentation>
+                    Kalibr cévy
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="stenosa_pred" type="dsComm:number0-100">
+			<xs:annotation>
+				<xs:documentation>
+                    Stenosa před
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="timi_pred" type="dsComm:number0-3">
+			<xs:annotation>
+				<xs:documentation>
+                    TIMI flow před
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="stenosa_po" type="dsComm:number0-100">
+			<xs:annotation>
+				<xs:documentation>
+                    Stenosa po
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="timi_po" type="dsComm:number0-3">
+			<xs:annotation>
+				<xs:documentation>
+                    TIMI flow po
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="stent" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>
+                    Stent (ano / ne)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="typ_stent" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>
+                    Typ stentu dle číselníku <cl>TypStent</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="jiny_vykon" type="dsComm:logical">
+			<xs:annotation>
+				<xs:documentation>
+                    Jiný výkon (ano / ne)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nrkinekiType">
+		<xs:attribute name="typ" type="dsComm:number2d" use="required">
+			<xs:annotation>
+				<xs:documentation>
+                    Typ nekoronární intervence dle číselníku <cl>TypNekoronarniIntervence</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nrkinekiVVType">
+		<xs:attribute name="typ" type="dsComm:number2d" use="required">
+			<xs:annotation>
+				<xs:documentation>
+                    Typ intervence vrozené srdeční vady dle číselníku <cl>TypIntervenceVV</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nrkiKomplikaceType">
+		<xs:attribute name="typ" type="dsComm:number2d" use="required">
+			<xs:annotation>
+				<xs:documentation>
+                    Typ komplikace dle číselníku <cl>TypKomplikaceVykonu</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nrkiJinyVykonType">
+		<xs:attribute name="kod_vykonu" type="dsComm:number2d" use="required">
+			<xs:annotation>
+				<xs:documentation>
+                    Kód jiného výkonu dle číselníku <cl>TypJinyVykon</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>	
+</xs:schema>
