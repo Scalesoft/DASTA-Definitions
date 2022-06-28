@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="urn:firma:ns:dasta:ds4:firma_test"
+	xmlns:firmaTest="urn:firma:ns:dasta:ds4:firma_test"
+	xmlns:dsComm="urn:cz-mzcr:ns:dasta:ds4:ds_type"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" >
+
+  <!-- Import common element types.  -->
+  <xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_type"
+	           schemaLocation="ds_type-4.02.14.xsd"/>
+
+  <xs:element name="kraj">
+    <xs:complexType >
+	    <xs:sequence >
+	      <xs:element name="jmeno" type="dsComm:str24"/>
+		    <xs:element name="hlmesto" type="dsComm:str24"/>
+    	</xs:sequence>
+	    <xs:attribute name="cislo" type="xs:nonNegativeInteger" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
+

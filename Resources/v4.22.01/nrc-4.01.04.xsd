@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name="_nrcver">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="_nrcverVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="agodb">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="agodbVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="agodbodb">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="agodbodbVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="aneste">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="anesteVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="drggrp">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="drggrpVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="druhns">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="druhnsVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="druhuctu">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="druhuctuVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="chyby">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="chybyVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="korinfo">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="korinfoVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="korvyj">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="korvyjVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="kritpol">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="kritpolVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="vahy">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="VETA" type="vahyVetaType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="DScisAttrGroup" />
+	</xs:complexType>
+</xs:element>
+
+<xs:attributeGroup name="DScisAttrGroup">
+	<xs:attribute name="dat_gen" type="datetype" use="required" />
+	<xs:attribute name="cas_gen" type="timetype" use="required" />
+	<xs:attribute name="ver_nclp" type="str8type" use="required" />
+	<xs:attribute name="ver_ds" type="str8type" use="required" />
+	<xs:attribute name="uzivatel" type="str50type" use="optional" />
+	<xs:attribute name="cis_klic" type="str50type" use="optional" />
+	<xs:attribute name="ver_nrc" type="str8type" use="required" />
+</xs:attributeGroup>
+
+<xs:complexType name="_nrcverVetaType">
+		<xs:attribute name="jm_prog" type="str8type" use="required" />
+		<xs:attribute name="lic_c" type="str10type" use="optional" />
+		<xs:attribute name="ver_prog" type="str8type" use="optional" />
+		<xs:attribute name="ver_nclp" type="str8type" use="required" />
+		<xs:attribute name="dat_gen" type="datetype" use="required" />
+		<xs:attribute name="cas_gen" type="timetype" use="required" />
+		<xs:attribute name="kod_ces" type="str6type" use="required" />
+		<xs:attribute name="xsd" type="str70type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="agodbVetaType">
+		<xs:attribute name="kod" type="str14type" use="required" />
+</xs:complexType>
+
+<xs:complexType name="agodbodbVetaType">
+		<xs:attribute name="agregodb" type="str14type" use="required" />
+		<xs:attribute name="odb" type="str3type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="anesteVetaType">
+		<xs:attribute name="kod" type="str5type" use="required" />
+		<xs:attribute name="cas" type="inttype" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="drggrpVetaType">
+		<xs:attribute name="kod" type="str5type" use="required" />
+		<xs:attribute name="naz" type="str200type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="druhnsVetaType">
+		<xs:attribute name="kod" type="str2type" use="required" />
+		<xs:attribute name="naz" type="str120type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="druhuctuVetaType">
+		<xs:attribute name="kod" type="str2type" use="required" />
+		<xs:attribute name="naz" type="str120type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="chybyVetaType">
+		<xs:attribute name="kod" type="str4type" use="required" />
+		<xs:attribute name="naz" type="str120type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="korinfoVetaType">
+		<xs:attribute name="kod" type="str14type" use="required" />
+		<xs:attribute name="naz" type="str120type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="korvyjVetaType">
+		<xs:attribute name="kod" type="str4type" use="required" />
+		<xs:attribute name="naz" type="str120type" use="optional" />
+</xs:complexType>
+
+<xs:complexType name="kritpolVetaType">
+		<xs:attribute name="kod" type="str5type" use="required" />
+</xs:complexType>
+
+<xs:complexType name="vahyVetaType">
+		<xs:attribute name="drg" type="str5type" use="required" />
+		<xs:attribute name="vaha" type="dec8-5type" use="optional" />
+		<xs:attribute name="alos" type="dec8-2type" use="optional" />
+		<xs:attribute name="ltp" type="dec9-0type" use="optional" />
+		<xs:attribute name="htp" type="dec9-0type" use="optional" />
+		<xs:attribute name="plati_od" type="datetype" use="optional" />
+		<xs:attribute name="plati_do" type="datetype" use="optional" />
+</xs:complexType>
+
+<xs:simpleType name="datetype">
+	<xs:restriction base="xs:date">
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="dec8-2type">
+	<xs:restriction base="xs:decimal">
+		<xs:totalDigits value="8" />
+		<xs:fractionDigits value="2" />
+		<xs:maxExclusive value="1000000" />
+		<xs:minExclusive value="-1000000" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="dec8-5type">
+	<xs:restriction base="xs:decimal">
+		<xs:totalDigits value="8" />
+		<xs:fractionDigits value="5" />
+		<xs:maxExclusive value="1000" />
+		<xs:minExclusive value="-1000" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="dec9-0type">
+	<xs:restriction base="xs:decimal">
+		<xs:totalDigits value="9" />
+		<xs:fractionDigits value="0" />
+		<xs:maxExclusive value="1000000000" />
+		<xs:minExclusive value="-1000000000" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str1type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="1" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str2type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="2" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str3type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="3" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str4type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="4" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str5type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="5" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str6type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="6" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str8type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="8" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str10type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="10" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str14type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="14" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str20type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="20" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str50type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="50" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str55type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="55" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str70type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="70" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str80type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="80" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str120type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="120" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str200type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="200" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="str240type">
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="240" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="inttype">
+	<xs:restriction base="xs:positiveInteger">
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="timetype">
+	<xs:restriction base="xs:time">
+	</xs:restriction>
+</xs:simpleType>
+</xs:schema>

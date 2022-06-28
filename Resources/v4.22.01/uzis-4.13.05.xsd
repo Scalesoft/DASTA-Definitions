@@ -1,0 +1,1195 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- verze duben 2017 doplnek Kod do Zdravotnickeho zarizeni 
+      verze cerven 2017, zmena timetype
+topografie MKNO3
+verze září 2018 - detailní ZZ, primárně pro NOR
+verze prosinec 2019 - TNM ciselnik
+20.3.2020 -  specificka stadia
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:simpleType name="str1type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str2type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str3type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str4type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str5type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str6type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str7type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="7"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str8type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str11type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="11"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str30type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str14type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str15type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str20type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str25type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="25"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str50type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str70type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="70"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str255type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="str1000type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="timetype">
+		<xs:restriction base="xs:time"/>
+	</xs:simpleType>
+	<xs:attributeGroup name="DScisAttrGroup">
+		<xs:attribute name="dat_gen" type="xs:date" use="required"/>
+		<xs:attribute name="cas_gen" type="timetype" use="required"/>
+		<xs:attribute name="ver_nclp" type="str8type" use="required"/>
+		<xs:attribute name="ver_ds" type="str8type" use="required"/>
+		<xs:attribute name="uzivatel" type="str50type" use="optional"/>
+		<xs:attribute name="cis_klic" type="str50type" use="optional"/>
+		<xs:attribute name="uzis_verze" type="str20type" use="required">
+			<xs:annotation>
+				<xs:documentation>rokcilovectvrtleti 201520</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zkratka" type="str8type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Původní název číselníku do 8 znaků</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="u_plati_od" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>první den čtvrtletí</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="nazev" type="str50type" use="required">
+			<xs:annotation>
+				<xs:documentation>Název číselníku v JTP</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="popis" type="str255type" use="required">
+			<xs:annotation>
+				<xs:documentation>Popis číselníku pro zobrazení v DASTA jako vysvětlení</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="popis_eng" type="str255type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Volitelně popis v angličtině</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="spravce" type="str20type" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="SkupinaPlatnostiAttrGroup">
+		<xs:attribute name="skupina_platnosti_01" type="xs:boolean" use="optional"/>
+		<xs:attribute name="skupina_platnosti_02" type="xs:boolean" use="optional"/>
+		<xs:attribute name="skupina_platnosti_03" type="xs:boolean" use="optional"/>
+		<xs:attribute name="skupina_platnosti_04" type="xs:boolean" use="optional"/>
+		<xs:attribute name="skupina_platnosti_05" type="xs:boolean" use="optional"/>
+		<xs:attribute name="skupina_platnosti_06" type="xs:boolean" use="optional"/>
+		<xs:attribute name="skupina_platnosti_07" type="xs:boolean" use="optional"/>
+		<xs:attribute name="skupina_platnosti_08" type="xs:boolean" use="optional"/>
+		<xs:attribute name="skupina_platnosti_09" type="xs:boolean" use="optional"/>
+		<xs:attribute name="skupina_platnosti_10" type="xs:boolean" use="optional"/>
+		<xs:attribute name="skupina_platnosti_11" type="xs:boolean" use="optional"/>
+		<xs:attribute name="skupina_platnosti_12" type="xs:boolean" use="optional"/>
+		<xs:attribute name="skupina_platnosti_13" type="xs:boolean" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="VetaAttrGroup">
+		<xs:attribute name="kod" type="str30type" use="required">
+			<xs:annotation>
+				<xs:documentation>Kód položky</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="popis" type="str255type" use="required">
+			<xs:annotation>
+				<xs:documentation>Popis položky</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="plati_od" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Platnost od</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="plati_do" type="xs:date" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="VetaLongAttrGroup">
+		<xs:attribute name="kod" type="str30type" use="required">
+			<xs:annotation>
+				<xs:documentation>Kód položky</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="popis" type="str1000type" use="required">
+			<xs:annotation>
+				<xs:documentation>Popis položky</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="plati_od" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Platnost od</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="plati_do" type="xs:date" use="optional"/>
+	</xs:attributeGroup>
+	<xs:complexType name="ciselnikTNMVetaType">
+		<xs:attributeGroup ref="VetaAttrGroup"/>
+		<xs:attribute name="patkod" type="str5type" use="optional">
+			<xs:annotation>
+				<xs:documentation>--Uplný kód klasifikace pro patologickou zprávu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ciselnikVetaType">
+		<xs:attributeGroup ref="VetaAttrGroup"/>
+		<xs:attributeGroup ref="SkupinaPlatnostiAttrGroup"/>
+	</xs:complexType>
+	<xs:complexType name="ciselnikLongVetaType">
+		<xs:attributeGroup ref="VetaLongAttrGroup"/>
+		<xs:attributeGroup ref="SkupinaPlatnostiAttrGroup"/>
+	</xs:complexType>
+	<xs:complexType name="ciselnikTypOperaceVetaType">
+		<xs:attributeGroup ref="VetaAttrGroup"/>
+		<xs:attribute name="typ_operace" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Primární operace nebo revize</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ciselnikMkn10_5VetaType">
+		<xs:attribute name="kod" type="str5type" use="required"/>
+		<xs:attribute name="m5dg" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>CleneniNaPatemMiste</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="naz" type="str70type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Nazev</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="znak" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>ZnakProDruh</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dgzakl" type="str4type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Zakladni</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pumrti" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>UmrtiPricina</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pohlav" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>NepripustnePohlavi</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pohlav_t" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>?</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vekod" type="str2type" use="optional">
+			<xs:annotation>
+				<xs:documentation>NepripustnyVekOd</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vekdo" type="str2type" use="optional">
+			<xs:annotation>
+				<xs:documentation>NepripustnyVekDo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="tdg" type="str3type" use="optional">
+			<xs:annotation>
+				<xs:documentation>TridaDg</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="swho1" type="str3type" use="optional">
+			<xs:annotation>
+				<xs:documentation>SkupinaDgWho1</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="swho2" type="str2type" use="optional">
+			<xs:annotation>
+				<xs:documentation>SkupinaDgWho2</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="swho3" type="str5type" use="optional">
+			<xs:annotation>
+				<xs:documentation>SkupinaDgWho3</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="swho4" type="str2type" use="optional">
+			<xs:annotation>
+				<xs:documentation>SkupinaDgWho4</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="swho5" type="str3type" use="optional">
+			<xs:annotation>
+				<xs:documentation>SkupinaDgWho5</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="snzis" type="str2type" use="optional">
+			<xs:annotation>
+				<xs:documentation>SkupinyDgProNzis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="skupla1" type="str1type" use="optional"/>
+		<xs:attribute name="skupla2" type="str1type" use="optional"/>
+		<xs:attribute name="skupla3" type="str1type" use="optional"/>
+		<xs:attribute name="skupla4" type="str1type" use="optional"/>
+		<xs:attribute name="skupla5" type="str1type" use="optional"/>
+		<xs:attribute name="skupla6" type="str1type" use="optional"/>
+		<xs:attribute name="skupla7" type="str1type" use="optional"/>
+		<xs:attribute name="skupla8" type="str1type" use="optional"/>
+		<xs:attribute name="skupla9" type="str1type" use="optional"/>
+		<xs:attribute name="prevod" type="str4type" use="optional"/>
+		<xs:attribute name="plati_od" type="xs:date" use="optional"/>
+		<xs:attribute name="plati_do" type="xs:date" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ciselnikDgProKontroluLpzVetaType">
+		<xs:attribute name="kod" type="str4type" use="required"/>
+		<xs:attribute name="naz" type="str255type" use="optional"/>
+		<xs:attribute name="znak" type="str1type" use="optional"/>
+		<xs:attribute name="dgzakl" type="str4type" use="optional"/>
+		<xs:attribute name="pohlav" type="str1type" use="optional"/>
+		<xs:attribute name="vekod" type="str2type" use="optional"/>
+		<xs:attribute name="vekdo" type="str2type" use="optional"/>
+		<xs:attribute name="dusled_p" type="str1type" use="optional"/>
+		<xs:attribute name="dusled_v" type="str1type" use="optional"/>
+		<xs:attribute name="vyskyt" type="str1type" use="optional"/>
+		<xs:attribute name="nejasna" type="str1type" use="optional"/>
+		<xs:attribute name="skupla8" type="str1type" use="optional"/>
+		<xs:attribute name="plati_od" type="xs:date" use="optional"/>
+		<xs:attribute name="plati_do" type="xs:date" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ciselnikBodyIntVetaType">
+		<xs:attributeGroup ref="VetaAttrGroup"/>
+		<xs:attribute name="body" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Bodové ohodnocení položky (součást skóre)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ciselnikVykonyKlinDenominatoruUzisVetaType">
+		<xs:attributeGroup ref="VetaAttrGroup"/>
+		<xs:attribute name="odbornosti" type="str255type" use="required">
+			<xs:annotation>
+				<xs:documentation>Odbornosti</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ciselnikTypVetaType">
+		<xs:attributeGroup ref="VetaAttrGroup"/>
+		<xs:attribute name="typ" type="str2type" use="required">
+			<xs:annotation>
+				<xs:documentation>Typ, kategorie</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ciselnikZkratkaVetaType">
+		<xs:attributeGroup ref="VetaAttrGroup"/>
+		<xs:attribute name="zkratka" type="str3type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Zkratka položky</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ciselnikLekyVetaType">
+		<xs:attributeGroup ref="VetaAttrGroup"/>
+		<xs:attribute name="atc" type="str7type" use="optional">
+			<xs:annotation>
+				<xs:documentation>ATC skupina</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ciselnikOdbornostVZPVetaType">
+		<xs:attributeGroup ref="VetaAttrGroup"/>
+		<xs:attribute name="nazev" type="str25type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Zkrácený název</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kategorie" type="str50type" use="optional"/>
+		<xs:attribute name="trida" type="str50type" use="optional"/>
+		<xs:attribute name="typ" type="str50type" use="optional"/>
+		<xs:attribute name="hospitalizace" type="xs:boolean" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ciselnikZdravotnickeOddeleniVetaType">
+		<xs:attributeGroup ref="VetaAttrGroup"/>
+		<xs:attribute name="zdravotnicke_zarizeni_kod" type="str11type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Kód zdravotnického zařízení IČO + PČZ</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pcdp" type="str3type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Pořadové číslo detašovaného pracoviště</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cis_oddeleni_kod" type="str2type" use="optional"/>
+		<xs:attribute name="poradove_cislo_oddeleni_kod" type="str1type" use="optional"/>
+		<xs:attribute name="cislo_pracoviste_kod" type="str2type" use="optional"/>
+		<xs:attribute name="druh_zarizeni_kod" type="str3type" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ciselnikBodyDecimalVetaType">
+		<xs:attributeGroup ref="VetaAttrGroup"/>
+		<xs:attribute name="body" type="xs:decimal" use="required">
+			<xs:annotation>
+				<xs:documentation>Bodové ohodnocení položky (součást skóre)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ciselnikSkutecneVCykluProvedenoVetaType">
+		<xs:attributeGroup ref="VetaAttrGroup"/>
+		<xs:attribute name="cil_cyklu" type="str5type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Cíl cyklu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ciselnikTopografieVetaType">
+		<xs:attributeGroup ref="VetaAttrGroup"/>
+		<xs:attribute name="nepripustne_pohlavi_kod" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Kód nelze použít u daného pohlaví</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ciselnikDrogaVetaType">
+		<xs:attributeGroup ref="VetaAttrGroup"/>
+		<xs:attribute name="druh_drogy_kod" type="str3type" use="required">
+			<xs:annotation>
+				<xs:documentation>Kód druhu drogy</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="merna_jednotka" type="str4type" use="required">
+			<xs:annotation>
+				<xs:documentation>Měrná jednotka drogy</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ciselnikToxikologieLatkaVetaType">
+		<xs:attributeGroup ref="VetaAttrGroup"/>
+		<xs:attribute name="toxikologie_skupina_latky_kod" type="str5type" use="required">
+			<xs:annotation>
+				<xs:documentation>Skupina tox. látky</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="jednotka" type="str5type" use="required">
+			<xs:annotation>
+				<xs:documentation>Měrná jednotka</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ciselnikNezadouciUdalostVetaType">
+		<xs:attribute name="kod" type="str5type" use="required">
+			<xs:annotation>
+				<xs:documentation>Kód nežádoucí události</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zkratka" type="str4type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Zkratka nežádoucí události</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kategorie" type="str1type" use="required">
+			<xs:annotation>
+				<xs:documentation>Kategorie nežádoucí události</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="typ_dimenze" type="str5type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Hlavní kategorie nežádoucí události</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="nazev" type="str255type" use="required">
+			<xs:annotation>
+				<xs:documentation>Název položky</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="plny_nazev" type="str255type" use="required">
+			<xs:annotation>
+				<xs:documentation>Plný název položky</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="plati_od" type="xs:date" use="required"/>
+		<xs:attribute name="plati_do" type="xs:date" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ciselnikZdravotnickeZarizeniVetaType">
+		<xs:attribute name="kod" type="str11type" use="required">
+			<xs:annotation>
+				<xs:documentation>Kód zdravotnického zařízení</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="icopcz" type="str11type" use="required">
+			<xs:annotation>
+				<xs:documentation>IcoPcz</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ico" type="str8type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Ico</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pcz" type="str3type" use="optional">
+			<xs:annotation>
+				<xs:documentation>PoradoveCisloZarizeni</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="krajn" type="str2type" use="optional">
+			<xs:annotation>
+				<xs:documentation>KrajKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="okresn" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>OkresKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="drzar" type="str3type" use="optional">
+			<xs:annotation>
+				<xs:documentation>DruhZarizeniKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="rezort" type="str4type" use="optional">
+			<xs:annotation>
+				<xs:documentation>RezortKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zujedn" type="str6type" use="optional">
+			<xs:annotation>
+				<xs:documentation>ObecCislo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="naz" type="str255type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Nazev</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zknaz" type="str30type" use="optional">
+			<xs:annotation>
+				<xs:documentation>ZkracenyNazev</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ulice" type="str50type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Ulice</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cisdom" type="str4type" use="optional">
+			<xs:annotation>
+				<xs:documentation>CisloPopisne</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cisori" type="str4type" use="optional">
+			<xs:annotation>
+				<xs:documentation>CisloOrientacni</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="psc" type="str5type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Psc</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="nazob" type="str50type" use="optional">
+			<xs:annotation>
+				<xs:documentation>ObecNazev</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zriz" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>ZrizovatelKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="typorg" type="str2type" use="optional">
+			<xs:annotation>
+				<xs:documentation>FormaHospodareniKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="orp" type="str4type" use="optional">
+			<xs:annotation>
+				<xs:documentation>ObceSRozsirenouPusobnostiKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pou" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>ObceSPoverenymObecnimUrademKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="plati_od" type="xs:date" use="optional"/>
+		<xs:attribute name="plati_do" type="xs:date" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ciselnikZdravotnickeZarizeniDetailVetaType">
+		<xs:attribute name="kod" type="str14type" use="required">
+			<xs:annotation>
+				<xs:documentation>Kód zdravotnického zařízení (včetně detašovaných pracovišť)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ico" type="str8type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Ico poskytovatele</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pcz" type="str3type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Poradove Cislo Zarizeni</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pcdp" type="str3type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Poradove Cislo Detašovaného Pracoviště</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="krajn" type="str2type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Kód kraje</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="okresn" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Kód okresu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="drzar" type="str3type" use="optional">
+			<xs:annotation>
+				<xs:documentation>DruhZarizeniKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="rezort" type="str4type" use="optional">
+			<xs:annotation>
+				<xs:documentation>RezortKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="obec_kod" type="str6type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Číslo obce</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="nazev" type="str255type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Název zařízení</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ulice" type="str50type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Ulice</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cisdom" type="str4type" use="optional">
+			<xs:annotation>
+				<xs:documentation>CisloPopisne</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cisori" type="str4type" use="optional">
+			<xs:annotation>
+				<xs:documentation>CisloOrientacni</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="psc" type="str5type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Psc</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="obec_nazev" type="str50type" use="optional">
+			<xs:annotation>
+				<xs:documentation>ObecNazev</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zriz" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>ZrizovatelKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="typorg" type="str2type" use="optional">
+			<xs:annotation>
+				<xs:documentation>FormaHospodareniKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="orp" type="str4type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Obec s rozsirenou pusobnosti - Kod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pou" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Obec s poverenym obecnim uradem - Kod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="plati_od" type="xs:date" use="optional"/>
+		<xs:attribute name="plati_do" type="xs:date" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ciselnikKrajOkresVetaType">
+		<xs:attribute name="kod" type="str6type" use="required">
+			<xs:annotation>
+				<xs:documentation>Kód</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="oblast" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Oblast</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kraj_v_oblasti" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Kraj v oblasti</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="okres_v_kraji" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Okres v kraji</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="nazev" type="str20type" use="required">
+			<xs:annotation>
+				<xs:documentation>Název položky</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="nazev_zkraceny" type="str3type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Zkrácený název položky</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kraj" type="str2type" use="optional"/>
+		<xs:attribute name="okres" type="str1type" use="optional"/>
+		<xs:attribute name="kraj1960" type="str2type" use="optional"/>
+		<xs:attribute name="okres1960" type="str2type" use="optional"/>
+		<xs:attribute name="plati_od" type="xs:date" use="optional"/>
+		<xs:attribute name="plati_do" type="xs:date" use="optional"/>
+		<xs:attributeGroup ref="SkupinaPlatnostiAttrGroup"/>
+	</xs:complexType>
+	<xs:complexType name="ciselnikObecVetaType">
+		<xs:attribute name="cobuz" type="str7type" use="optional">
+			<xs:annotation>
+				<xs:documentation>CisloUzis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kodpr" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>?</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kampr" type="str7type" use="optional">
+			<xs:annotation>
+				<xs:documentation>?</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kamzuj" type="str6type" use="optional">
+			<xs:annotation>
+				<xs:documentation>?</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kdypr" type="str6type" use="optional">
+			<xs:annotation>
+				<xs:documentation>?</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="krajn" type="str2type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Krajkod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="okresn" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Okreskod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kraj" type="str2type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Kraj1960Kod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="okres" type="str2type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Okres1960Kod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zujedn" type="str6type" use="required">
+			<xs:annotation>
+				<xs:documentation>Kod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="psc" type="str5type" use="optional"/>
+		<xs:attribute name="tuz" type="str5type" use="optional">
+			<xs:annotation>
+				<xs:documentation>TelefonniUzel</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="nazob" type="str50type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Nazev</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="orp" type="str4type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Orp</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pou" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Pou</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="skupla1" type="str1type" use="optional"/>
+		<xs:attribute name="skupla2" type="str1type" use="optional"/>
+		<xs:attribute name="plati_od" type="xs:date" use="optional"/>
+		<xs:attribute name="plati_do" type="xs:date" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ciselnikZakladniUzemniJednotkyLpzVetaType">
+		<xs:attribute name="krajn" type="str2type" use="optional">
+			<xs:annotation>
+				<xs:documentation>KrajKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="okresn" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>OkresKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zujedn" type="str6type" use="required">
+			<xs:annotation>
+				<xs:documentation>Kod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="nazob" type="str25type" use="optional">
+			<xs:annotation>
+				<xs:documentation>ObceNazev</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="orp" type="str4type" use="optional">
+			<xs:annotation>
+				<xs:documentation>ObceSRozsirenouPusobnostiKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pou" type="str1type" use="optional">
+			<xs:annotation>
+				<xs:documentation>ObceSPoverenymObecnimUrademKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="plati_od" type="xs:date" use="optional"/>
+		<xs:attribute name="plati_do" type="xs:date" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ciselnikOddeleniVetaType">
+		<xs:attribute name="kod" type="str2type" use="required"/>
+		<xs:attribute name="zkratka" type="str4type" use="optional">
+			<xs:annotation>
+				<xs:documentation>NazevZkraceny</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="naz" type="str15type" use="optional">
+			<xs:annotation>
+				<xs:documentation>nazev</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="celnaz" type="str255type" use="optional">
+			<xs:annotation>
+				<xs:documentation>NazevPlny</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="skupla1" type="str1type" use="optional"/>
+		<xs:attribute name="skupla2" type="str1type" use="optional"/>
+		<xs:attribute name="skupla3" type="str1type" use="optional"/>
+		<xs:attribute name="skupla6" type="str1type" use="optional"/>
+		<xs:attribute name="skupla7" type="str1type" use="optional"/>
+		<xs:attribute name="skupla8" type="str4type" use="optional"/>
+		<xs:attribute name="skupla9" type="str1type" use="optional"/>
+		<xs:attribute name="plati_od" type="xs:date" use="optional"/>
+		<xs:attribute name="plati_do" type="xs:date" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ciselnikZdrpojVetaType">
+		<xs:attribute name="kod" type="str3type" use="required"/>
+		<xs:attribute name="ico" type="str8type" use="optional"/>
+		<xs:attribute name="naz" type="str255type" use="optional"/>
+		<xs:attribute name="plati_od" type="xs:date" use="optional"/>
+		<xs:attribute name="plati_do" type="xs:date" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ciselnikPscVetaType">
+		<xs:attribute name="psc" type="str5type" use="required">
+			<xs:annotation>
+				<xs:documentation>Kod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="krokn" type="str3type" use="optional">
+			<xs:annotation>
+				<xs:documentation>KrajOkresKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="krok" type="str4type" use="optional">
+			<xs:annotation>
+				<xs:documentation>KrajOkres1960Kod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="naz" type="str50type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Nazev</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="plati_od" type="xs:date" use="optional"/>
+		<xs:attribute name="plati_do" type="xs:date" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ciselnikCzemVetaType">
+		<xs:attribute name="kod" type="str3type" use="required">
+			<xs:annotation>
+				<xs:documentation>Id</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="a2" type="str2type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Kod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="a3" type="str3type" use="optional">
+			<xs:annotation>
+				<xs:documentation>IsoKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cnazevpl" type="str255type" use="optional">
+			<xs:annotation>
+				<xs:documentation>NazevPlny</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cnazevzk" type="str255type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Nazev</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="anazevpl" type="str255type" use="optional">
+			<xs:annotation>
+				<xs:documentation>AnglickyNazevPlny</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="anazevzk" type="str255type" use="optional">
+			<xs:annotation>
+				<xs:documentation>AnglickyNazev</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="plati_od" type="xs:date" use="optional"/>
+		<xs:attribute name="plati_do" type="xs:date" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ciselnikSpecifickaStadiaVetaType">
+		<xs:attributeGroup ref="VetaAttrGroup"/>
+		<xs:attribute name="DgSkupina" type="str255type" use="required">
+			<xs:annotation>
+				<xs:documentation>Diagnostická skupina</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="KodStadia" type="str5type" use="required">
+			<xs:annotation>
+				<xs:documentation>Kód stádia specifcký pro danou skupinu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="ciselnik">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikLong">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikLongVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikMKN10_5">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikMkn10_5VetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikDgProKontroluLpz">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikDgProKontroluLpzVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikTypOperace">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikTypOperaceVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikDroga">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikDrogaVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikDruhNezadouciUdalosti">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikNezadouciUdalostVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikBodyInt">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikBodyIntVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikBodyDecimal">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikBodyDecimalVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikKrajOkres">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikKrajOkresVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikObec">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikObecVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikZakladniUzemniJednotkyLpz">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikZakladniUzemniJednotkyLpzVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikOdbornostVZP">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikOdbornostVZPVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikOddeleni">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikOddeleniVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikPsc">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikPscVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikSkutecneVCykluProvedeno">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikSkutecneVCykluProvedenoVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikTyp">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikTypVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikToxikologieLatka">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikToxikologieLatkaVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikVykonyKlinDenominatoruUzis">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikVykonyKlinDenominatoruUzisVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikZdravotnickeOddeleni">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikZdravotnickeOddeleniVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikZdravotnickeZarizeni">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikZdravotnickeZarizeniVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikZdravotnickeZarizeniNOR">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikZdravotnickeZarizeniDetailVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikZdravotniPojistovna">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikZdrpojVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikZeme">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikCzemVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikZkratka">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikZkratkaVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikLeky">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikLekyVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ciselnikTopografie">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikTopografieVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+		<xs:element name="ciselnikTNM">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikTNMVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+<xs:element name="ciselnikDiagnostickaSkupinaStadRizik">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VETA" type="ciselnikSpecifickaStadiaVetaType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="DScisAttrGroup"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

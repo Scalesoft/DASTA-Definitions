@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema targetNamespace="urn:cz-mzcr:ns:dasta:ds4:ds_cistype" elementFormDefault="qualified" xmlns:dsCis="urn:cz-mzcr:ns:dasta:ds4:ds_cistype" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!--  Dasta MZCR ciselniky  -->
+    <xs:simpleType name="LVTZDCUN">
+        <!--  ciselnik LVTZDCUN   -->
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="O"/>
+            <xs:enumeration value="L"/>
+            <xs:enumeration value="I"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="dateFormat">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="DT"/>
+            <xs:enumeration value="DTS"/>
+            <xs:enumeration value="MR"/>
+            <xs:enumeration value="R"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="typSdeleniLP">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="B"/>
+            <xs:enumeration value="V"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="typSdeleniLPH">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="B"/>
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="O"/>
+            <xs:enumeration value="A"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="typSdeleniEHK">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="I"/>
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="P"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="typSdeleniLC">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="O"/>
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="B"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="vyznObsahSdeleni">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="UNR"/>
+            <xs:enumeration value="UNM"/>
+            <xs:enumeration value="ULR"/>
+            <xs:enumeration value="ULM"/>
+            <xs:enumeration value="JXP"/>
+            <xs:enumeration value="JXF"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="specKS">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="EQA_SEKK"/>
+            <xs:enumeration value="EQA_JINE"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LZTZOV">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="E"/>
+            <xs:enumeration value="L"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="N"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LZSOZ">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="E"/>
+            <xs:enumeration value="NV"/>
+            <xs:enumeration value="NL"/>
+            <xs:enumeration value="K"/>
+            <xs:enumeration value="KR"/>
+            <xs:enumeration value="KG"/>
+            <xs:enumeration value="KL"/>
+            <xs:enumeration value="VL"/>
+            <xs:enumeration value="PP"/>
+            <xs:enumeration value="OP"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LZSZZ">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Z"/>
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="K"/>
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="A"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LOUP">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="V"/>
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="R"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LODO">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="B"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="E"/>
+            <xs:enumeration value="UZ"/>
+            <xs:enumeration value="UP"/>
+            <xs:enumeration value="UO"/>
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="V"/>
+            <xs:enumeration value="DS"/>
+            <xs:enumeration value="DE"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LOTDV">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="B"/>
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="L"/>
+            <xs:enumeration value="O"/>
+            <xs:enumeration value="U"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LOPPP">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="B"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LVSVN">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="Z"/>
+            <xs:enumeration value="K"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="E"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LVUIN">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="E"/>
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="Z"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="S"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LVUZN">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="V"/>
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="R"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LVTSVN">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="V"/>
+            <xs:enumeration value="L"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LVIVFVN">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="F"/>
+            <xs:enumeration value="Z"/>
+            <xs:enumeration value="N"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LVIOSN">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="M"/>
+            <xs:enumeration value="E"/>
+            <xs:enumeration value="S"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LVPHKN">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="M"/>
+            <xs:enumeration value="V"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LVVIST">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="L"/>
+            <xs:enumeration value="I"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LVVISA">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[PVHUDOA]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="multi8LVVISA">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[PVHUDOA]{1,8}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="NCLPUVIS">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="GRAV"/>
+            <xs:enumeration value="DMC"/>
+            <xs:enumeration value="FOLIKUL"/>
+            <xs:enumeration value="OVUL"/>
+            <xs:enumeration value="LUTEAL"/>
+            <xs:enumeration value="PREMENO"/>
+            <xs:enumeration value="PERIMENO"/>
+            <xs:enumeration value="POSTMENO"/>
+            <xs:enumeration value="MENOP"/>
+            <xs:enumeration value="PREDPODL"/>
+            <xs:enumeration value="POSTPODL"/>
+            <xs:enumeration value="KONTPODL"/>
+            <xs:enumeration value="VSED"/>
+            <xs:enumeration value="VLEZ"/>
+            <xs:enumeration value="DRUGDOSE"/>
+            <xs:enumeration value="NEZRNOV"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="NCMPZZM">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="VYTER "/>
+            <xs:enumeration value="STER "/>
+            <xs:enumeration value="PUNKCE"/>
+            <xs:enumeration value="ODSATI"/>
+            <xs:enumeration value="LAVAZ"/>
+            <xs:enumeration value="PSB"/>
+            <xs:enumeration value="SESKRAB"/>
+            <xs:enumeration value="BIOPSIE"/>
+            <xs:enumeration value="EXCIZE "/>
+            <xs:enumeration value="PUNSUPRA"/>
+            <xs:enumeration value="CEVKOVAN"/>
+            <xs:enumeration value="STRPROUD"/>
+            <xs:enumeration value="ASPTRACH"/>
+            <xs:enumeration value="NATERPOD"/>
+            <xs:enumeration value="EXPEKTOR"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="NCMPSTM">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="KONTAMIN"/>
+            <xs:enumeration value="NEVHODBE"/>
+            <xs:enumeration value="NEVHTRME"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LMSZMMN">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[RDNA]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="NCMPOBJK">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AUTOBJ"/>
+            <xs:enumeration value="ATBKVANT"/>
+            <xs:enumeration value="ATBKVALI"/>
+            <xs:enumeration value="MBC "/>
+            <xs:enumeration value="AUTOVAKC"/>
+            <xs:enumeration value="KMENDOUR"/>
+            <xs:enumeration value="STERAUTO"/>
+            <xs:enumeration value="KONTSTER"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="NCMPAGV">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BETALAKT"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LMHPUVN">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[PNX]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LMPHKN">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[RMV]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LMHCN">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[CRINKL]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LMIDVAN">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[NARD]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LMIPAN">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[MPONV]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LOZRK">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[NSVEB]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LOZDV">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[TEB]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LOZDVE">
+        <!--  v dobe tvorby nebyl ciselnik vypracovan -->
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="LOZDSEC">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[SFNB]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LOZDFVEC">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[VKNB]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LOZDN">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[TJZVNB]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LOZDS">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[LJNB]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LOZTS">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[BRS]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LOZDK">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[DN]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LOZDG">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[NZB]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="NCLPTAV">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[NS]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LOTOZ">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[TNBE]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="indikaceAUZType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[ICPZX]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="indikaceLOIType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[NZS]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="indikaceLOType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[NZV]"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
+
+
+
+
+
+
+
+
+
+

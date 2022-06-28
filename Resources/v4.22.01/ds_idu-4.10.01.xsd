@@ -1,0 +1,2427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:dsComm="urn:cz-mzcr:ns:dasta:ds4:ds_type"
+  xmlns:dsidu="urn:cz-mzcr:ns:dasta:ds4:ds_idu"
+  xmlns:dsiduCis="urn:cz-mzcr:ns:dasta:ds4:ds_cisidu" elementFormDefault="qualified"
+  targetNamespace="urn:cz-mzcr:ns:dasta:ds4:ds_idu" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import schemaLocation="ds_cisidu-4.03.05.xsd" namespace="urn:cz-mzcr:ns:dasta:ds4:ds_cisidu"/>
+    <xs:import schemaLocation="ds_type-4.02.14.xsd" namespace="urn:cz-mzcr:ns:dasta:ds4:ds_type"/>
+    <xs:annotation>
+		<xs:documentation> Import common element types. </xs:documentation>
+	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation>
+      ************************************************ * 
+      Komplexni typy spolecne pro vykazy 
+      * ************************************************ 
+        </xs:documentation>
+	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation> 
+      ********************************************************** * 
+      Komplexni typy     pro vetev NR (blok narodnich registru) *
+      ********************************************************** 
+        </xs:documentation>
+	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation> VETEV NRH (Narodni registr hospitalizaci)</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="nrhhType">
+		<xs:sequence>
+			<xs:element name="nrhi" type="dsidu:nrhiType" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="hobd" type="dsComm:yearMonthType" use="required"/>
+		<xs:attribute name="hico" type="dsComm:icisType" use="required"/>
+		<xs:attribute name="hpcz" type="dsComm:number3de" use="required"/>
+		<xs:attribute name="hodd" type="dsComm:oddType" use="required"/>
+		<xs:attribute name="hpoch" type="dsComm:number4d" use="required"/>
+		<xs:attribute name="hpocv" type="dsComm:number6d" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="nrhiType">
+		<xs:sequence>
+			<xs:element name="nrhv" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="hdavyk" type="xs:date" use="required"/>
+					<xs:attribute name="hvyk" type="dsComm:str5" use="required"/>
+					<xs:attribute name="hpocvyk" type="dsComm:number2d"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="hidcis" type="dsComm:rodcisType" use="required"/>
+		<xs:attribute name="hcispac" type="dsComm:number5d" use="optional"/>
+		<xs:attribute name="hobec" type="dsComm:number6d" use="required"/>
+		<xs:attribute name="horp" type="dsComm:number4de"/>
+		<xs:attribute name="hstaobc" type="dsComm:str3" use="required"/>
+		<xs:attribute name="hrostav" type="dsComm:number0-5" use="required"/>
+		<xs:attribute name="hkzam" type="dsComm:number1d" use="required"/>
+		<xs:attribute name="hdophosp" type="dsComm:number1d" use="required"/>
+		<xs:attribute name="hdapri" type="dsComm:dateTimeMin" use="required"/>
+		<xs:attribute name="hduprij" type="dsComm:number1-7" use="required"/>
+		<xs:attribute name="hprij" type="dsComm:number1-3" use="required"/>
+		<xs:attribute name="hdapr" type="dsComm:dateTimeMin"/>
+		<xs:attribute name="hdgz" type="dsComm:str5" use="required"/>
+		<xs:attribute name="hhosprv" type="dsComm:number0-2" use="required"/>
+		<xs:attribute name="hdg1" type="dsComm:str5" use="optional"/>
+		<xs:attribute name="hdg2" type="dsComm:str5" use="optional"/>
+		<xs:attribute name="hdg3" type="dsComm:str5" use="optional"/>
+		<xs:attribute name="hdg4" type="dsComm:str5" use="optional"/>
+		<xs:attribute name="hdg5" type="dsComm:str5" use="optional"/>
+		<xs:attribute name="hdaop" type="dsComm:dateTimeMin" use="optional"/>
+		<xs:attribute name="hdgo" type="dsComm:str5" use="optional"/>
+		<xs:attribute name="hnemnak" type="dsComm:number0-5" use="optional"/>
+		<xs:attribute name="hdroper" type="dsComm:number0-2" use="optional"/>
+		<xs:attribute name="hreoper" type="dsComm:number0-3" use="optional"/>
+		<xs:attribute name="hpoopko1" type="dsComm:number1d" use="optional"/>
+		<xs:attribute name="hpoopko2" type="dsComm:number1d" use="optional"/>
+		<xs:attribute name="hpoopko3" type="dsComm:number1d" use="optional"/>
+		<xs:attribute name="hpoopko4" type="dsComm:number1d" use="optional"/>
+		<xs:attribute name="hdnyjip" type="dsComm:number3d" use="optional"/>
+		<xs:attribute name="hdrg" type="dsComm:str5" use="optional"/>
+		<xs:attribute name="hdapp" type="dsComm:dateTimeMin" use="required"/>
+		<xs:attribute name="hdg1c" type="dsComm:str5" use="optional"/>
+		<xs:attribute name="hdg1a" type="dsComm:str5" use="optional"/>
+		<xs:attribute name="hukhosp" type="dsComm:number0-8" use="required"/>
+		<xs:attribute name="hpodape" type="dsComm:number0-6" use="required"/>
+		<xs:attribute name="hdnykat1" type="dsComm:number4d"/>
+		<xs:attribute name="hdnykat2" type="dsComm:number4d"/>
+		<xs:attribute name="hdnykat3" type="dsComm:number4d"/>
+		<xs:attribute name="hdnykat4" type="dsComm:number4d"/>
+		<xs:attribute name="hdnykat5" type="dsComm:number4d"/>
+		<xs:attribute name="hdnykat0" type="dsComm:number4d"/>
+		<xs:attribute name="huhrady" type="dsiduCis:uhradyType"/>
+		<xs:attribute name="hkrok" type="dsComm:str3"/>
+		<xs:attribute name="hzdrpoj" type="dsComm:number3de"/>
+		<xs:attribute name="hdgzzz" type="dsComm:str5"/>
+		<xs:attribute name="hdatnar" type="xs:date" use="optional"/>
+		<xs:attribute name="hpohl" type="dsComm:number1d" use="optional"/>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation> VETEV NRZ - list o prohlidce zemreleho</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="nrzType">
+		<xs:choice>
+			<xs:element name="nrzz" type="dsidu:nrzzType" maxOccurs="unbounded"/>
+		</xs:choice>
+		<xs:attribute name="zico" type="dsComm:icisType" use="required">
+			<xs:annotation>
+				<xs:documentation>IČO zdravotnického zařízení dle číselníku <cl>ZdravotnickeZarizeni</cl>, položka ICO</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpcz" type="dsComm:number3de" use="required">
+			<xs:annotation>
+				<xs:documentation>Pořadové číslo zdravotnického zařízení dle číselníku <cl>ZdravotnickeZarizeni</cl>, položka PCZ</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zodd" type="dsComm:number2de" use="required">
+			<xs:annotation>
+				<xs:documentation>Typ oddělení dle číselníku <cl>Oddeleni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nrzzType">
+		<xs:sequence>
+			<xs:element name="nrzpit" type="dsidu:nrzpitType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="vyznam_totoznost" type="dsiduCis:lpzVyznamBlokuType" use="required">
+			<xs:annotation>
+				<xs:documentation>Význam bloku totožnost na LPZ dle výčtového typu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vyznam_prohlidka" type="dsiduCis:lpzVyznamBlokuType" use="required">
+			<xs:annotation>
+				<xs:documentation>Význam bloku prohlidka na LPZ dle výčtového typu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vyznam_pitva" type="dsiduCis:lpzVyznamBlokuType" use="required">
+			<xs:annotation>
+				<xs:documentation>Význam bloku pitva na LPZ dle výčtového typu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="jbi" type="dsiduCis:lpzJbiType" use="required">
+			<xs:annotation>
+				<xs:documentation>Jednoznačný identifikátor hlášení, formát musí odpovídat metodice</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zzdrpoj" type="dsComm:number3de">
+			<xs:annotation>
+				<xs:documentation>Zdravotní pojišťovna dle číselníku <cl>ZdravotniPojistovna</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zcispoj" type="dsComm:str10">
+			<xs:annotation>
+				<xs:documentation>Číslo pojištěnce </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmrtvnar" type="dsiduCis:lpz1-2Type" use="required">
+			<xs:annotation>
+				<xs:documentation>Mrtvě narozené dítě dle číselníku <cl>AnoNe</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ztotoz" type="dsiduCis:lpz1-2Type" use="required">
+			<xs:annotation>
+				<xs:documentation>Osoba neznámé totožnosti  dle číselníku <cl>AnoNe</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zjmeno" type="dsComm:str20">
+			<xs:annotation>
+				<xs:documentation>Jméno</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zprijm" type="dsComm:str30">
+			<xs:annotation>
+				<xs:documentation>Příjmení</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zrodprjm" type="dsComm:str30">
+			<xs:annotation>
+				<xs:documentation>Rodné příjmení</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zdanar" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum narození</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zstari" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Stáří u osob neznámé totožnosti</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zrodcis" type="dsComm:rodcisType">
+			<xs:annotation>
+				<xs:documentation>Rodné číslo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpohlav" type="dsiduCis:lpz1-3Type">
+			<xs:annotation>
+				<xs:documentation>Pohlaví dle číselníku <cl>Pohlavi</cl>, skupina platnosti  02</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zobcan" type="dsiduCis:lpz1-3Type">
+			<xs:annotation>
+				<xs:documentation>Státní občanství (1=ČR, 2=jiné, 3=Nezjištěno)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zjineobc" type="dsComm:str3">
+			<xs:annotation>
+				<xs:documentation>Jiné než ČR občanství  dle číselníku <cl>Zeme</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zdaum" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum úmrtí</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zcasum" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Čas úmrtí, čtyřmístný  údaj ve tvaru HHMM</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zodhad" type="dsiduCis:lpz1-2Type">
+			<xs:annotation>
+				<xs:documentation>Datum úmrtí na základě odhadu dle  číselníku <cl>AnoNe</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmumob" type="dsComm:str6">
+			<xs:annotation>
+				<xs:documentation>Místo úmrtí - obec, číselník<cl>ZakladniUzemniJednotkyLpz</cl>, položka Kod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmumcp" type="dsComm:str10">
+			<xs:annotation>
+				<xs:documentation>Místo úmrtí - číslo popisné, evidenční </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmumokr" type="dsComm:str3">
+			<xs:annotation>
+				<xs:documentation>Místo úmrtí - okres, číselník<cl>ZakladniUzemniJednotkyLpz</cl>, položka KrajKod + OkresKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmumcob" type="dsComm:str30">
+			<xs:annotation>
+				<xs:documentation>Místo úmrtí - část obce, ulice, k.ú.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmumst" type="dsComm:str3">
+			<xs:annotation>
+				<xs:documentation>Místo úmrtí - stát  dle číselníku <cl>Zeme</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="znalez" type="dsiduCis:lpz1-2Type">
+			<xs:annotation>
+				<xs:documentation>Místo úmrtí / nálezu, 1= úmrtí, 2= nálezu </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmnarob" type="dsComm:str6">
+			<xs:annotation>
+				<xs:documentation>Místo narození - obec, číselník<cl>ZakladniUzemniJednotkyLpz</cl>, položka Kod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmnarokr" type="dsComm:str3">
+			<xs:annotation>
+				<xs:documentation>Místo narození - okres, číselník<cl>ZakladniUzemniJednotkyLpz</cl>, položka KrajKod + OkresKod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmnarst" type="dsComm:str3">
+			<xs:annotation>
+				<xs:documentation>Místo narození - stát  dle číselníku <cl>Zeme</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmbydul" type="dsComm:str20">
+			<xs:annotation>
+				<xs:documentation>Místo pobytu - ulice</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmbydcp" type="dsComm:str10">
+			<xs:annotation>
+				<xs:documentation>Místo pobytu - číslo popisné, evidenční </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmbydob" type="dsComm:str6">
+			<xs:annotation>
+				<xs:documentation>Místo pobytu - obec, číselník<cl>ZakladniUzemniJednotkyLpz</cl>, položka Kod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmbydokr" type="dsComm:str3">
+			<xs:annotation>
+				<xs:documentation>Místo pobytu - okres, číselník<cl>ZakladniUzemniJednotkyLpz</cl>, položka KrajKod + OkresKod </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmbydst" type="dsComm:str3">
+			<xs:annotation>
+				<xs:documentation>Místo pobytu - stát  dle číselníku <cl>Zeme</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zvzdel" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Vzdělání dle číselníku <cl>VzdelaniLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zrodstav" type="dsiduCis:lpz1-8Type">
+			<xs:annotation>
+				<xs:documentation>Rodinný stav dle číselníku <cl>RodinnyStavLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zjmpart" type="dsComm:str30">
+			<xs:annotation>
+				<xs:documentation>Jméno a příjmení partnera</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="znarpart" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum narození partnera</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="znahrady" type="dsiduCis:lpz1-2Type">
+			<xs:annotation>
+				<xs:documentation>Nesnímatelné náhrady nebo protézy z drahých kovů dle číselníku <cl>AnoNe</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="znahrtxt" type="dsComm:str200">
+			<xs:annotation>
+				<xs:documentation>Nesnímatelné náhrady popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="znavrh" type="dsComm:str200">
+			<xs:annotation>
+				<xs:documentation>Návrh prohlížejícího lékaře</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="znavrhp" type="dsiduCis:lpz2-5Type">
+			<xs:annotation>
+				<xs:documentation>Vyžádaná pitva dle číselníku <cl>PitvaVyzadana</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zumrkde" type="dsiduCis:lpz1-8Type">
+			<xs:annotation>
+				<xs:documentation>Místo úmrtí dle číselníku <cl>KdeNastaloUmrti</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zumrktxt" type="dsComm:str200">
+			<xs:annotation>
+				<xs:documentation>Úmrtí jinde - popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zdnarmat" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum narození matky u dětí mrtvě narozených či zemřelých do 1 roku</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ztehot" type="dsiduCis:lpz1-2Type">
+			<xs:annotation>
+				<xs:documentation>Úmrtí v těhotenství  dle číselníku <cl>AnoNe</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zporod" type="dsiduCis:lpz1-2Type">
+			<xs:annotation>
+				<xs:documentation>Úmrtí při porodu dle číselníku <cl>AnoNe</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zsesti" type="dsiduCis:lpz1-2Type">
+			<xs:annotation>
+				<xs:documentation>Úmrtí v šestinedělí dle číselníku <cl>AnoNe</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zumrmat" type="dsiduCis:lpz1-2Type">
+			<xs:annotation>
+				<xs:documentation>Úmrtí matky v období do 1 roku po porodu či potratu dle číselníku <cl>AnoNe</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zdelteh" type="dsiduCis:lpz0-43Type">
+			<xs:annotation>
+				<xs:documentation>Délka těhotenství (týdny)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zdaukteh" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum ukončení těhotenství</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zzpukteh" type="dsiduCis:lpz1-2Type">
+			<xs:annotation>
+				<xs:documentation>Způsob ukončení těhotenství, 1=potrat, 2=porod</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmukteh" type="dsComm:str77">
+			<xs:annotation>
+				<xs:documentation>Místo ukončení těhotenství, název zdravotnického zařízení</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmutehic" type="dsComm:str8">
+			<xs:annotation>
+				<xs:documentation>Místo ukončení těhotenství IČO zdravotnického zařízení</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmutehpc" type="dsComm:str3">
+			<xs:annotation>
+				<xs:documentation>Místo ukončení těhotenství - PČZ zdravotnického zařízení dle číselníku <cl>ZdravotnickeZarizeni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmutehod" type="dsComm:str2">
+			<xs:annotation>
+				<xs:documentation>Místo ukončení těhotentví - oddělení dle číselníku <cl>Oddeleni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zprohnaz" type="dsComm:str77">
+			<xs:annotation>
+				<xs:documentation>Poskytovatel zdravotních služeb, který provedl prohlídku těla zemřelého - název zdravotnického zařízení</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zprohjm" type="dsComm:str30">
+			<xs:annotation>
+				<xs:documentation>Poskytovatel zdravotních služeb, který provedl prohlídku těla zemřelého - křestní jméno lékaře</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zprohpr" type="dsComm:str30">
+			<xs:annotation>
+				<xs:documentation>Poskytovatel zdravotních služeb, který provedl prohlídku těla zemřelého - příjmení lékaře</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zprohtel" type="dsComm:str9">
+			<xs:annotation>
+				<xs:documentation>Poskytovatel zdravotních služeb, který provedl prohlídku těla zemřelého - telefon</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zprohic" type="dsComm:str8">
+			<xs:annotation>
+				<xs:documentation>Poskytovatel zdravotních služeb, který provedl prohlídku těla zemřelého - IČO</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zprohpc" type="dsComm:str3">
+			<xs:annotation>
+				<xs:documentation>Poskytovatel zdravotních služeb, který provedl prohlídku těla zemřelého - PČZ zdravotnického zařízení dle číselníku <cl>ZdravotnickeZarizeni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zprohod" type="dsComm:str2">
+			<xs:annotation>
+				<xs:documentation>Poskytovatel zdravotních služeb, který provedl prohlídku těla zemřelého - oddělení dle číselníku <cl>Oddeleni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmisproh" type="dsComm:str6">
+			<xs:annotation>
+				<xs:documentation>Místo prohlídky dle číselníku <cl>ZakladniUzemniJednotkyLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zdatproh" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum prohlídky</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1atxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2atxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3atxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4atxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5atxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6atxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7atxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8atxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1akod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2akod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3akod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4akod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5akod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6akod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7akod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8akod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1apoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2apoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3apoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4apoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5apoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6apoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7apoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8apoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1ajed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2ajed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3ajed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4ajed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5ajed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6ajed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7ajed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8ajed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1btxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2btxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3btxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4btxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5btxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6btxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7btxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8btxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1bkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2bkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3bkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4bkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5bkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6bkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7bkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8bkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1bpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2bpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3bpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4bpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5bpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6bpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7bpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8bpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1bjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2bjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3bjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4bjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5bjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6bjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7bjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8bjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1ctxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2ctxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3ctxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4ctxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5ctxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6ctxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7ctxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8ctxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1ckod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2ckod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3ckod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4ckod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5ckod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6ckod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7ckod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8ckod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1cpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2cpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3cpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4cpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5cpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6cpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7cpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8cpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1cjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2cjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3cjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4cjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5cjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6cjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7cjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8cjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1dtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2dtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3dtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4dtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5dtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6dtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7dtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8dtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1dkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2dkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3dkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4dkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5dkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6dkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7dkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8dkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1dpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2dpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3dpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4dpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5dpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6dpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7dpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8dpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1djed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2djed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3djed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4djed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5djed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6djed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7djed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8djed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1vtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2vtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3vtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4vtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5vtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6vtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7vtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8vtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1vkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2vkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3vkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4vkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5vkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6vkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7vkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8vkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1vpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2vpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3vpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4vpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5vpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6vpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7vpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8vpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp1vjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp2vjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp3vjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp4vjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp5vjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp6vjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp7vjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zp8vjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zdrogy" type="dsiduCis:lpz1-2Type">
+			<xs:annotation>
+				<xs:documentation>Podezření o úmrtí v souvislosti s užitím či užíváním nelegálních návykových látek dle číselníku <cl>AnoNe</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ztypumr" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Typ smrti dle číselníku <cl>TypUmrti</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zvptxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Vnější příčina - mechanismus smrti u jiné než přirozené smrti</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zvpakt" type="dsiduCis:lpz0-9Type">
+			<xs:annotation>
+				<xs:documentation>Vnější příčina - aktivita dle číselníku <cl>Ciselnik9Pro5MistoDg</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zvpmist" type="dsiduCis:lpz0-9Type">
+			<xs:annotation>
+				<xs:documentation>Vnější příčina - místo dle číselníku <cl>MistoUdalosti</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zvpdat" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Vnější příčina - datum události</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zvpdg" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Vnější příčina - dg. dle číselníku <cl>DgProKontroluLpz</cl>, kódy (V01-Y98)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nrzpitType">
+		<xs:attribute name="zpitva" type="dsiduCis:lpz1-2Type">
+			<xs:annotation>
+				<xs:documentation>Pitva provedena dle číselníku <cl>AnoNe</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpnahrad" type="dsiduCis:lpz1-2Type">
+			<xs:annotation>
+				<xs:documentation>Nesnímatelné náhrady nebo protézy z drahých kovů při pitvě dle číselníku <cl>AnoNe</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpntxt" type="dsComm:str200">
+			<xs:annotation>
+				<xs:documentation>Nesnímatelné náhrady nebo protézy z drahých kovů při pitvě - popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpsdel" type="dsComm:str200">
+			<xs:annotation>
+				<xs:documentation>Sdělení pitvajícího lékaře</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpitdaum" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum úmrtí dle pitvy</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpitcasum" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Čas úmrtí dle pitvy, čtyřmístný údaj ve tvaru HHMM </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpitodhad" type="dsiduCis:lpz1-2Type">
+			<xs:annotation>
+				<xs:documentation>Datum úmrtí dle pitvy je určeno na základě odhadu dle číselníku <cl>AnoNe</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1atxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2atxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3atxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4atxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5atxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6atxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7atxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8atxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1akod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2akod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3akod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4akod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5akod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6akod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7akod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8akod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1apoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2apoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3apoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4apoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5apoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6apoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7apoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8apoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1ajed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2ajed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3ajed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4ajed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5ajed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6ajed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7ajed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8ajed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ia dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1btxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2btxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3btxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4btxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5btxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6btxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7btxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8btxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1bkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2bkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3bkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4bkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5bkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6bkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7bkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8bkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1bpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy- Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2bpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy- Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3bpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy- Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4bpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy- Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5bpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy- Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6bpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy- Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7bpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy- Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8bpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy- Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1bjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2bjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3bjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4bjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5bjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6bjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7bjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8bjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ib dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1ctxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2ctxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3ctxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4ctxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5ctxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6ctxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7ctxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8ctxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1ckod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2ckod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3ckod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4ckod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5ckod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6ckod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7ckod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8ckod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1cpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2cpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3cpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4cpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5cpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6cpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7cpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8cpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1cjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2cjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3cjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4cjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5cjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6cjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7cjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8cjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Ic dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1dtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2dtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3dtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4dtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5dtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6dtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7dtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8dtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1dkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2dkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3dkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4dkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5dkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6dkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7dkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8dkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1dpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2dpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3dpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4dpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5dpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6dpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7dpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8dpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1djed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2djed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3djed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4djed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5djed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6djed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7djed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8djed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti Id dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1vtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2vtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3vtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4vtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5vtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6vtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7vtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8vtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - slovní popis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1vkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2vkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3vkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4vkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5vkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6vkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7vkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8vkod" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - kód MKN10  dle číselníku <cl>DgProKontroluLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1vpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2vpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3vpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4vpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5vpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6vpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7vpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8vpoc" type="dsComm:number3d">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - Interval mezi začátkem příznaků stavu a smrti </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp1vjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp2vjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp3vjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp4vjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp5vjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp6vjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp7vjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpp8vjed" type="dsiduCis:lpz1-6Type">
+			<xs:annotation>
+				<xs:documentation>Příčina smrti II dle pitvy - Interval mezi začátkem příznaků stavu a smrti - jednotky dle číselníku <cl>DobaJednotka</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpdrogy" type="dsiduCis:lpz1-2Type">
+			<xs:annotation>
+				<xs:documentation>Pitva - Podezření o úmrtí v souvislosti s užitím či užíváním nelegálních návykových látek dle číselníku <cl>AnoNe</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zptypumr" type="dsiduCis:lpz1-7Type">
+			<xs:annotation>
+				<xs:documentation>Typ smrti dle pitvy dle číselníku <cl>TypUmrti</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpvprtxt" type="dsComm:str100">
+			<xs:annotation>
+				<xs:documentation>Pitva - vnější příčina - mechanismus smrti u jiné než přirozené smrti dle pitvy </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpvprakt" type="dsiduCis:lpz0-9Type">
+			<xs:annotation>
+				<xs:documentation>Pitva - vnější příčina - aktivita dle číselníku <cl>Ciselnik9Pro5MistoDg</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpvprmis" type="dsiduCis:lpz0-9Type">
+			<xs:annotation>
+				<xs:documentation>Pitva - vnější příčina - místo dle číselníku <cl>MistoUdalosti</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpvprdat" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Pitva - vnější příčina - datum události</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpvprdg" type="dsComm:str4">
+			<xs:annotation>
+				<xs:documentation>Pitva - vnější příčina - dg. dle číselníku <cl>DgProKontroluLpz</cl>, kódy (V01-Y98)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpitnaz" type="dsComm:str77">
+			<xs:annotation>
+				<xs:documentation>Poskytovatel zdravotních služeb, který provedl pitvu těla zemřelého - název zdravotnického zařízení </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpitjm" type="dsComm:str30">
+			<xs:annotation>
+				<xs:documentation>Poskytovatel zdravotních služeb, který provedl pitvu těla zemřelého - křestní jméno pitvajícího lékaře </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpitprij" type="dsComm:str30">
+			<xs:annotation>
+				<xs:documentation>Poskytovatel zdravotních služeb, který provedl pitvu těla zemřelého - příjmení pitvajícího lékaře </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpittel" type="dsComm:str9">
+			<xs:annotation>
+				<xs:documentation>Poskytovatel zdravotních služeb, který provedl pitvu těla zemřelého - telefon na pitvajícího lékaře</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpitic" type="dsComm:str8">
+			<xs:annotation>
+				<xs:documentation>Poskytovatel zdravotních služeb, který provedl pitvu těla zemřelého - IČO </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpitpc" type="dsComm:str3">
+			<xs:annotation>
+				<xs:documentation>Poskytovatel zdravotních služeb, který provedl pitvu těla zemřelého - PČZ zdravotnického zařízení dle číselníku <cl>ZdravotnickeZarizeni</cl>, položka PCZ</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zpitod" type="dsComm:str2">
+			<xs:annotation>
+				<xs:documentation>Poskytovatel zdravotních služeb, který provedl pitvu těla zemřelého - oddělení dle číselníku <cl>Oddeleni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zdapitva" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum pitvy</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zmispit" type="dsComm:str6">
+			<xs:annotation>
+				<xs:documentation>Místo pitvy dle číselníku <cl>ZakladniUzemniJednotkyLpz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>
+      ************************************************************************
+      KORENOVY ELEMENT IDU (kompozice vyse definovanych komplexnich typu)
+      ***********************************************************************
+    </xs:documentation>
+	</xs:annotation>
+	<xs:element name="idu">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="nr">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="nrh" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="nrhh" type="dsidu:nrhhType" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="nrz" type="dsidu:nrzType" minOccurs="0" maxOccurs="unbounded"/>
+							<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+
