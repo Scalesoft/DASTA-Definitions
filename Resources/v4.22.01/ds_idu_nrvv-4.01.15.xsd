@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:dsComm="urn:cz-mzcr:ns:dasta:ds4:ds_type" xmlns:nrvv="urn:cz-mzcr:ns:dasta:ds4:ds_idu_nrvv" xmlns:dsiduCis="urn:cz-mzcr:ns:dasta:ds4:ds_cisidu" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:cz-mzcr:ns:dasta:ds4:ds_idu_nrvv" elementFormDefault="qualified" version="4.01.01">
+	<xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_cisidu" schemaLocation="ds_cisidu-4.03.05.xsd"/>
+	<xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_type" schemaLocation="ds_type-4.02.14.xsd"/>
+	<xs:element name="nrv" type="nrvv:nrvType"/>
+	<!--6.4.2016. nastaven  vonem1 jako nepovinny-->
+	<xs:complexType name="nrvType">
+		<xs:sequence>
+			<xs:element name="nrvv" type="nrvv:nrvvType" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="vico" type="dsComm:icisType" use="required">
+			<xs:annotation>
+				<xs:documentation>IČO (identifikační číslo zdravotnického zařízení)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vpcz" type="dsComm:number3de" use="required">
+			<xs:annotation>
+				<xs:documentation>PČZ (pořadové číslo zdravotnického zařízení)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vpcpd" type="dsComm:number3de" use="required">
+			<xs:annotation>
+				<xs:documentation>PČDP (pořadové číslo detašovaného pracoviště)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vodd" type="dsComm:str5" use="required">
+			<xs:annotation>
+				<xs:documentation>
+                    Posledních 5 znaků kódu oddělení z číselníku <cl>ZdravotnickeOddeleni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nrvvType">
+		<xs:choice>
+			<xs:element name="nrvp" type="nrvv:nrvpType">
+				<xs:annotation>
+					<xs:documentation>Vrozená vada plodu</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nrvd" type="nrvv:nrvdType">
+				<xs:annotation>
+					<xs:documentation>Vrozená vada dítěte nebo dospělého</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="vvv" type="dsComm:logical" use="required">
+			<xs:annotation>
+				<xs:documentation>Vrozená vada nebo GPO (nrvv = 1 značí, že jde o vrozenou vadu a ne GPO; nrvv = 0 značí, že nejde o vrozenou vadu a tedy jde o GPO)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nrvdgType">
+		<xs:annotation>
+			<xs:documentation>Hlášená diagnóza – VV, GPO</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="dg" type="dsComm:str5">
+			<xs:annotation>
+				<xs:documentation>
+                    Dg. dle číselníku <cl>MKN10_5</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dgoro" type="dsComm:str10">
+			<xs:annotation>
+				<xs:documentation>
+                    Dg. dle číselníku <cl>DgOro</cl> (Orpha number Orphanetu)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dgomim" type="dsComm:str10">
+			<xs:annotation>
+				<xs:documentation>
+                    Dg. dle číselníku <cl>DgOmim</cl> (Online Mendelian Inheritance in Man)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dgssiem" type="dsComm:str10">
+			<xs:annotation>
+				<xs:documentation>
+                    Dg. dle číselníku <cl>DgSsiem</cl> (Society for the Study of Inborn Errors of Metabolism)
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nrvvrType">
+		<xs:complexContent>
+			<xs:extension base="nrvv:nrvdgType">
+				<xs:attribute name="kdo" type="dsComm:number0-4" use="required">
+					<xs:annotation>
+						<xs:documentation>
+                            Kdo dle číselníku <cl>VrozenaVadaVRodine</cl>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nrvpType">
+		<xs:sequence>
+			<xs:element name="nrvdg" type="nrvv:nrvdgType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Hlášená diagnóza – VV, GPO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nrvs" type="nrvv:nrvsType">
+				<xs:annotation>
+					<xs:documentation>Společné údaje</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="vdatzjip" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Datum zjištění vrozené vady/GPO</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vteh" type="dsComm:number1-5" use="required">
+			<xs:annotation>
+				<xs:documentation>Těhotenství dle číselníku <cl>Tehotenstvi</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vtytehp" type="dsComm:number5-40" use="required">
+			<xs:annotation>
+				<xs:documentation>Dokončený týden těhotenství při zjištění VV</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vdatuko" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum ukončení těhotenství</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vspot" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Spontánní potrat</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nrvdType">
+		<xs:sequence>
+			<xs:element name="nrvdg" type="nrvv:nrvdgType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Hlášená diagnóza – VV, GPO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nrvs" type="nrvv:nrvsType">
+				<xs:annotation>
+					<xs:documentation>Společné údaje</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="vdatzjid" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Datum zjištění VV/GPO</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vrodcisd" type="dsComm:rodcisType" use="required">
+			<xs:annotation>
+				<xs:documentation>Rodné číslo dítěte</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vstaobcd" type="dsComm:str3" use="required">
+			<xs:annotation>
+				<xs:documentation>Státní občanství dle číselníku <cl>Zeme</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vhmot" type="dsComm:number100-6000">
+			<xs:annotation>
+				<xs:documentation>Porodní hmotnost (g)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vpordel" type="dsComm:number20-60">
+			<xs:annotation>
+				<xs:documentation>Porodní délka (cm)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vdatumr" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum úmrtí</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vvyslteh" type="dsComm:number0-2">
+			<xs:annotation>
+				<xs:documentation>Výsledek těhotenství dle číselníku <cl>VysledekTehotenstvi</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vpohlav" type="dsComm:number0-3">
+			<xs:annotation>
+				<xs:documentation>Pohlaví dle číselníku <cl>Pohlavi</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="nrvsType">
+		<xs:sequence>
+			<xs:element name="vduvvys" type="nrvv:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Důvod provedení invazivní prenatální diagnostiky dle číselníku <cl>TypDuvoduProvedeniInvPrenDiagnostiky</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="vmetoda" type="nrvv:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Provedená invazivní prenatální diagnostika - Metoda dle číselníku <cl>PrenatalniDiagnostikaMetoda</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="vvysetr" type="nrvv:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Vyšetření v rámci invazivní prenatální diagnostiky dle číselníku <cl>PrenatalniDiagnostikaVysetreni</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="vpredne" type="nrvv:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Prenatální diagnostika neinvazivní dle číselníku <cl>TypPrenatalniDiagnostikaNeinvazivni</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="vpostdg" type="nrvv:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Postnatální diagnostika dle číselníku <cl>TypPostnatalniDiagnostika</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="vvyspost" type="nrvv:polozkaCiselnikaType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Vyšetření v rámci postnatální diagnostiky dle číselníku <cl>TypVysetreniPostDiagnostiky</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nrvvr" type="nrvv:nrvvrType" minOccurs="0" maxOccurs="8">
+				<xs:annotation>
+					<xs:documentation>Vrozená vada v rodině</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="vduvnepr" type="nrvv:polozkaCiselnikaType" minOccurs="0" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation>Důvod neprovedení prenatální diagnostiky dle číselníku <cl>DuvodNeprovedeniPrenatalniDiagnostiky</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="vlek" type="nrvv:vlekType" minOccurs="1" maxOccurs="3">
+				<xs:annotation>
+					<xs:documentation>Léky v těhotenství (1, 2, 3) dle číselníku <cl>TypLekuVTehotenstvi</cl> nebo <cl>Leky</cl>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="vasrepr" type="dsComm:number0-10">
+			<xs:annotation>
+				<xs:documentation>Asistovaná reprodukce dle číselníku <cl>AsistovanaReprodukce</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vprendiag" type="dsComm:number0-3">
+			<xs:annotation>
+				<xs:documentation>Prenatální diagnostika dle číselníku <cl>PrenatalniDiagnostika</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vprendiagin" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Prenatální diagnostika invazivní (0 - neudáno, 1 - ano, 2 - ne)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vscreen" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>V případě známého výsledku screeningu uveďte dle číselníku <cl>TypVysledkuPrenScreening</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vuidm" type="dsComm:rodcisType">
+			<xs:annotation>
+				<xs:documentation>Údaje matky - Rodné číslo matky</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vobec" type="dsComm:number6de" use="required">
+			<xs:annotation>
+				<xs:documentation>Obec bydliště matky dle číselníku <cl>Obec</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vbydl" type="dsComm:str5">
+			<xs:annotation>
+				<xs:documentation>Číslo kraje a okresu (NUTS3 a NUTS4) dle číselníku <cl>KrajOkres</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vorp" type="dsComm:number4de">
+			<xs:annotation>
+				<xs:documentation>Číslo obce s rozšířenou působností</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vstaobcm" type="dsComm:str3">
+			<xs:annotation>
+				<xs:documentation>Státní občanství matky dle číselníku <cl>Zeme</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vvzdelm" type="dsComm:number1-9">
+			<xs:annotation>
+				<xs:documentation>Vzdělání matky dle číselníku <cl>TypVzdelani</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vkzamm" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Zaměstnání matky dle číselníku <cl>ZamestnaniVV</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vrostav" type="dsComm:number0-5">
+			<xs:annotation>
+				<xs:documentation>Rodinný stav matky dle číselníku <cl>Stav</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vtytehd" type="dsComm:number0-47">
+			<xs:annotation>
+				<xs:documentation>Dokončený týden těhotenství (při narození)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vdatnarm" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Datum narození matky</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vdatnarmr" type="dsComm:number4d">
+			<xs:annotation>
+				<xs:documentation>Rok narození matky</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vcetteh" type="dsComm:number1-9" use="required">
+			<xs:annotation>
+				<xs:documentation>Četnost těhotenství dle číselníku <cl>CetnostTehotenstvi</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vcettehdv" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Četnost těhotenství - Dvojčata dle číselníku <cl>CetnostTehotenstviDvojcata</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vonem1" type="nrvv:vonemType">
+			<xs:annotation>
+				<xs:documentation>Onemocnění matky v těhotenství 1 dle číselníku <cl>TypOnemocneniVTehotenstvi</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vonem1dg" type="dsComm:str5">
+			<xs:annotation>
+				<xs:documentation>Onemocnění matky v těhotenství 1 - diagnóza dle číselníku <cl>MKN10_5</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vonem2" type="nrvv:vonemType">
+			<xs:annotation>
+				<xs:documentation>Onemocnění matky v těhotenství 2 dle číselníku <cl>TypOnemocneniVTehotenstvi</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vonem2dg" type="dsComm:str5">
+			<xs:annotation>
+				<xs:documentation>Onemocnění matky v těhotenství 2 - diagnóza dle číselníku <cl>MKN10_5</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vuzkys" type="dsComm:number1d">
+			<xs:annotation>
+				<xs:documentation>Užívání kyseliny listové dle číselníku <cl>TypUzivaniKyselinyListovej</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vporgra" type="dsComm:number0-20">
+			<xs:annotation>
+				<xs:documentation>Pořadí gravidity</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vporpar" type="dsComm:number0-20">
+			<xs:annotation>
+				<xs:documentation>Pořadí parity</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vposap" type="dsComm:number1d">
+			<xs:annotation>
+				<xs:documentation>Počet předchádzejících samovolných potratů</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vpoint" type="dsComm:number1d">
+			<xs:annotation>
+				<xs:documentation>Počet předcházejících UPT</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vveko" type="dsComm:number2d" use="required">
+			<xs:annotation>
+				<xs:documentation>Věk otce</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vkzamo" type="dsComm:number2d">
+			<xs:annotation>
+				<xs:documentation>Zaměstnání otce dle číselníku <cl>ZamestnaniVV</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="polozkaCiselnikaType">
+		<xs:attribute name="kod" type="dsComm:number2d" use="required">
+			<xs:annotation>
+				<xs:documentation>Kód číselníkové položky</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="vlekType">
+		<xs:annotation>
+			<xs:documentation>
+                Lék v těhotenství (vyplňuje se právě jeden z atributů typ, kod nebo atc)
+            </xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="typ">
+			<xs:annotation>
+				<xs:documentation>
+                    Typ léku v těhotenství dle číselníku <cl>TypLekuVTehotenstvi</cl>
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:integer">
+					<xs:pattern value="[09]"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="kod" type="dsComm:str7">
+			<xs:annotation>
+				<xs:documentation>
+                    Kód léku v těhotenství dle číselníku <cl>Leky</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="atc" type="dsComm:str7">
+			<xs:annotation>
+				<xs:documentation>
+                    ATC skupina léku v těhotenství dle číselníku <cl>Leky</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="vonemType">
+		<xs:restriction base="xs:int">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
+

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:dsComm="urn:cz-mzcr:ns:dasta:ds4:ds_type" xmlns:nor="urn:cz-mzcr:ns:dasta:ds4:ds_idu_nor" xmlns:dsiduCis="urn:cz-mzcr:ns:dasta:ds4:ds_cisidu" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:cz-mzcr:ns:dasta:ds4:ds_idu_nor" elementFormDefault="qualified">
+	<xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_cisidu" schemaLocation="ds_cisidu-4.03.05.xsd"/>
+	<xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_type" schemaLocation="ds_type-4.02.14.xsd"/>
+	<xs:annotation>
+		<xs:documentation> VETEV NOR (Narodni onkologicky registr) </xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="norType">
+		<xs:sequence>
+			<xs:element name="nor_dg" type="nor:dgType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="nor" type="nor:norType"/>
+	<xs:complexType name="dgType">
+		<xs:attribute name="idzz" type="dsComm:str20" use="required">
+			<xs:annotation>
+				<xs:documentation>Identifikace  záznamu ze zdravotnického zařízení. Pomocný údaj zdravotnického zařízení, které vytvořilo dávku. Položka není na papírové verzi formuláře.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="hzz" type="dsComm:number14d" use="required">
+			<xs:annotation>
+				<xs:documentation>Identifikátor hlásícího pracoviště dle číselníku <cl>ZdravotnickeZarizeniProNOR</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="hodd" type="dsComm:number2d" use="required">
+			<xs:annotation>
+				<xs:documentation>Oddělení hlásícího pracoviště dle číselníku <cl>Oddeleni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="htyp" type="dsComm:number2d" use="required">
+			<xs:annotation>
+				<xs:documentation>Typ péče poskytované pacientovi<cl>TypPece</cl>. Odpovídá položce Pracoviště hlásící nádor</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="hdatum" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Datum hlášení </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="rodcis" type="dsComm:rodcisType" use="required">
+			<xs:annotation>
+				<xs:documentation>Rodné číslo pacienta</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="jmeno" type="dsComm:str50">
+			<xs:annotation>
+				<xs:documentation>Pouze pro účely ztotožnění pacienta, pokud není poskytovateli dostupné AIFO, položka nebude ukládána v databázi</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="prijmeni" type="dsComm:str50">
+			<xs:annotation>
+				<xs:documentation>Pouze pro účely ztotožnění pacienta, pokud není poskytovateli dostupné AIFO, položka nebude ukládána v databázi</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pohlavi" type="dsComm:number1-2" use="required">
+			<xs:annotation>
+				<xs:documentation>Pohlaví pacienta dle číselníku <cl>Pohlavi</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dat_nar" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Datum narození pacienta</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="obec" type="dsComm:number6d" use="required">
+			<xs:annotation>
+				<xs:documentation>Kód obce trvalého bydliště  dle číselníku <cl>Obec</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cizinec" type="dsComm:logical" use="optional">
+			<xs:annotation>
+				<xs:documentation>Pacient je cizincec
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="bezdomovec" type="dsComm:logical" use="optional">
+			<xs:annotation>
+				<xs:documentation>Pacient je bezdomovec
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zeme" type="dsComm:number3d" use="required">
+			<xs:annotation>
+				<xs:documentation>Země původu pacienta dle číselníku <cl>Zeme</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dat_dg" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Datum stanovení diagnózy</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="lateralita" type="dsiduCis:lateralType" use="required">
+			<xs:annotation>
+				<xs:documentation>Lateralita nádoru dle číselníku <cl>Lateralita</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dg_stan" type="dsiduCis:dgstanType" use="required">
+			<xs:annotation>
+				<xs:documentation>K diagnóze vedla tato vyšetření, sumární kód z povolených možností dle číselníku <cl>StanoveniDg</cl> ZMENA obsahu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dg_nov_slovne" type="dsComm:str80" use="required">
+			<xs:annotation>
+				<xs:documentation>Diagnóza slovně</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dg_nov" type="dsiduCis:dg_kodType" use="required">
+			<xs:annotation>
+				<xs:documentation>Kód diagnózy dle klasifikace MKN-10 , číselník <cl>Mkn10-5</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="topo" type="dsiduCis:topo_kodType" use="required">
+			<xs:annotation>
+				<xs:documentation>Kód topografie dle MKN-O-3 klasifikace dle číselníku <cl>MKNO3Topografie</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="morfo_slovne" type="dsComm:str80" use="optional">
+			<xs:annotation>
+				<xs:documentation>Morfologie nádoru slovně</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="morfo_metoda" type="dsiduCis:morfo_mType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Metoda stanovení morfologie nádoru C = cytologicky, H=histologicky</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="morfo" type="dsiduCis:morfo_kodType" use="required">
+			<xs:annotation>
+				<xs:documentation>Morfologie nádoru dle MKN-O-3 klasifikace, číselník <cl>MKNO3Morfologie</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="grade" type="dsiduCis:gradingType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Grading nádoru dle číselníku <cl>Grading</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="t" type="dsComm:str3" use="optional">
+			<xs:annotation>
+				<xs:documentation>T klasifikace dle TNM 8 číselník TNM_T</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="n" type="dsComm:str2" use="optional">
+			<xs:annotation>
+				<xs:documentation>N klasifikace dle TNM 8, číselník TNM_N</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="m" type="dsComm:str2" use="optional">
+			<xs:annotation>
+				<xs:documentation>M klasifikace dle TNM 8, číselník TNM_M</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ptnmy" type="dsComm:logical" use="optional">
+			<xs:annotation>
+				<xs:documentation>Příznak y dle TNM klasifikace</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pt" type="dsComm:str3" use="optional">
+			<xs:annotation>
+				<xs:documentation>pT klasifikace, kód dle číselníku TNM_T</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pn" type="dsComm:str2" use="optional">
+			<xs:annotation>
+				<xs:documentation>pN klasifikace, kód dle číselníku TNM_N</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pvu" type="dsComm:number0-99" use="optional">
+			<xs:annotation>
+				<xs:documentation>Počet vyšetřených lymfatických uzlin</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ppu" type="dsComm:number0-99" use="optional">
+			<xs:annotation>
+				<xs:documentation>Počet pozitivních lymfatických uzlin</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="psu" type="dsiduCis:ptnm_n_snType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Výsledek vyšetření sentiinelové lymfatické uzliny dle číselníku <cl>SentinelovaMizniUzlina</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pm" type="dsComm:str2" use="optional">
+			<xs:annotation>
+				<xs:documentation>pM klasifikace, kód dle číselníku TNM_M</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="metastaze" type="dsComm:number4d" use="optional">
+			<xs:annotation>
+				<xs:documentation>Lokalizace metastáz dle číselníku <cl>LokalizaceMetastaz</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="trofoblast" type="dsiduCis:tnm_rizType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Riziková kategorie u trofoblastu dle číselníku <cl>RizikovaKategorie</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="serove_markery" type="dsiduCis:tnm_sType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Sérové nádorové markery u nádorů varlat dle číselníku <cl>SerovyNadorovyMarker</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="p16" type="dsComm:number1d" use="optional">
+			<xs:annotation>
+				<xs:documentation>p16 pozitivita (jen pro orofarynx) dle číselníku<cl>P16</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="stadium" type="dsComm:str4" use="required">
+			<xs:annotation>
+				<xs:documentation>Klinické stádium TNM 8 dle číselníku <cl>KlinickeStadiumOnemocneni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="rozsah" type="dsiduCis:onemocType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Pokročilost onemocnění dle číselníku <cl>Onemocneni</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="lekar" type="dsComm:str50" use="required">
+			<xs:annotation>
+				<xs:documentation>Jméno hlásícího/zodpovědného lékaře 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pozn" type="dsComm:str80" use="optional">
+			<xs:annotation>
+				<xs:documentation>Poznámka k novotvaru</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="specificke_stadium" type="dsComm:str10" use="optional">
+			<xs:annotation>
+				<xs:documentation>Specifické stádium pro dětské typy nádorových onemocnění dle číselníku <cl>DiagnostickaSkupinaStadRizik</cl>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="lecba_novotvaru" type="dsComm:logical" use="optional">
+			<xs:annotation>
+				<xs:documentation>Byla aplikována protinádorová léčba? Pouze u dětských typů nádorových onemocnění</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="odpoved" type="dsComm:str5" use="optional">
+			<xs:annotation>
+				<xs:documentation>Odpověď na protinádorovou léčbu dle číselníku <cl>LecbaOdpoved</cl>. Pouze pro dětské nádory</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>
+

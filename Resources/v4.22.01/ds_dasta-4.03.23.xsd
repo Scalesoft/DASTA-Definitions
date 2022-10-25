@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema targetNamespace="urn:cz-mzcr:ns:dasta:ds4:ds_dasta" elementFormDefault="qualified" xmlns:ds="urn:cz-mzcr:ns:dasta:ds4:ds_dasta" xmlns:dsComm="urn:cz-mzcr:ns:dasta:ds4:ds_type" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!--  Import common element types.   -->
+    <xs:import namespace="urn:cz-mzcr:ns:dasta:ds4:ds_type" schemaLocation="ds_type-4.02.14.xsd"/>
+    <!-- BEGIN of GLOBALNI elementy (pouzivane napric dasta)  -->
+    <xs:element name="a" type="ds:aType"/>
+    <xs:element name="as" type="ds:asType"/>
+    <!--  END of GLOBALNI elementy -->
+    <xs:element name="dasta">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="zdroj_is" type="ds:zdroj_isType"/>
+                <xs:element name="pm" type="ds:pmType"/>
+                <xs:element name="garant_dat" type="dsComm:garant_datType" minOccurs="0"/>
+                <xs:choice>
+                    <xs:element name="is" type="ds:isType" maxOccurs="unbounded"/>
+                    <xs:element name="pd" type="ds:pdType"/>
+                </xs:choice>
+                <xs:element name="dastaAny" type="dsComm:AnyType" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute name="id_soubor" type="dsComm:str40" use="required"/>
+            <xs:attribute name="verze_ds" type="dsComm:verzeDsType" use="required"/>
+            <xs:attribute name="verze_nclp" type="dsComm:verzeDsType" use="required"/>
+            <xs:attribute name="bin_priloha" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="T"/>
+                        <xs:enumeration value="B"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ur" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="R"/>
+                        <xs:enumeration value="S"/>
+                        <xs:enumeration value="U"/>
+                        <xs:enumeration value="V"/>
+                        <xs:enumeration value="O"/>
+                        <xs:enumeration value="B"/>
+                        <xs:enumeration value="C"/>
+                        <xs:enumeration value="H"/>
+                        <xs:enumeration value="T"/>
+                        <xs:enumeration value="N"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="typ_odesm" type="xs:NMTOKEN" use="required"/>
+            <xs:attribute name="ozn_soub" type="dsComm:str50"/>
+            <xs:attribute name="potvrzeni">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="N"/>
+                        <xs:enumeration value="P"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="dat_vb" type="dsComm:dat_dtsType" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="isType">
+        <xs:sequence>
+            <xs:element ref="ds:as"/>
+            <xs:element name="os" type="ds:osType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="ds:a" minOccurs="0"/>
+            <xs:any namespace="##other" maxOccurs="unbounded"/>
+            <xs:element name="isAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="ico" type="dsComm:icisType"/>
+        <xs:attribute name="icz" type="dsComm:icisType"/>
+        <xs:attribute name="icp" type="dsComm:icisType"/>
+        <xs:attribute name="icl" type="dsComm:icisType"/>
+        <xs:attribute name="pcz" type="dsComm:number3de"/>
+        <xs:attribute name="oddel" type="dsComm:str5e"/>
+        <xs:attribute name="oavl" type="dsComm:str11"/>
+        <xs:attribute name="sr_typ" type="dsComm:sr_typType"/>
+        <xs:attribute name="sr_pois" type="dsComm:str4"/>
+        <xs:attribute name="sr_kod" type="dsComm:str12e"/>
+        <xs:attribute name="sr_lekar" type="dsComm:str9e"/>
+
+    </xs:complexType>
+    <!-- aType -->
+    <xs:complexType name="aType">
+        <xs:sequence>
+            <xs:element name="dat_od" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="dat_do" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="o_jmeno" type="dsComm:str40" minOccurs="0"/>
+            <xs:element name="o_prijmeni" type="dsComm:str40" minOccurs="0"/>
+            <xs:element name="o_titul_pred" type="dsComm:str35" minOccurs="0"/>
+            <xs:element name="o_titul_za" type="dsComm:str35" minOccurs="0"/>
+            <xs:element name="f_jmeno" type="dsComm:str80" minOccurs="0"/>
+            <xs:element name="f_ico" type="dsComm:icisType" minOccurs="0"/>
+            <xs:element name="jmeno" type="dsComm:str255"/>
+            <xs:element name="adr" type="dsComm:str80" minOccurs="0"/>
+            <xs:element name="dop1" type="dsComm:str40" minOccurs="0"/>
+            <xs:element name="dop2" type="dsComm:str40" minOccurs="0"/>
+            <xs:element name="psc" type="dsComm:number9d" minOccurs="0"/>
+            <xs:element name="mesto" type="dsComm:str48" minOccurs="0"/>
+            <xs:element name="stat" type="dsComm:str3e" minOccurs="0"/>
+            <xs:element name="stat_text" type="dsComm:str40" minOccurs="0"/>
+            <xs:element name="gps" type="dsComm:gpsType" minOccurs="0"/>
+            <xs:element name="vztah" type="dsComm:str40" minOccurs="0"/>
+            <xs:element name="k_osoba_klic" type="dsComm:str10" minOccurs="0"/>
+            <xs:element name="k_osoba_text" type="dsComm:str50" minOccurs="0"/>
+            <xs:element name="k_osoba_pozn" type="dsComm:str40" minOccurs="0"/>
+            <xs:element name="k_osoba_typ" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="dsComm:str1">
+                        <xs:pattern value="[EPJ]"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="k_osoba_pravo" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="dsComm:str1">
+                        <xs:pattern value="[NADVS]"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="icl" type="dsComm:number8d" minOccurs="0"/>
+            <xs:element name="id_zp" type="dsComm:str10" minOccurs="0"/>
+            <xs:element name="pozn" type="dsComm:str80" minOccurs="0"/>
+            <xs:element name="autor" type="dsComm:autorType" minOccurs="0"/>
+            <xs:element name="as" type="ds:asType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="aAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="typ" type="dsComm:typAdresyType" use="required"/>
+        <xs:attribute name="ind_kont" type="dsComm:ind_kontType"/>
+        <xs:attribute name="sr_typ">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="L"/>
+                    <xs:enumeration value="O"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="sr_pois" type="dsComm:str4"/>
+        <xs:attribute name="sr_kod" type="dsComm:str12e"/>
+        <xs:attribute name="sr_lekar" type="dsComm:str9e"/>
+    </xs:complexType>
+    <!--  as Type  -->
+    <xs:complexType name="asType">
+        <xs:sequence>
+            <xs:element name="obsah" type="dsComm:str255" minOccurs="0"/>
+            <xs:element name="vnitrni" type="dsComm:str255" minOccurs="0"/>
+            <xs:element name="sdeleni" type="dsComm:str255" minOccurs="0"/>
+            <xs:element name="asAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="poradi" use="optional">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="0"/>
+                    <xs:enumeration value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="typ" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="D"/>
+                    <xs:enumeration value="T"/>
+                    <xs:enumeration value="B"/>
+                    <xs:enumeration value="F"/>
+                    <xs:enumeration value="S"/>
+                    <xs:enumeration value="X"/>
+                    <xs:enumeration value="M"/>
+                    <xs:enumeration value="E"/>
+                    <xs:enumeration value="I"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <!--  os Type  -->
+    <xs:complexType name="osType">
+        <xs:sequence>
+            <xs:element name="obsah2" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="typ" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="C"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="zdroj_isType">
+        <xs:sequence>
+            <xs:element name="zdrojisAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="kod_firmy" type="dsComm:str8" use="required"/>
+        <xs:attribute name="kod_prog" type="dsComm:str8" use="required"/>
+        <xs:attribute name="verze_prog" type="dsComm:str8" use="optional"/>
+        <xs:attribute name="liccis_prog" type="dsComm:str8" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="pmType">
+        <xs:sequence>
+            <xs:element name="as" type="ds:asType"/>
+            <xs:element name="a" type="ds:aType" minOccurs="0"/>
+            <xs:element name="pmAny" type="dsComm:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="dsComm:icisAttrGroup"/>
+        <xs:attribute name="sr_typ">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="L"/>
+                    <xs:enumeration value="O"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="sr_pois" type="dsComm:str4"/>
+        <xs:attribute name="sr_kod" type="dsComm:str12e"/>
+        <xs:attribute name="sr_lekar" type="dsComm:str9e"/>
+    </xs:complexType>
+    <xs:complexType name="pdType">
+        <xs:sequence>
+            <xs:element name="chyba_pd" type="ds:chyba_pdType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="as" type="ds:asType"/>
+            <xs:element name="dat_os" type="dsComm:dat_xxType" minOccurs="0"/>
+            <xs:element name="dat_ps" type="dsComm:dat_xxType"/>
+        </xs:sequence>
+        <xs:attribute name="id_soubor" type="dsComm:str40" use="required"/>
+        <xs:attribute name="stav" use="required" >
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="A"/>
+                    <xs:enumeration value="N"/>
+                    <xs:enumeration value="O"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="chyba_pdType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="kod" use="required" >
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="000"/>
+                            <xs:enumeration value="X01"/>
+                            <xs:enumeration value="X02"/>
+                            <xs:enumeration value="X03"/>
+                            <xs:enumeration value="X04"/>
+                            <xs:enumeration value="X05"/>
+                            <xs:enumeration value="X99"/>
+                            <xs:enumeration value="D01"/>
+                            <xs:enumeration value="D02"/>
+                            <xs:enumeration value="D03"/>
+                            <xs:enumeration value="D04"/>
+                            <xs:enumeration value="D99"/>
+                            <xs:enumeration value="A01"/>
+                            <xs:enumeration value="A99"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute name="lokalizace" type="dsComm:str64" use="optional"/>
+                <xs:attribute name="osetreni" use="optional" >
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="I"/>
+                            <xs:enumeration value="O"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute name="popis" type="dsComm:str255" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+</xs:schema>
+
