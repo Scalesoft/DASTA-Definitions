@@ -1,0 +1,3402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD pro predavani zdravotnickych dat v XML -->
+<!-- ds031001.dtd 08.12.2006 [PH]   NZIS-2004,5,6,LAB -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+  <xs:attributeGroup name="aktualizace_bloku">
+    <xs:attribute name="dat_ab"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="vytvoreni_bloku">
+    <xs:attribute name="dat_vb" use="required"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="vytvoreni_bl_imp">
+    <xs:attribute name="dat_vb"/>
+  </xs:attributeGroup>
+  <xs:simpleType name="s_hodnota">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="-4"/>
+      <xs:enumeration value="-3"/>
+      <xs:enumeration value="-2"/>
+      <xs:enumeration value="-1"/>
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_hodnota">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="-3"/>
+      <xs:enumeration value="-2"/>
+      <xs:enumeration value="-1"/>
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:attributeGroup name="opravne_sdeleni">
+    <xs:attribute name="ind_oprav_sd" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="N"/>
+          <xs:enumeration value="E"/>
+          <xs:enumeration value="S"/>
+          <xs:enumeration value="U"/>
+          <xs:enumeration value="Z"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="sr_ident_1">
+    <xs:attribute name="sr_typ" type="xs:NMTOKEN"/>
+    <xs:attribute name="sr_pois" type="xs:NMTOKEN"/>
+    <xs:attribute name="sr_kod" type="xs:NMTOKEN"/>
+    <xs:attribute name="sr_lekar" type="xs:NMTOKEN"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="sr_ident_2">
+    <xs:attribute name="sr_cito" type="xs:NMTOKEN"/>
+    <xs:attribute name="sr_kod_lek" type="xs:NMTOKEN"/>
+    <xs:attribute name="sr_mnozstvi" type="xs:NMTOKEN"/>
+    <xs:attribute name="sr_cena" type="xs:NMTOKEN"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="sr_ident_3">
+    <xs:attribute name="sr_nahrady" type="xs:NMTOKEN"/>
+  </xs:attributeGroup>
+  <!-- ciselniky NZIS in alphabetical order -->
+  <!-- ciselnik NZIS ATBDRUH - seznam hodnot -->
+  <!-- ciselnik NZIS ANAMNEZA -->
+  <!-- ciselnik NZIS ANONE - seznam hodnot -->
+  <!-- ciselnik NZIS ANTIKO - seznam hodnot -->
+  <!-- ciselnik NZIS ASREPR - seznam hodnot -->
+  <!-- ciselnik NZIS CETTEH - seznam hodnot -->
+  <!-- ciselnik NZIS DISSKU - seznam hodnot -->
+  <!-- ciselnik NZIS DOPHOSP - seznam hodnot -->
+  <xs:simpleType name="nzcis_dophosp">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+      <xs:enumeration value="6"/>
+      <xs:enumeration value="7"/>
+      <xs:enumeration value="8"/>
+      <xs:enumeration value="9"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- ciselnik NZIS DROPER - seznam hodnot -->
+  <xs:simpleType name="nzcis_droper">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- ciselnik NZIS DRUHLA - seznam hodnot -->
+  <!-- ciselnik NZIS DRUPOT- seznam hodnot -->
+  <!-- ciselnik NZIS DRVLA - seznam hodnot -->
+  <!-- ciselnik NZIS DUPRIJ - seznam hodnot -->
+  <xs:simpleType name="nzcis_duprij">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+      <xs:enumeration value="7"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- ciselnik NZIS DUVNEPR - seznam hodnot -->
+  <!-- ciselnik NZIS DUVUK - seznam hodnot -->
+  <!-- ciselnik NZIS DUVVYS - seznam hodnot -->
+  <!-- ciselnik NZIS EAKTIV - seznam hodnot -->
+  <!-- ciselnik NZIS ETNIKA - seznam hodnot -->
+  <!-- ciselnik NZIS EVIPRO - seznam hodnot -->
+  <!-- ciselnik NZIS GRAVID - seznam hodnot -->
+  <!-- ciselnik NZIS HIST - seznam hodnot -->
+  <!-- ciselnik NZIS HISVYS - seznam hodnot -->
+  <!-- ciselnik NZIS HIV - seznam hodnot -->
+  <!-- ciselnik NZIS HOSPRV - seznam hodnot -->
+  <xs:simpleType name="nzcis_hosprv">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- ciselnik NZIS KOURENI -->
+  <!-- ciselnik NZIS KOMBIN - seznam hodnot -->
+  <!-- ciselnik NZIS KZAM - seznam hodnot -->
+  <xs:simpleType name="nzcis_kzam">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+      <xs:enumeration value="6"/>
+      <xs:enumeration value="7"/>
+      <xs:enumeration value="8"/>
+      <xs:enumeration value="9"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- ciselnik NZIS LATERAL (lateralita) -->
+  <!-- ciselnik NZIS LEC - seznam hodnot -->
+  <!-- ciselnik NZIS METODA - seznam hodnot -->
+  <!-- ciselnik NZIS MYKMAT - seznam hodnot -->
+  <!-- ciselnik NZIS NARODN - seznam hodnot -->
+  <xs:simpleType name="nzcis_narodn">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+      <xs:enumeration value="6"/>
+      <xs:enumeration value="7"/>
+      <xs:enumeration value="8"/>
+      <xs:enumeration value="9"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- ciselnik NZIS NEMNAK - seznam hodnot -->
+  <xs:simpleType name="nzcis_nemnak">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  ciselnik NZIS NELPRO (nelecen pro) -->
+  <!-- ciselnik NZIS OCKTBC - seznam hodnot -->
+  <!-- ciselnik NZIS ODSTRNAD -->
+  <!-- ciselnik NZIS ONEMOC -->
+  <!-- ciselnik NZIS PITVA pro NOR -->
+  <!-- ciselnik NZIS PODAPE - seznam hodnot -->
+  <xs:simpleType name="nzcis_podape">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+      <xs:enumeration value="6"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- ciselnik NZIS POHLAV - seznam hodnot -->
+  <!-- ciselnik NZIS POLOHA - seznam hodnot -->
+  <!-- ciselnik NZIS POOPKO - seznam hodnot -->
+  <xs:simpleType name="nzcis_poopko">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+      <xs:enumeration value="6"/>
+      <xs:enumeration value="7"/>
+      <xs:enumeration value="8"/>
+      <xs:enumeration value="9"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- ciselnik NZIS POUPT - seznam hodnot -->
+  <!-- ciselnik NZIS PRENDIAG - seznam hodnot -->
+  <!-- ciselnik NZIS PRIJ - seznam hodnot -->
+  <xs:simpleType name="nzcis_prij">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- ciselnik NZIS POROD - seznam hodnot -->
+  <!-- ciselnik NZIS ZPUSOB - seznam hodnot -->
+  <!-- ciselnik NZIS RANES - seznam hodnot -->
+  <!-- ciselnik NZIS RDSTAV - seznam hodnot -->
+  <!-- ciselnik NZIS REOPER - seznam hodnot -->
+  <xs:simpleType name="nzcis_reoper">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- ciselnik NZIS REZORTM - seznam hodnot -->
+  <!-- ciselnik NZIS RDUVUK - seznam hodnot -->
+  <!-- ciselnik NZIS ZRIZ - seznam hodnot -->
+  <!-- ciselnik NZIS RODHAD - seznam hodnot -->
+  <!-- ciselnik NZIS ROSTAV - seznam hodnot -->
+  <xs:simpleType name="nzcis_rostav">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- ciselnik NZIS RPLOD - seznam hodnot -->
+  <!-- ciselnik NZIS RSC - seznam hodnot -->
+  <!-- ciselnik NZIS RTG - seznam hodnot -->
+  <!-- ciselnik NZIS RTGNAL - seznam hodnot -->
+  <!-- ciselnik NZIS RVAGIN - seznam hodnot -->
+  <!-- ciselnik NZIS RVEDL - seznam hodnot -->
+  <!-- ciselnik NZIS RZHOD - seznam hodnot -->
+  <!-- ciselnik NZIS SEXZAM - seznam hodnot -->
+  <!-- ciselnik NZIS SOCPOST -->
+  <!-- ciselnik NZIS OBCAN - seznam hodnot -->
+  <!-- ciselnik NZIS STAV -->
+  <!-- ciselnik NZIS UKHOSP - seznam hodnot -->
+  <xs:simpleType name="nzcis_ukhosp">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+      <xs:enumeration value="6"/>
+      <xs:enumeration value="7"/>
+      <xs:enumeration value="8"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- ciselnik NZIS UMRTI - seznam hodnot -->
+  <!-- ciselnik NZIS VITALITA - seznam hodnot -->
+  <!-- ciselnik NZIS VVVROD - seznam hodnot -->
+  <!-- ciselnik NZIS VYSETR - seznam hodnot -->
+  <!-- ciselnik NZIS VYSHIV - seznam hodnot -->
+  <!-- ciselnik NZIS VYSKYT - seznam hodnot -->
+  <!-- ciselnik NZIS VYSLTEH - seznam hodnot -->
+  <!-- ciselnik NZIS VYZIV - seznam hodnot -->
+  <!-- ciselnik NZIS VZDELA - seznam hodnot -->
+  <xs:simpleType name="nzcis_vzdela">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+      <xs:enumeration value="6"/>
+      <xs:enumeration value="7"/>
+      <xs:enumeration value="8"/>
+      <xs:enumeration value="9"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- ciselnik NZIS RVZDELA - seznam hodnot -->
+  <!-- ciselnik NZIS ZAHL - seznam hodnot -->
+  <!-- ciselnik NZIS ZDROJ - seznam hodnot -->
+  <!-- ciselnik NZIS ZDUPT - seznam hodnot -->
+  <!-- ciselnik NZIS ZJIPRI -->
+  <!-- ciselnik NZIS ZJISTENO - seznam hodnot -->
+  <!-- ciselnik NZIS ZJITBC - seznam hodnot -->
+  <!-- hlavni/korenovy element -->
+  <!-- je dodrzena strategie jeden prijemce, vice odesilatelu, vice pacientu -->
+  <xs:element name="dasta">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="zdroj_is"/>
+        <xs:element ref="pm"/>
+        <xs:element minOccurs="0" ref="garant_dat"/>
+        <xs:choice>
+          <xs:element maxOccurs="unbounded" ref="is"/>
+          <xs:element ref="pd"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="prot_kom"/>
+      </xs:sequence>
+      <xs:attribute name="id_soubor" use="required"/>
+      <xs:attribute name="verze_ds" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="verze_nclp" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="bin_priloha" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="T"/>
+            <xs:enumeration value="B"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="ur" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="U"/>
+            <xs:enumeration value="V"/>
+            <xs:enumeration value="B"/>
+            <xs:enumeration value="C"/>
+            <xs:enumeration value="H"/>
+            <xs:enumeration value="T"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="typ_odesm" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="ozn_soub"/>
+      <xs:attribute name="potvrzeni">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="P"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attributeGroup ref="vytvoreni_bloku"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- informace o firme a IS kterym byl soubor vytvoren -->
+  <xs:element name="zdroj_is">
+    <xs:complexType>
+      <xs:attribute name="kod_firmy" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="kod_prog" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="verze_prog" type="xs:NMTOKEN"/>
+      <xs:attribute name="liccis_prog"/>
+    </xs:complexType>
+  </xs:element>
+  <!--
+    protokol o komunikaci - blok se pripravuje a neni doreseno 
+    jeho pouzivani ani obsah
+  -->
+  <xs:element name="prot_kom">
+    <xs:complexType>
+      <xs:attribute name="pd_n">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="E"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- prijmove misto -->
+  <xs:element name="pm">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="as"/>
+        <xs:element minOccurs="0" ref="a"/>
+      </xs:sequence>
+      <xs:attribute name="ico" type="xs:NMTOKEN"/>
+      <xs:attribute name="icz" type="xs:NMTOKEN"/>
+      <xs:attribute name="icp" type="xs:NMTOKEN"/>
+      <xs:attribute name="icl" type="xs:NMTOKEN"/>
+      <xs:attribute name="pcz" type="xs:NMTOKEN"/>
+      <xs:attribute name="oddel" type="xs:NMTOKEN"/>
+      <xs:attributeGroup ref="sr_ident_1"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- odesilatel -->
+  <xs:element name="is">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="as"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="os"/>
+        <xs:element minOccurs="0" ref="a"/>
+        <xs:choice>
+          <xs:element maxOccurs="unbounded" ref="ip"/>
+          <xs:element maxOccurs="unbounded" ref="idu"/>
+          <xs:element maxOccurs="unbounded" ref="ivv"/>
+          <xs:element maxOccurs="unbounded" ref="ilb"/>
+          <xs:element maxOccurs="unbounded" ref="ilc"/>
+          <xs:element maxOccurs="unbounded" ref="ihe"/>
+          <xs:element maxOccurs="unbounded" ref="text"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="ico" type="xs:NMTOKEN"/>
+      <xs:attribute name="icz" type="xs:NMTOKEN"/>
+      <xs:attribute name="icp" type="xs:NMTOKEN"/>
+      <xs:attribute name="icl" type="xs:NMTOKEN"/>
+      <xs:attribute name="pcz" type="xs:NMTOKEN"/>
+      <xs:attribute name="oddel" type="xs:NMTOKEN"/>
+      <xs:attribute name="oavl" type="xs:NMTOKEN"/>
+      <xs:attributeGroup ref="sr_ident_1"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- potvrzeni doruceni souboru -->
+  <xs:element name="pd">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="chyba_pd"/>
+        <xs:element ref="as"/>
+        <xs:element minOccurs="0" ref="dat_os"/>
+        <xs:element ref="dat_ps"/>
+      </xs:sequence>
+      <xs:attribute name="id_soubor" use="required"/>
+      <xs:attribute name="stav" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="O"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- chybove hlaseni - popis chyby v prijatem souboru -->
+  <xs:element name="chyba_pd">
+    <xs:complexType mixed="true">
+      <xs:attribute name="kod" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="lokalizace"/>
+      <xs:attribute name="osetreni"/>
+      <xs:attribute name="popis"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- adresa -->
+  <xs:element name="a">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="dat_od"/>
+        <xs:element minOccurs="0" ref="dat_do"/>
+        <xs:element ref="jmeno"/>
+        <xs:element minOccurs="0" ref="adr"/>
+        <xs:element minOccurs="0" ref="dop1"/>
+        <xs:element minOccurs="0" ref="dop2"/>
+        <xs:element minOccurs="0" ref="psc"/>
+        <xs:element minOccurs="0" ref="mesto"/>
+        <xs:element minOccurs="0" ref="stat"/>
+        <xs:element minOccurs="0" ref="gps"/>
+        <xs:element minOccurs="0" ref="vztah"/>
+        <xs:element minOccurs="0" ref="icl"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="as"/>
+      </xs:sequence>
+      <xs:attribute name="typ" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+            <xs:enumeration value="3"/>
+            <xs:enumeration value="4"/>
+            <xs:enumeration value="5"/>
+            <xs:enumeration value="6"/>
+            <xs:enumeration value="7"/>
+            <xs:enumeration value="8"/>
+            <xs:enumeration value="9"/>
+            <xs:enumeration value="L"/>
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="B"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="O"/>
+            <xs:enumeration value="X"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="ind_kont">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="K"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attributeGroup ref="sr_ident_1"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- adresa spojeni -->
+  <xs:element name="as">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="obsah"/>
+        <xs:element minOccurs="0" ref="vnitrni"/>
+        <xs:element minOccurs="0" ref="sdeleni"/>
+      </xs:sequence>
+      <xs:attribute name="typ" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="T"/>
+            <xs:enumeration value="F"/>
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="X"/>
+            <xs:enumeration value="M"/>
+            <xs:enumeration value="E"/>
+            <xs:enumeration value="I"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="poradi" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- gps -->
+  <xs:element name="gps">
+    <xs:complexType>
+      <xs:attribute name="lat" use="required"/>
+      <xs:attribute name="lon" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- datum a cas -->
+  <xs:element name="dat_ak">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="DTS"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dat_de">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="DT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dat_do">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="DT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dat_dn">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="DT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dat_ds">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="DTS"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dat_dv">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dat_od">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="DT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dat_or">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="DT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dat_os">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="DTS"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dat_pl">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="DTS"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dat_po">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dat_ps">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="DTS"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dat_vv">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="DTS"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dat_za">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="DT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dat_zt">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="DT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dat_du">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="DT"/>
+            <xs:enumeration value="DTS"/>
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="MR"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="typ" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="O"/>
+            <xs:enumeration value="L"/>
+            <xs:enumeration value="I"/>
+            <xs:enumeration value="P"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dat_up">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dat_poc_hosp">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- datum a cas vyplneni vykazu -->
+  <xs:element name="dat_vyp">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="DT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dath_od">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dath_du">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dath_ru">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dath_do">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="dath_vy">
+    <xs:sequence>
+      <xs:element ref="dath_vy"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dath_vy">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="dath_uk">
+    <xs:sequence>
+      <xs:element ref="dath_uk"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dath_uk">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dath_zm">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dath_diag_zm">
+    <xs:complexType mixed="true">
+      <xs:attribute name="format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!--
+    formaty datumu a casu 
+    format: popis:  struktura:
+    D       datum                        YYYY-MM-DD
+    DT      datum a cas                  YYYY-MM-DDTHH:MM
+    DTS     datum a cas v sekundach      YYYY-MM-DDTHH:MM:SS
+    MR      mesic a rok = neuplne datum  YYYY-MM    
+    R       rok = neuplne datum          YYYY
+  -->
+  <!-- identifikace pacienta -->
+  <xs:element name="ip">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="rodcis"/>
+        <xs:element minOccurs="0" ref="jmeno"/>
+        <xs:element ref="prijmeni"/>
+        <xs:element minOccurs="0" ref="titul_pred"/>
+        <xs:element minOccurs="0" ref="titul_za"/>
+        <xs:element minOccurs="0" ref="dat_dn"/>
+        <xs:element minOccurs="0" ref="dat_de"/>
+        <xs:element minOccurs="0" ref="sex"/>
+        <xs:element minOccurs="0" ref="rod_prijm"/>
+        <xs:element minOccurs="0" ref="jine_idu"/>
+        <xs:element minOccurs="0" ref="ipi_o"/>
+        <xs:element minOccurs="0" ref="ipi_v"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="a"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="h"/>
+        <xs:element minOccurs="0" ref="pv"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="p"/>
+        <xs:element minOccurs="0" ref="n"/>
+        <xs:element minOccurs="0" ref="u"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="an"/>
+        <xs:element minOccurs="0" ref="oc"/>
+        <xs:element minOccurs="0" ref="dg"/>
+        <xs:element minOccurs="0" ref="le"/>
+        <xs:element minOccurs="0" ref="lek"/>
+        <xs:element minOccurs="0" ref="pn"/>
+        <xs:element minOccurs="0" ref="au"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="fa"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="z"/>
+        <xs:element minOccurs="0" ref="v"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="lo"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="zon"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="loi_p"/>
+        <xs:element minOccurs="0" ref="xx"/>
+      </xs:sequence>
+      <xs:attribute name="id_pac" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="xx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="text"/>
+      </xs:sequence>
+      <xs:attribute name="kod_firmy" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="spec_firmy" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="pv">
+    <xs:complexType>
+      <xs:choice minOccurs="0">
+        <xs:element ref="p"/>
+        <xs:element ref="a"/>
+      </xs:choice>
+      <xs:attribute name="typ_pv" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Z"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="O"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attributeGroup ref="aktualizace_bloku"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- identifikacni a jine udaje pro komunikaci mezi IS -->
+  <!-- odesilany blok -->
+  <xs:element name="ipi_o">
+    <xs:complexType>
+      <xs:attribute name="nem_cis" type="xs:NMTOKEN"/>
+      <xs:attribute name="kat_pac" type="xs:NMTOKEN"/>
+      <xs:attribute name="cis_chor" type="xs:NMTOKEN"/>
+      <xs:attribute name="cis_is" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- identifikacni a jine udaje pro komunikaci mezi IS -->
+  <!-- vraceny blok -->
+  <xs:element name="ipi_v">
+    <xs:complexType>
+      <xs:attribute name="nem_cis" type="xs:NMTOKEN"/>
+      <xs:attribute name="kat_pac" type="xs:NMTOKEN"/>
+      <xs:attribute name="cis_chor" type="xs:NMTOKEN"/>
+      <xs:attribute name="cis_is" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- vyska a hmotnost -->
+  <xs:element name="h">
+    <xs:complexType>
+      <xs:attribute name="vyska" type="xs:NMTOKEN"/>
+      <xs:attribute name="hmotnost"/>
+      <xs:attributeGroup ref="aktualizace_bloku"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- pojistovna -->
+  <xs:element name="p">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="cispoj"/>
+        <xs:element ref="kodpoj"/>
+        <xs:element minOccurs="0" ref="typpoj"/>
+        <xs:element minOccurs="0" ref="stat_poj"/>
+        <xs:element minOccurs="0" ref="euro_ide"/>
+        <xs:element minOccurs="0" ref="dat_od"/>
+        <xs:element minOccurs="0" ref="dat_do"/>
+        <xs:element minOccurs="0" ref="a"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="opravne_sdeleni"/>
+      <xs:attributeGroup ref="aktualizace_bloku"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- udaje pro nemocnici a NZIS -->
+  <xs:element name="n">
+    <xs:complexType>
+      <xs:attribute name="zam_text"/>
+      <xs:attribute name="klas_zam" type="nzcis_kzam"/>
+      <xs:attribute name="rod_stav" type="nzcis_rostav"/>
+      <xs:attribute name="narodnost" type="nzcis_narodn"/>
+      <xs:attribute name="vzdelani" type="nzcis_vzdela"/>
+      <xs:attributeGroup ref="aktualizace_bloku"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- anamneza sdilena -->
+  <xs:element name="an">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="garant_dat"/>
+        <xs:element ref="text"/>
+        <xs:element minOccurs="0" ref="dat_ak"/>
+      </xs:sequence>
+      <xs:attribute name="typ" use="required"/>
+      <xs:attribute name="nazev"/>
+      <xs:attributeGroup ref="aktualizace_bloku"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  urgentni informace o pacientovi neformalizovane -->
+  <xs:element name="u">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="garant_dat"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ua"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="urf"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="utm"/>
+        <xs:element minOccurs="0" ref="uks"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="uot"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- urgentni informace - alergie -->
+  <xs:element name="ua">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="u_al"/>
+        <xs:element minOccurs="0" ref="autor"/>
+        <xs:element minOccurs="0" ref="dat_du"/>
+        <xs:element minOccurs="0" ref="dat_ak"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="aktualizace_bloku"/>
+      <xs:attributeGroup ref="opravne_sdeleni"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- urgentni informace - rizikove faktory -->
+  <xs:element name="urf">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="u_rf"/>
+        <xs:element minOccurs="0" ref="autor"/>
+        <xs:element minOccurs="0" ref="dat_du"/>
+        <xs:element minOccurs="0" ref="dat_ak"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="aktualizace_bloku"/>
+      <xs:attributeGroup ref="opravne_sdeleni"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- urgentni informace - trvala medikace -->
+  <xs:element name="utm">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="u_tm"/>
+        <xs:element minOccurs="0" ref="autor"/>
+        <xs:element minOccurs="0" ref="dat_du"/>
+        <xs:element minOccurs="0" ref="dat_ak"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="aktualizace_bloku"/>
+      <xs:attributeGroup ref="opravne_sdeleni"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- urgentni informace - krevni skupina -->
+  <xs:element name="uks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice>
+          <xs:element ref="ks_rh"/>
+          <xs:sequence>
+            <xs:element ref="krevskup"/>
+            <xs:element minOccurs="0" ref="rh"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="autor"/>
+        <xs:element minOccurs="0" ref="dat_du"/>
+        <xs:element minOccurs="0" ref="dat_ak"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="aktualizace_bloku"/>
+      <xs:attributeGroup ref="opravne_sdeleni"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- urgentni informace - ockovani proti tetanu -->
+  <xs:element name="uot">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="dat_du"/>
+        <xs:element minOccurs="0" ref="autor"/>
+        <xs:element minOccurs="0" ref="dat_ak"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="aktualizace_bloku"/>
+      <xs:attributeGroup ref="opravne_sdeleni"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- informace o ockovani -->
+  <xs:element name="oc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="garant_dat"/>
+        <xs:element maxOccurs="unbounded" ref="ocz"/>
+        <xs:element minOccurs="0" ref="dat_ak"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="aktualizace_bloku"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- jednotlivy typ ockovani -->
+  <xs:element name="ocz">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="davka"/>
+        <xs:element minOccurs="0" ref="dat_po"/>
+        <xs:element minOccurs="0" ref="pozn"/>
+      </xs:sequence>
+      <xs:attribute name="typ_oc_kod" use="required"/>
+      <xs:attribute name="typ_oc_text" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="davka">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="autor"/>
+        <xs:element ref="dat_du"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="reakce"/>
+      </xs:sequence>
+      <xs:attribute name="cis_davky" use="required" type="xs:NMTOKEN"/>
+      <xs:attributeGroup ref="opravne_sdeleni"/>
+      <xs:attribute name="nazev_ol" use="required"/>
+      <xs:attribute name="gene_ol"/>
+      <xs:attribute name="kod_ol" type="xs:NMTOKEN"/>
+      <xs:attribute name="cis_sarze"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="reakce">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="dat_or"/>
+        <xs:element minOccurs="0" ref="vys_or"/>
+        <xs:element minOccurs="0" ref="autor"/>
+      </xs:sequence>
+      <xs:attribute name="typ" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="F"/>
+            <xs:enumeration value="H"/>
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="J"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- diagnoza -->
+  <xs:element name="dg">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="dgz"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="aktualizace_bloku"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- diagnoza -->
+  <xs:element name="dgz">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="diag"/>
+        <xs:element minOccurs="0" ref="dat_du"/>
+        <xs:element minOccurs="0" ref="dat_up"/>
+        <xs:element minOccurs="0" ref="spec_dg"/>
+        <xs:element minOccurs="0" ref="autor"/>
+      </xs:sequence>
+      <xs:attribute name="typ_dg" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="T"/>
+            <xs:enumeration value="P"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attributeGroup ref="opravne_sdeleni"/>
+      <xs:attributeGroup ref="vytvoreni_bl_imp"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- podavane leky -->
+  <xs:element name="le">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="lez"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="aktualizace_bloku"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- popis konkretniho podavaneho leku -->
+  <xs:element name="lez">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="dat_od"/>
+        <xs:element minOccurs="0" ref="dat_do"/>
+        <xs:element minOccurs="0" ref="rozpis_v"/>
+        <xs:element minOccurs="0" ref="magistraliter"/>
+        <xs:element minOccurs="0" ref="pozn"/>
+        <xs:element minOccurs="0" ref="autor"/>
+      </xs:sequence>
+      <xs:attribute name="typ_med" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="T"/>
+            <xs:enumeration value="P"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attributeGroup ref="opravne_sdeleni"/>
+      <xs:attribute name="nazev_lek" use="required"/>
+      <xs:attribute name="gene_lek"/>
+      <xs:attribute name="kod_lek" type="xs:NMTOKEN"/>
+      <xs:attribute name="cis_kod_lek"/>
+      <xs:attribute name="kod_atc"/>
+      <xs:attribute name="kod_atb" type="xs:NMTOKEN"/>
+      <xs:attributeGroup ref="vytvoreni_bl_imp"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- vydane leky -->
+  <xs:element name="lek">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="garant_dat"/>
+        <xs:element maxOccurs="unbounded" ref="lek_v"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="aktualizace_bloku"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="lek_v">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="dat_du"/>
+        <xs:element minOccurs="0" ref="rozpis_v"/>
+        <xs:element minOccurs="0" ref="vydal"/>
+        <xs:element minOccurs="0" ref="magistraliter"/>
+        <xs:element minOccurs="0" ref="pozn"/>
+      </xs:sequence>
+      <xs:attribute name="nazev_lek" use="required"/>
+      <xs:attributeGroup ref="opravne_sdeleni"/>
+      <xs:attribute name="poc_bal" use="required"/>
+      <xs:attribute name="gene_lek"/>
+      <xs:attribute name="kod_lek" type="xs:NMTOKEN"/>
+      <xs:attribute name="kod_atc"/>
+      <xs:attribute name="kod_pdk"/>
+      <xs:attribute name="id_dok_is"/>
+      <xs:attribute name="cena"/>
+      <xs:attribute name="icl_vyst"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- pracovni neschopnosti -->
+  <xs:element name="pn">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element maxOccurs="unbounded" ref="pnz"/>
+        <xs:element ref="hpn"/>
+        <xs:element ref="pdhpn"/>
+      </xs:choice>
+      <xs:attributeGroup ref="aktualizace_bloku"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- popis konkretni pracovni neschopnosti -->
+  <xs:element name="pnz">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="dat_od"/>
+        <xs:element minOccurs="0" ref="dat_du"/>
+        <xs:element minOccurs="0" ref="dat_do"/>
+        <xs:element minOccurs="0" ref="pozn"/>
+      </xs:sequence>
+      <xs:attribute name="cislo_tiskopisu"/>
+      <xs:attributeGroup ref="opravne_sdeleni"/>
+      <xs:attribute name="diag_poc" type="xs:NMTOKEN"/>
+      <xs:attribute name="uraz_prac">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="uraz_ostatni">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="uraz_zavineny">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nemoc_povol">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="alkohol">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="drogy">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="jinemu_lekari">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="diag_kon" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- vykony pro pojistovnu -->
+  <xs:element name="auz">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="dat_du"/>
+        <xs:element minOccurs="0" ref="pozn"/>
+      </xs:sequence>
+      <xs:attribute name="indikace" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="I"/>
+            <xs:enumeration value="C"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="Z"/>
+            <xs:enumeration value="X"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="doklad" type="xs:NMTOKEN"/>
+      <xs:attribute name="polozka" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="V"/>
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+            <xs:enumeration value="3"/>
+            <xs:enumeration value="4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="diag" type="xs:NMTOKEN"/>
+      <xs:attribute name="kod_vykonu" use="required"/>
+      <xs:attribute name="lok_zubu" type="xs:NMTOKEN"/>
+      <xs:attribute name="mnozstvi" type="xs:NMTOKEN"/>
+      <xs:attribute name="cena" type="xs:NMTOKEN"/>
+      <xs:attribute name="kod_lab" type="xs:NMTOKEN"/>
+      <xs:attributeGroup ref="sr_ident_2"/>
+      <xs:attributeGroup ref="sr_ident_3"/>
+      <xs:attribute name="cetnost" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="icp" type="xs:NMTOKEN"/>
+      <xs:attribute name="odb" type="xs:NMTOKEN"/>
+      <xs:attribute name="sr_lokalizace">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Z"/>
+            <xs:enumeration value="B"/>
+            <xs:enumeration value="L"/>
+            <xs:enumeration value="P"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="diag">
+    <xs:complexType mixed="true">
+      <xs:attribute name="poradi" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- vykony uctovane pojistovnam -->
+  <xs:element name="au">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="auz"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="zadatel"/>
+          <xs:element ref="zadatel_sk"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="vykon_drg_sk"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="aktualizace_bloku"/>
+      <xs:attribute name="stav" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+            <xs:enumeration value="3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="id" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- vykony uctovane pacientovi -->
+  <xs:element name="fa">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="dat_du"/>
+        <xs:element ref="dat_ds"/>
+        <xs:element ref="fakt_cast"/>
+        <xs:element minOccurs="0" ref="hraz_cast"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="faz"/>
+        <xs:element minOccurs="0" ref="pozn"/>
+      </xs:sequence>
+      <xs:attribute name="stav" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="V"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="cislo" type="xs:NMTOKEN"/>
+      <xs:attributeGroup ref="aktualizace_bloku"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- obsah bloku faktura / mozna bude zruseno -->
+  <xs:element name="faz">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="dat_du"/>
+        <xs:element minOccurs="0" ref="diag"/>
+        <xs:element minOccurs="0" ref="pozn"/>
+      </xs:sequence>
+      <xs:attribute name="indikace" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="I"/>
+            <xs:enumeration value="C"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="Z"/>
+            <xs:enumeration value="X"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="polozka" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="V"/>
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+            <xs:enumeration value="3"/>
+            <xs:enumeration value="4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="kod_vykonu"/>
+      <xs:attribute name="lok_zubu" type="xs:NMTOKEN"/>
+      <xs:attribute name="mnozstvi" type="xs:NMTOKEN"/>
+      <xs:attribute name="cena" type="xs:NMTOKEN"/>
+      <xs:attribute name="kod_lab" type="xs:NMTOKEN"/>
+      <xs:attributeGroup ref="sr_ident_2"/>
+      <xs:attributeGroup ref="sr_ident_3"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- zprava neformalizovana -->
+  <xs:element name="z">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="dat_du"/>
+        <xs:element minOccurs="0" ref="dat_od"/>
+        <xs:element minOccurs="0" ref="dat_do"/>
+        <xs:element minOccurs="0" ref="a"/>
+        <xs:element minOccurs="0" ref="pracoviste_autora"/>
+        <xs:element minOccurs="0" ref="autor"/>
+        <xs:element minOccurs="0" ref="garant_dat"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="dgz"/>
+        <xs:element minOccurs="0" ref="nazev"/>
+        <xs:element ref="text"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="priloha"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="int_pril"/>
+      </xs:sequence>
+      <xs:attribute name="zadost" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="E"/>
+            <xs:enumeration value="L"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="vznik" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="H"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="V"/>
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="J"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="obsah" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="E"/>
+            <xs:enumeration value="NV"/>
+            <xs:enumeration value="NL"/>
+            <xs:enumeration value="K"/>
+            <xs:enumeration value="KR"/>
+            <xs:enumeration value="KG"/>
+            <xs:enumeration value="KL"/>
+            <xs:enumeration value="VL"/>
+            <xs:enumeration value="PP"/>
+            <xs:enumeration value="OP"/>
+            <xs:enumeration value="ZR"/>
+            <xs:enumeration value="ZN"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="stav" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Z"/>
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="K"/>
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="S"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="duvernost">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+            <xs:enumeration value="3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="oznaceni_o" use="required"/>
+      <xs:attribute name="oznaceni_z"/>
+      <xs:attribute name="pracoviste"/>
+      <xs:attribute name="rad_zahlavi" type="xs:NMTOKEN"/>
+      <xs:attribute name="rad_paty" type="xs:NMTOKEN"/>
+      <xs:attribute name="poc_stran" type="xs:NMTOKEN"/>
+      <xs:attributeGroup ref="aktualizace_bloku"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- identifikace prilohy k zprave - popis obsahu, id souboru, url -->
+  <xs:element name="priloha">
+    <xs:complexType mixed="true">
+      <xs:attribute name="zdroj" use="required"/>
+      <xs:attribute name="typ"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="int_pril">
+    <xs:complexType mixed="true">
+      <xs:attribute name="nazev" use="required"/>
+      <xs:attribute name="jm_sb"/>
+      <xs:attribute name="encode" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="Base64"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="typ"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- odber vzorku, objednavky vysetreni -->
+  <xs:element name="lo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="dat_poc_hosp"/>
+        <xs:element minOccurs="0" ref="los"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="zadatel"/>
+          <xs:element ref="zadatel_sk"/>
+        </xs:choice>
+        <xs:element ref="dat_du"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="lip"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="dgz"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="loi"/>
+        <xs:choice>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="lop"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="lopk"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="lopz"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="lopr"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="id_lo_is" use="required"/>
+      <xs:attribute name="indikace">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="Z"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="urg">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="V"/>
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="K"/>
+            <xs:enumeration value="R"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="dodani">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="B"/>
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="L"/>
+            <xs:enumeration value="O"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="duv_objed">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="B"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="E"/>
+            <xs:enumeration value="UZ"/>
+            <xs:enumeration value="UP"/>
+            <xs:enumeration value="UO"/>
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="V"/>
+            <xs:enumeration value="DS"/>
+            <xs:enumeration value="DE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="los">
+    <xs:complexType>
+      <xs:attribute name="prijeti">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="B"/>
+            <xs:enumeration value="P"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="kolize">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="V"/>
+            <xs:enumeration value="B"/>
+            <xs:enumeration value="E"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="urg_vysled">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="T"/>
+            <xs:enumeration value="E"/>
+            <xs:enumeration value="B"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="rut_vysled">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="T"/>
+            <xs:enumeration value="E"/>
+            <xs:enumeration value="B"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="ext_vysled">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="T"/>
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="B"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="dodsest">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="F"/>
+            <xs:enumeration value="B"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="dodform">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="V"/>
+            <xs:enumeration value="K"/>
+            <xs:enumeration value="B"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="dodnadpis">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="T"/>
+            <xs:enumeration value="J"/>
+            <xs:enumeration value="Z"/>
+            <xs:enumeration value="V"/>
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="B"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="dodskal">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="L"/>
+            <xs:enumeration value="J"/>
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="B"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="typskal">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="B"/>
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="S"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="dodkoment">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="dodgraf">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="Z"/>
+            <xs:enumeration value="B"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- reseni kolizi -->
+  <xs:element name="loi_p">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice>
+          <xs:element ref="prijato_ok"/>
+          <xs:element maxOccurs="unbounded" ref="kolize_v"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="dat_pl"/>
+      </xs:sequence>
+      <xs:attribute name="id_loi_is" use="required"/>
+      <xs:attribute name="id_lis"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="prijato_ok">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="kolize_v">
+    <xs:complexType>
+      <xs:attribute name="stav" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+            <xs:enumeration value="3"/>
+            <xs:enumeration value="4"/>
+            <xs:enumeration value="5"/>
+            <xs:enumeration value="6"/>
+            <xs:enumeration value="7"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="err" use="required"/>
+      <xs:attribute name="klic_nclp" type="xs:NMTOKEN"/>
+      <xs:attribute name="klic_nclp_novy" type="xs:NMTOKEN"/>
+      <xs:attribute name="pozn"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- informace o zadateli z hlediska ZP v CR -->
+  <xs:element name="zadatel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="jmeno"/>
+        <xs:element minOccurs="0" ref="pozn"/>
+        <xs:element minOccurs="0" ref="dat_za"/>
+      </xs:sequence>
+      <xs:attribute name="ico" type="xs:NMTOKEN"/>
+      <xs:attribute name="icz" type="xs:NMTOKEN"/>
+      <xs:attribute name="icp" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="odb" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="icl" type="xs:NMTOKEN"/>
+      <xs:attribute name="ns" type="xs:NMTOKEN"/>
+      <xs:attribute name="id_clk"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- informace o zadateli z hlediska ZP v SK -->
+  <xs:element name="zadatel_sk">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="jmeno"/>
+        <xs:element minOccurs="0" ref="pozn"/>
+        <xs:element minOccurs="0" ref="dat_za"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="sr_ident_1"/>
+      <xs:attribute name="odb" type="xs:NMTOKEN"/>
+      <xs:attribute name="ns" type="xs:NMTOKEN"/>
+      <xs:attribute name="sr_odp_kod"/>
+      <xs:attribute name="sr_odp_lekar"/>
+      <xs:attribute name="sr_ident_drg"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- vykon DRG v SR -->
+  <xs:element name="vykon_drg_sk">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="dat_du"/>
+        <xs:element minOccurs="0" ref="pozn"/>
+      </xs:sequence>
+      <xs:attribute name="kod_vykonu"/>
+      <xs:attribute name="lokalizace">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Z"/>
+            <xs:enumeration value="B"/>
+            <xs:enumeration value="L"/>
+            <xs:enumeration value="P"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="pocet" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- informace o pracovnikovi, ktery zadost vystavil -->
+  <xs:element name="vystavil">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="jmeno"/>
+      </xs:sequence>
+      <xs:attribute name="kod" type="xs:NMTOKEN"/>
+      <xs:attribute name="id_clk"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- informace o vzorku -->
+  <xs:element name="loi">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="text"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="sci"/>
+        <xs:element minOccurs="0" ref="dat_zt"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="lod"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="lop"/>
+      </xs:sequence>
+      <xs:attribute name="typ_znac" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="T"/>
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="E"/>
+            <xs:enumeration value="B"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="id_loi_is" use="required"/>
+      <xs:attribute name="odebral"/>
+      <xs:attribute name="typ_obalu" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="poc_obalu" type="xs:NMTOKEN"/>
+      <xs:attribute name="material" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="anal_vzorek">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="S"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="indikace">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="Z"/>
+            <xs:enumeration value="S"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="urg">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="K"/>
+            <xs:enumeration value="R"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="pozn_loi"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- doplnujici informace o vzorku -->
+  <xs:element name="lod">
+    <xs:complexType>
+      <xs:attribute name="priznak_kvant">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="M"/>
+            <xs:enumeration value="V"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="klic_nclp" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="hodnota" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- formalizovane informace vazane k pacientovi -->
+  <xs:element name="lip">
+    <xs:complexType>
+      <xs:attribute name="priznak_kvant">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="M"/>
+            <xs:enumeration value="V"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="klic_nclp" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="hodnota" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- ciselna hodnota nebo formalizovany text -->
+  <xs:element name="hodnota" type="xs:string"/>
+  <xs:element name="jednotka" type="xs:string"/>
+  <xs:element name="nejistota">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="nejist_var1"/>
+        <xs:element minOccurs="0" ref="nejist_var2"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="nejist_var1">
+    <xs:complexType>
+      <xs:attribute name="t_nejist">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="h_nejist" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="nejist_var2">
+    <xs:complexType>
+      <xs:attribute name="t_nejist_n">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="h_nejist_n" use="required"/>
+      <xs:attribute name="k_anal_n" use="required"/>
+      <xs:attribute name="t_nejist_v">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="h_nejist_v" use="required"/>
+      <xs:attribute name="k_anal_v" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- pozadavky  na vysetreni, zakladni typ -->
+  <xs:element name="lop">
+    <xs:complexType>
+      <xs:attribute name="urg">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="K"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="klic_nclp" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="pozn_lop"/>
+      <xs:attribute name="pozn_lop_lab"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- pozadavky  na mikrobiologicke vysetreni typu kultivace -->
+  <xs:element name="lopk">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="lopok"/>
+      </xs:sequence>
+      <xs:attribute name="klic_nclp" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="urg">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="K"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="spec_kod"/>
+      <xs:attribute name="spec_text"/>
+      <xs:attribute name="subspec_text"/>
+      <xs:attribute name="ziskmat_kod"/>
+      <xs:attribute name="ziskmat_text"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- objednavka vysetreni kultivacniho -text -->
+  <xs:element name="lopok">
+    <xs:complexType>
+      <xs:attribute name="obj_mv_kod" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="obj_mv_text"/>
+      <xs:attribute name="upresneni"/>
+    </xs:complexType>
+  </xs:element>
+  <!--
+    pozadavky  na  vysetreni Z - 
+    laboratorni nemikrobiologicke neformalizovane
+  -->
+  <xs:element name="lopz">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="text"/>
+      </xs:sequence>
+      <xs:attribute name="klic_nclp" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="urg">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="K"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!--
+    pozadavky  na  vysetreni Z - 
+    nelaboratorni nemikrobiologicke neformalizovane
+  -->
+  <xs:element name="lopr">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="text"/>
+      </xs:sequence>
+      <xs:attribute name="klic_nclp" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="urg">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="K"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!--  zadosti a objednavky vysetreni neformalizovane -->
+  <xs:element name="zon">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="dat_du"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="zadatel"/>
+          <xs:element ref="zadatel_sk"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="vystavil"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="dgz"/>
+        <xs:element minOccurs="0" ref="text"/>
+      </xs:sequence>
+      <xs:attribute name="urg">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="K"/>
+            <xs:enumeration value="R"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="duv_objed">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="B"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="E"/>
+            <xs:enumeration value="UZ"/>
+            <xs:enumeration value="UP"/>
+            <xs:enumeration value="UO"/>
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="V"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="prijeti">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="P"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="oznaceni_z" use="required"/>
+      <xs:attribute name="storno" default="N">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- vysetreni formalizovane -->
+  <xs:element name="v">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="garant_dat"/>
+        <xs:element maxOccurs="unbounded" ref="vr"/>
+      </xs:sequence>
+      <xs:attribute name="test_n" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="0"/>
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="test_f" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="0"/>
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attributeGroup ref="vytvoreni_bloku"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- vysledky vysetreni -->
+  <xs:element name="vr">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="dat_du"/>
+        <xs:element minOccurs="0" ref="dat_zt"/>
+        <xs:element minOccurs="0" ref="dat_pl"/>
+        <xs:element minOccurs="0" ref="dat_vv"/>
+        <xs:element minOccurs="0" ref="autor"/>
+        <xs:element minOccurs="0" ref="odeslal"/>
+        <xs:element minOccurs="0" ref="pp"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="sci"/>
+        <xs:element ref="nazev_lclp"/>
+        <xs:element minOccurs="0" ref="text"/>
+        <xs:choice>
+          <xs:element ref="vrn"/>
+          <xs:element ref="vrf"/>
+          <xs:element ref="vrs"/>
+          <xs:element ref="vrx"/>
+          <xs:element ref="vrk"/>
+          <xs:element ref="vrb"/>
+          <xs:element ref="vrr"/>
+          <xs:element ref="vrd"/>
+          <xs:element ref="vrp"/>
+          <xs:element ref="vro"/>
+          <xs:element ref="vrc"/>
+          <xs:element ref="vrg"/>
+          <xs:element ref="vrz"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="klic_nclp" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="klic_nclp_o" type="xs:NMTOKEN"/>
+      <xs:attribute name="typ_cispol" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="L"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="typpol_fh" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="stav_vys" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="Z"/>
+            <xs:enumeration value="K"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="E"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="urg_info">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="E"/>
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="Z"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="urg_zprac">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="V"/>
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="R"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="typ_sdel_vys" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="L"/>
+            <xs:enumeration value="V"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="ind_vazb_fv">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="Z"/>
+            <xs:enumeration value="F"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="ind_oprav_sd" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="M"/>
+            <xs:enumeration value="E"/>
+            <xs:enumeration value="S"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="ind_test_nf">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="0"/>
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="kolize" type="xs:NMTOKEN"/>
+      <xs:attribute name="akreditace">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="duverne" type="xs:NMTOKEN"/>
+      <xs:attribute name="id_lis"/>
+      <xs:attribute name="id_lo_is"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  vysledky vysetreni pro numericke hodnoty -->
+  <xs:element name="vrn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="nazvy"/>
+        <xs:element minOccurs="0" ref="prepocet"/>
+        <xs:element ref="hodnota"/>
+        <xs:element ref="jednotka"/>
+        <xs:element minOccurs="0" ref="nejistota"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="hodnoceni"/>
+          <xs:element ref="skala"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="pozn"/>
+      </xs:sequence>
+      <xs:attribute name="priznak_kvant" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="M"/>
+            <xs:enumeration value="V"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!--  vysledky vysetreni pro formalizovane textove hodnoty -->
+  <xs:element name="vrf">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="nazvy"/>
+        <xs:element ref="hodnota_kod"/>
+        <xs:element minOccurs="0" ref="hodnota_text"/>
+        <xs:element minOccurs="0" ref="pozn"/>
+      </xs:sequence>
+      <xs:attribute name="s_hodn_ko" type="s_hodnota"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  vysledky vysetreni pro formalizovane strukturovane textove hodnoty -->
+  <xs:element name="vrs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="nazvy"/>
+        <xs:element maxOccurs="unbounded" ref="vrs_h"/>
+        <xs:element minOccurs="0" ref="pozn"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- hodnota pro formalizovane textove strukturovane hodnoty -->
+  <xs:element name="vrs_h">
+    <xs:complexType>
+      <xs:attribute name="hodnota1_klic" use="required"/>
+      <xs:attribute name="hodnota1_text"/>
+      <xs:attribute name="priznak2_kvant">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="M"/>
+            <xs:enumeration value="V"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="hodnota2_cislo"/>
+      <xs:attribute name="hodnota2_klic"/>
+      <xs:attribute name="hodnota2_text"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  vysledky vysetreni pro neformalizovane textove hodnoty -->
+  <xs:element name="vrx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="nazvy"/>
+        <xs:element ref="hodnota_nt"/>
+        <xs:element minOccurs="0" ref="pozn"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- vysetreni mikrobiologie - kultivace -->
+  <xs:element name="vrk">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="nazvy"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="lopok"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="vrmmn"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="vrkpa"/>
+        <xs:element minOccurs="0" ref="vrmahn"/>
+        <xs:element minOccurs="0" ref="vrmlpn"/>
+        <xs:element minOccurs="0" ref="vrmzhl"/>
+      </xs:sequence>
+      <xs:attribute name="spec_kod"/>
+      <xs:attribute name="spec_text"/>
+      <xs:attribute name="subspec_text"/>
+      <xs:attribute name="ziskmat_kod"/>
+      <xs:attribute name="ziskmat_text"/>
+      <xs:attribute name="stav_mat"/>
+      <xs:attribute name="stav_zprac" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- mikroskopicky nalez -->
+  <xs:element name="vrmmn" type="xs:string"/>
+  <!-- automaticke hodnoceni nalezu -->
+  <xs:element name="vrmahn" type="xs:string"/>
+  <!-- laboratorni poznamka k nalezu -->
+  <xs:element name="vrmlpn" type="xs:string"/>
+  <!-- zaverecne hodnoceni lekarem -->
+  <xs:element name="vrmzhl" type="xs:string"/>
+  <!-- pritomny agens pro vysetreni mikrobilogie -->
+  <xs:element name="vrkpa">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="kvantita"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="vrav"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="vrac"/>
+        <xs:element minOccurs="0" ref="dourceni"/>
+        <xs:element minOccurs="0" ref="vrmahn"/>
+        <xs:element minOccurs="0" ref="vrmlpn"/>
+        <xs:element minOccurs="0" ref="vrmzhl"/>
+      </xs:sequence>
+      <xs:attribute name="agens_kod" use="required"/>
+      <xs:attribute name="agens_text" use="required"/>
+      <xs:attribute name="dalsi_vys" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="D"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="pritomnost" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="M"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="O"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="druh_veliciny"/>
+      <xs:attribute name="jednotka"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- sdeleni vlastnosti agens -->
+  <xs:element name="vrav">
+    <xs:complexType>
+      <xs:attribute name="vl_kod" use="required"/>
+      <xs:attribute name="vl_text"/>
+      <xs:attribute name="pritomnost" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="X"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="dodatek"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- sdeleni citlivosti na mikrobialni latku -->
+  <xs:element name="vrac">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="kvantita"/>
+      </xs:sequence>
+      <xs:attribute name="latka_kod" use="required"/>
+      <xs:attribute name="latka_text"/>
+      <xs:attribute name="hod_citlivosti" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="C"/>
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="I"/>
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="K"/>
+            <xs:enumeration value="L"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="kvantita">
+    <xs:complexType mixed="true">
+      <xs:attribute name="priznak" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="M"/>
+            <xs:enumeration value="V"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- vysetreni - blok textu pro interpretace -->
+  <xs:element name="vrb">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="nazvy"/>
+        <xs:element ref="text"/>
+        <xs:element minOccurs="0" ref="text_obj"/>
+      </xs:sequence>
+      <xs:attribute name="typ_vzniku" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="O"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="misto_vzniku" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="L"/>
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="P"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="autorizace" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="A"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- vysetreni - blok textu pro kompletni nalezy -->
+  <xs:element name="vrr">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="text"/>
+      </xs:sequence>
+      <xs:attribute name="rad_zahlavi" type="xs:NMTOKEN"/>
+      <xs:attribute name="rad_paty" type="xs:NMTOKEN"/>
+      <xs:attribute name="poc_stran" type="xs:NMTOKEN"/>
+      <xs:attribute name="autorizace" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="A"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- vysetreni laboratorni pro sdeleni datumu -->
+  <xs:element name="vrd">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="nazvy"/>
+        <xs:element ref="dat_dv"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- vysetreni - blok jen pro specialni pouziti -->
+  <!-- resi se  a bude doplneno -->
+  <xs:element name="vrc">
+    <xs:complexType/>
+  </xs:element>
+  <!-- vysetreni - blok jen pro specialni pouziti -->
+  <!-- resi se  a bude doplneno -->
+  <xs:element name="vrg">
+    <xs:complexType/>
+  </xs:element>
+  <!-- vysetreni laboratorni pro non-NCLP polozky -->
+  <xs:element name="vrz">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="text"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- vysetreni - blok pro obrazove informace -->
+  <xs:element name="vro">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="nazvy"/>
+        <xs:element minOccurs="0" ref="text"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="priloha"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="int_pril"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- vysetreni - blok jen pro specialni pouziti -->
+  <xs:element name="vrp">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="nazvy"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sci">
+    <xs:complexType>
+      <xs:attribute name="id_sci_is" use="required"/>
+      <xs:attribute name="klic_nclp" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="krok" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="prubeh" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- skala vysledku -->
+  <xs:element name="skala">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="s1"/>
+        <xs:element minOccurs="0" ref="s2"/>
+        <xs:element minOccurs="0" ref="s3"/>
+        <xs:element ref="s4"/>
+        <xs:element ref="s5"/>
+        <xs:element minOccurs="0" ref="s6"/>
+        <xs:element minOccurs="0" ref="s7"/>
+        <xs:element minOccurs="0" ref="s8"/>
+        <xs:element minOccurs="0" ref="interpret_g_z"/>
+      </xs:sequence>
+      <xs:attribute name="formrm"/>
+      <xs:attribute name="typ">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="L"/>
+            <xs:enumeration value="I"/>
+            <xs:enumeration value="J"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="atribut" type="xs:NMTOKEN"/>
+      <xs:attribute name="udalost" type="xs:NMTOKEN"/>
+      <xs:attribute name="algoritmus" type="xs:NMTOKEN"/>
+      <xs:attribute name="s_hodn_o" type="s_hodnota"/>
+      <xs:attribute name="t_hodn_o" type="t_hodnota"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- hodnoty skaly -->
+  <xs:element name="s1" type="xs:string"/>
+  <xs:element name="s2" type="xs:string"/>
+  <xs:element name="s3" type="xs:string"/>
+  <xs:element name="s4" type="xs:string"/>
+  <xs:element name="s5" type="xs:string"/>
+  <xs:element name="s6" type="xs:string"/>
+  <xs:element name="s7" type="xs:string"/>
+  <xs:element name="s8" type="xs:string"/>
+  <!-- hodnoceni vysledku -->
+  <xs:element name="hodnoceni">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="autor"/>
+      </xs:sequence>
+      <xs:attribute name="hodn_vysl" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="negativni"/>
+            <xs:enumeration value="hranicni"/>
+            <xs:enumeration value="reaktivni"/>
+            <xs:enumeration value="slabe_poz"/>
+            <xs:enumeration value="pozitivni"/>
+            <xs:enumeration value="silne_poz"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- Nazvy pro nalezovou sestavu -->
+  <xs:element name="nazvy">
+    <xs:complexType>
+      <xs:attribute name="typ_cispol">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="L"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nadpis_nal"/>
+      <xs:attribute name="nadpis_nal_dop"/>
+      <xs:attribute name="system"/>
+      <xs:attribute name="material"/>
+      <xs:attribute name="komponenta"/>
+      <xs:attribute name="druh_veliciny"/>
+      <xs:attribute name="jednotka"/>
+      <xs:attribute name="procedura"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- prepocet pro hodnotu sdelovanou v lokalni jednotce -->
+  <xs:element name="prepocet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="skala_lok"/>
+      </xs:sequence>
+      <xs:attribute name="hodnota_lok" use="required"/>
+      <xs:attribute name="jednotka_lclp" use="required"/>
+      <xs:attribute name="prepfak" use="required"/>
+      <xs:attribute name="typpol_fh_lclp" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- skala lokalniho vysledku -->
+  <xs:element name="skala_lok">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="s1"/>
+        <xs:element minOccurs="0" ref="s2"/>
+        <xs:element minOccurs="0" ref="s3"/>
+        <xs:element ref="s4"/>
+        <xs:element ref="s5"/>
+        <xs:element minOccurs="0" ref="s6"/>
+        <xs:element minOccurs="0" ref="s7"/>
+        <xs:element minOccurs="0" ref="s8"/>
+        <xs:element minOccurs="0" ref="interpret_g_z"/>
+      </xs:sequence>
+      <xs:attribute name="formrm"/>
+      <xs:attribute name="typ">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="L"/>
+            <xs:enumeration value="I"/>
+            <xs:enumeration value="J"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="atribut" type="xs:NMTOKEN"/>
+      <xs:attribute name="udalost" type="xs:NMTOKEN"/>
+      <xs:attribute name="algoritmus" type="xs:NMTOKEN"/>
+      <xs:attribute name="s_hodn_o" type="s_hodnota"/>
+      <xs:attribute name="t_hodn_o" type="t_hodnota"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- vykazane vykony a podklady pro MIS - pripravuje se -->
+  <xs:element name="ivv">
+    <xs:complexType/>
+  </xs:element>
+  <!-- labolatorni bloky typu - prirucka, profily a pod -->
+  <xs:element name="ilb">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="lp"/>
+        <xs:element minOccurs="0" ref="lph"/>
+        <xs:element minOccurs="0" ref="ehk"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- labolatorni prirucka XML -->
+  <xs:element name="lp">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="lp_zp"/>
+      </xs:sequence>
+      <xs:attribute name="typ_s_lp" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="B"/>
+            <xs:enumeration value="V"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="duvod"/>
+      <xs:attributeGroup ref="vytvoreni_bloku"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- labolatorni prirucka HTML -->
+  <xs:element name="lph">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="lphsb"/>
+      </xs:sequence>
+      <xs:attribute name="typ_s_lph" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="O"/>
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="B"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="duvod"/>
+      <xs:attribute name="verze_lp" use="required"/>
+      <xs:attribute name="start_heslo" use="required"/>
+      <xs:attributeGroup ref="vytvoreni_bloku"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- soubor z hypertextu labolatorni prirucka HTML -->
+  <xs:element name="lphsb">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="priloha"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="int_pril"/>
+      </xs:sequence>
+      <xs:attribute name="oznaceni" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- externi hodnoceni kvality -->
+  <xs:element name="ehk">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="priloha"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="int_pril"/>
+      </xs:sequence>
+      <xs:attribute name="typ_s_ehk" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="I"/>
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="P"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="spec_syst" use="required"/>
+      <xs:attribute name="kod_k_c" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- data pro hygienu a epidemiologii -->
+  <xs:element name="ihe">
+    <xs:complexType/>
+  </xs:element>
+  <!-- laboratorni prirucka XML - zaznam k polozce -->
+  <xs:element name="lp_zp">
+    <xs:complexType>
+      <xs:attribute name="klic_nclp" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="nclpnazlpk" use="required"/>
+      <xs:attribute name="lclpnazevlp1"/>
+      <xs:attribute name="lclpnazevlp2"/>
+      <xs:attribute name="nclpsyst32"/>
+      <xs:attribute name="nclpkomp32"/>
+      <xs:attribute name="nclpdrvl32"/>
+      <xs:attribute name="nclpjedn"/>
+      <xs:attribute name="lclpjednl"/>
+      <xs:attribute name="lclpprepfak"/>
+      <xs:attribute name="nclpproc32"/>
+      <xs:attribute name="lclpmat32l"/>
+      <xs:attribute name="lclpodb_do32l"/>
+      <xs:attribute name="lclpodb_mnj"/>
+      <xs:attribute name="lclpanal_mnj"/>
+      <xs:attribute name="lclpodbpozn"/>
+      <xs:attribute name="lclpklin_info"/>
+      <xs:attribute name="lclptransport"/>
+      <xs:attribute name="lclpintozjt"/>
+      <xs:attribute name="lclppaupozn"/>
+      <xs:attribute name="lclpstbpozn"/>
+      <xs:attribute name="lclpdosr"/>
+      <xs:attribute name="lclpdoss"/>
+      <xs:attribute name="lclpdosodezpozn"/>
+      <xs:attribute name="lclpodezr"/>
+      <xs:attribute name="lclpodezs"/>
+      <xs:attribute name="lclptextlp"/>
+      <xs:attribute name="lclpmez_stand"/>
+      <xs:attribute name="lclpmez_stanh"/>
+      <xs:attribute name="lclppokpac1"/>
+      <xs:attribute name="lclppokpac2"/>
+      <xs:attribute name="lclppokpac3"/>
+      <xs:attribute name="lclppokodd1"/>
+      <xs:attribute name="lclppokodd2"/>
+      <xs:attribute name="lclppokodd3"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- labolatorni ciselniky -->
+  <xs:element name="ilc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="lc"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="lc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="priloha"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="int_pril"/>
+      </xs:sequence>
+      <xs:attribute name="typ_s_lc" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="B"/>
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="O"/>
+            <xs:enumeration value="A"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="vyznam" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="verze_puv" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="verze_akt" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="ciselnik" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- texty a textove hodnoty -->
+  <xs:element name="text">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="autor"/>
+        <xs:element ref="ptext"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="ktext"/>
+          <xs:element ref="priloha"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="text_obj">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="autor"/>
+        <xs:element ref="ptext"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="ktext"/>
+          <xs:element ref="priloha"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- kodovany text -->
+  <xs:element name="ktext">
+    <xs:complexType mixed="true">
+      <xs:attribute name="encode" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="Base64"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="typ"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- prosty text -->
+  <xs:element name="ptext">
+    <xs:complexType mixed="true">
+      <xs:attribute ref="xml:space" default="preserve"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- autor - kdo autorizoval -->
+  <xs:element name="autor">
+    <xs:complexType mixed="true">
+      <xs:attribute name="id_autor"/>
+      <xs:attribute name="odbornost"/>
+      <xs:attribute name="id_clk"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="pracoviste_autora">
+    <xs:complexType>
+      <xs:attribute name="ico" type="xs:NMTOKEN"/>
+      <xs:attribute name="icz" type="xs:NMTOKEN"/>
+      <xs:attribute name="icp" type="xs:NMTOKEN"/>
+      <xs:attribute name="odb" type="xs:NMTOKEN"/>
+      <xs:attribute name="nazev"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="odeslal">
+    <xs:complexType mixed="true">
+      <xs:attribute name="funkce"/>
+      <xs:attribute name="id_clk"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- garant posilanych dat -->
+  <xs:element name="garant_dat">
+    <xs:complexType mixed="true">
+      <xs:attribute name="id_garant" use="required"/>
+      <xs:attribute name="odbornost"/>
+      <xs:attribute name="id_clk"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- ostatni elementy obsahujici primo data - abecedni poradi -->
+  <xs:element name="adr" type="xs:string"/>
+  <xs:element name="cispoj" type="xs:string"/>
+  <xs:element name="dop1" type="xs:string"/>
+  <xs:element name="dop2" type="xs:string"/>
+  <xs:element name="dourceni" type="xs:string"/>
+  <xs:element name="euro_ide" type="xs:string"/>
+  <xs:element name="fakt_cast" type="xs:string"/>
+  <xs:element name="hraz_cast" type="xs:string"/>
+  <xs:element name="hodnota_kod" type="xs:string"/>
+  <xs:element name="hodnota_text" type="xs:string"/>
+  <xs:element name="hodnota_nt" type="xs:string"/>
+  <xs:element name="icl" type="xs:string"/>
+  <xs:element name="interpret_g_z" type="xs:string"/>
+  <xs:element name="jine_idu" type="xs:string"/>
+  <xs:element name="jmeno" type="xs:string"/>
+  <xs:element name="kodpoj" type="xs:string"/>
+  <xs:element name="ks_rh" type="xs:string"/>
+  <xs:element name="krevskup" type="xs:string"/>
+  <xs:element name="rh" type="xs:string"/>
+  <xs:element name="magistraliter" type="xs:string"/>
+  <xs:element name="mesto" type="xs:string"/>
+  <xs:element name="nazev" type="xs:string"/>
+  <xs:element name="nazev_lclp" type="xs:string"/>
+  <xs:element name="obsah" type="xs:string"/>
+  <xs:complexType name="obsah2">
+    <xs:sequence>
+      <xs:element ref="obsah2"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="obsah2" type="xs:string"/>
+  <xs:element name="pozn" type="xs:string"/>
+  <xs:element name="pp" type="xs:string"/>
+  <xs:element name="prijmeni" type="xs:string"/>
+  <xs:element name="psc" type="xs:string"/>
+  <xs:element name="rod_prijm" type="xs:string"/>
+  <xs:element name="rodcis" type="xs:string"/>
+  <xs:element name="rodstav" type="xs:string"/>
+  <xs:element name="rozpis_v" type="xs:string"/>
+  <xs:element name="sex" type="xs:string"/>
+  <xs:element name="sdeleni" type="xs:string"/>
+  <xs:element name="spec_dg" type="xs:string"/>
+  <xs:element name="stat" type="xs:string"/>
+  <xs:element name="stat_poj" type="xs:string"/>
+  <xs:element name="statpris" type="xs:string"/>
+  <xs:element name="titul_pred" type="xs:string"/>
+  <xs:element name="titul_za" type="xs:string"/>
+  <xs:element name="typpoj" type="xs:string"/>
+  <xs:element name="u_al" type="xs:string"/>
+  <xs:element name="u_rf" type="xs:string"/>
+  <xs:element name="u_tm" type="xs:string"/>
+  <xs:element name="vnitrni" type="xs:string"/>
+  <xs:element name="vydal" type="xs:string"/>
+  <xs:element name="vys_or" type="xs:string"/>
+  <xs:element name="vztah" type="xs:string"/>
+  <xs:element name="astat" type="xs:string"/>
+  <xs:element name="porus_rzm_pozn" type="xs:string"/>
+  <!-- NZIS Narodni Zdravotnicky Informacni System - od V 3.00.00 -->
+  <xs:element name="idu" type="nr"/>
+  <!-- NZIS narodni registry -->
+  <xs:complexType name="nr">
+    <xs:sequence>
+      <xs:element ref="nr"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="nr">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="nrh"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- narodni registr - hospitalizace -->
+  <xs:element name="nrh">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="nrhh"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- narodni registr - hospitalizace - hlavicka -->
+  <xs:element name="nrhh">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="nrhi"/>
+      </xs:sequence>
+      <xs:attribute name="hobd" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="hico" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="hpcz" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="hodd" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="hpoch" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="hpocv" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- narodni registr - hospitalizace - identifikace -->
+  <xs:element name="nrhi">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="nrhv"/>
+      </xs:sequence>
+      <xs:attribute name="hidcis" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="hcispac" type="xs:NMTOKEN"/>
+      <xs:attribute name="hobec" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="horp" type="xs:NMTOKEN"/>
+      <xs:attribute name="hstaobc" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="hrostav" use="required" type="nzcis_rostav"/>
+      <xs:attribute name="hkzam" use="required" type="nzcis_kzam"/>
+      <xs:attribute name="hdophosp" use="required" type="nzcis_dophosp"/>
+      <xs:attribute name="hdapri" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="hduprij" use="required" type="nzcis_duprij"/>
+      <xs:attribute name="hprij" use="required" type="nzcis_prij"/>
+      <xs:attribute name="hdapr" type="xs:NMTOKEN"/>
+      <xs:attribute name="hdgz" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="hhosprv" use="required" type="nzcis_hosprv"/>
+      <xs:attribute name="hdg1" type="xs:NMTOKEN"/>
+      <xs:attribute name="hdg2" type="xs:NMTOKEN"/>
+      <xs:attribute name="hdg3" type="xs:NMTOKEN"/>
+      <xs:attribute name="hdg4" type="xs:NMTOKEN"/>
+      <xs:attribute name="hdg5" type="xs:NMTOKEN"/>
+      <xs:attribute name="hdaop" type="xs:NMTOKEN"/>
+      <xs:attribute name="hdgo" type="xs:NMTOKEN"/>
+      <xs:attribute name="hnemnak" type="nzcis_nemnak"/>
+      <xs:attribute name="hdroper" type="nzcis_droper"/>
+      <xs:attribute name="hreoper" type="nzcis_reoper"/>
+      <xs:attribute name="hpoopko1" type="nzcis_poopko"/>
+      <xs:attribute name="hpoopko2" type="nzcis_poopko"/>
+      <xs:attribute name="hpoopko3" type="nzcis_poopko"/>
+      <xs:attribute name="hpoopko4" type="nzcis_poopko"/>
+      <xs:attribute name="hdnyjip" type="xs:NMTOKEN"/>
+      <xs:attribute name="hdrg" type="xs:NMTOKEN"/>
+      <xs:attribute name="hdapp" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="hdg1c" type="xs:NMTOKEN"/>
+      <xs:attribute name="hdg1a" type="xs:NMTOKEN"/>
+      <xs:attribute name="hukhosp" use="required" type="nzcis_ukhosp"/>
+      <xs:attribute name="hpodape" use="required" type="nzcis_podape"/>
+      <xs:attribute name="hdnykat1" type="xs:NMTOKEN"/>
+      <xs:attribute name="hdnykat2" type="xs:NMTOKEN"/>
+      <xs:attribute name="hdnykat3" type="xs:NMTOKEN"/>
+      <xs:attribute name="hdnykat4" type="xs:NMTOKEN"/>
+      <xs:attribute name="hdnykat5" type="xs:NMTOKEN"/>
+      <xs:attribute name="hdnykat0" type="xs:NMTOKEN"/>
+      <xs:attribute name="huhrady" type="xs:NMTOKEN"/>
+      <xs:attribute name="hkrok" type="xs:NMTOKEN"/>
+      <xs:attribute name="hzdrpoj" type="xs:NMTOKEN"/>
+      <xs:attribute name="hdgzzz" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- narodni registr - hospitalizace - blok vykonu -->
+  <xs:element name="nrhv">
+    <xs:complexType>
+      <xs:attribute name="hdavyk" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="hvyk" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="hpocvyk" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- HPN - odesilatel - spojeni -->
+  <xs:element name="os">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="obsah2">
+          <xs:attribute name="typ" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:token">
+                <xs:enumeration value="C"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <!-- HPN - potvrzeni doruceni souboru -->
+  <xs:element name="pdhpn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="chyba_pd"/>
+      </xs:sequence>
+      <xs:attribute name="stav" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- HPN - hlaseni pracovni neschopnosti -->
+  <xs:element name="hpn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="chpn"/>
+        <xs:element ref="idl"/>
+        <xs:element minOccurs="0" ref="ahpn"/>
+        <xs:element minOccurs="0" ref="izam"/>
+        <xs:element minOccurs="0" ref="vchz"/>
+        <xs:element minOccurs="0" ref="hsp"/>
+        <xs:element minOccurs="0" ref="zpshl"/>
+        <xs:element minOccurs="0" ref="astat"/>
+        <xs:element minOccurs="0" ref="dath_diag_zm"/>
+        <xs:element minOccurs="0" ref="urssz"/>
+        <xs:element minOccurs="0" ref="pece_zm"/>
+        <xs:element minOccurs="0" ref="porus_rzm_pozn"/>
+        <xs:element minOccurs="0" ref="dath_od"/>
+        <xs:element minOccurs="0" ref="dath_du"/>
+        <xs:element minOccurs="0" ref="dath_ru"/>
+        <xs:element minOccurs="0" ref="dath_do"/>
+      </xs:sequence>
+      <xs:attribute name="cfrm" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="tfrm" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+            <xs:enumeration value="H"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="ind_oprav_sd">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="E"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="diag_poc" type="xs:NMTOKEN"/>
+      <xs:attribute name="uraz_kod">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="J"/>
+            <xs:enumeration value="O"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="alkoml">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="diag_kon" type="xs:NMTOKEN"/>
+      <xs:attribute name="diag_zm" type="xs:NMTOKEN"/>
+      <xs:attribute name="ind_diag_zm">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="uk_duvod" type="xs:NMTOKEN"/>
+      <xs:attribute name="ind_porus_rzm">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- HPN - informace o zamestnani -->
+  <xs:element name="izam">
+    <xs:complexType>
+      <xs:attribute name="zam_text"/>
+      <xs:attribute name="klas_zam" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- HPN - cislo hlaseni docasne pracovni neschopnosti -->
+  <xs:element name="chpn">
+    <xs:complexType>
+      <xs:attribute name="cpn" type="xs:NMTOKEN"/>
+      <xs:attribute name="ecnicpe" type="xs:NMTOKEN"/>
+      <xs:attribute name="ecnpc" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- HPN - adresa pobytu v dobe neschopnosti -->
+  <xs:element name="ahpn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="a"/>
+        <xs:element minOccurs="0" ref="astat"/>
+        <xs:element minOccurs="0" ref="dath_od"/>
+        <xs:element minOccurs="0" ref="dath_do"/>
+      </xs:sequence>
+      <xs:attribute name="acp"/>
+      <xs:attribute name="aco"/>
+      <xs:attribute name="az">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- HPN - identifikace lekare -->
+  <xs:element name="idl">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="idlp"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- HPN - polozka identifikace lekare -->
+  <xs:element name="idlp">
+    <xs:complexType>
+      <xs:attribute name="typ" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="CSSZ_ICPE"/>
+            <xs:enumeration value="ICZ"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="vyst"/>
+      <xs:attribute name="hod" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- HPN - vychazky -->
+  <xs:element name="vchz">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="dath_od"/>
+      </xs:sequence>
+      <xs:attribute name="vch1_od"/>
+      <xs:attribute name="vch1_do"/>
+      <xs:attribute name="vch2_od"/>
+      <xs:attribute name="vch2_do"/>
+      <xs:attribute name="ind_vch_pvl">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="ind_vch_zrs">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- HPN - hospitalizace -->
+  <xs:element name="hsp">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="dath_od"/>
+        <xs:element minOccurs="0" ref="dath_do"/>
+      </xs:sequence>
+      <xs:attribute name="ind_hsp_zm">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- HPN - zpetny souhlas -->
+  <xs:element name="zpshl">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="dath_vy">
+          <xs:attribute name="ssz_kod" use="required" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <!-- HPN - ukonceni rozhodnuti SSZ -->
+  <xs:element name="urssz">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="dath_uk">
+          <xs:attribute name="ssz_kod" use="required" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <!-- HPN - zmena pece -->
+  <xs:element name="pece_zm">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="dath_zm"/>
+        <xs:element minOccurs="0" ref="idl"/>
+      </xs:sequence>
+      <xs:attribute name="ind_p_pzt" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="ind_p_pdn" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

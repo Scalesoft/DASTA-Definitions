@@ -1,0 +1,1604 @@
+<!-- DTD pro predavani zdravotnickych dat v XML -->
+<!-- ds031001.dtd 08.12.2006 [PH]   NZIS-2004,5,6,LAB --> 
+
+<!ENTITY % aktualizace_bloku
+       "dat_ab CDATA  #IMPLIED" >
+<!ENTITY % vytvoreni_bloku
+       "dat_vb CDATA  #REQUIRED" >
+<!ENTITY % vytvoreni_bl_imp
+       "dat_vb CDATA  #IMPLIED" >
+<!ENTITY % s_hodnota
+"(-4|-3|-2|-1|0|1|2|3|4)" >
+<!ENTITY % t_hodnota
+"(-3|-2|-1|0|1|2|3)" >
+
+<!ENTITY % opravne_sdeleni
+        "ind_oprav_sd  (N|E|S|U|Z)  #REQUIRED" >
+
+<!ENTITY % sr_ident_1
+"       sr_typ   NMTOKEN #IMPLIED
+        sr_pois  NMTOKEN #IMPLIED
+        sr_kod   NMTOKEN #IMPLIED
+        sr_lekar NMTOKEN #IMPLIED" >
+
+<!ENTITY % sr_ident_2
+"       sr_cito     NMTOKEN       #IMPLIED
+        sr_kod_lek  NMTOKEN       #IMPLIED
+        sr_mnozstvi NMTOKEN       #IMPLIED
+        sr_cena     NMTOKEN       #IMPLIED" >
+
+<!ENTITY % sr_ident_3
+"       sr_nahrady   NMTOKEN       #IMPLIED" >
+
+<!-- ciselniky NZIS in alphabetical order -->
+
+<!-- ciselnik NZIS ATBDRUH - seznam hodnot  -->
+<!ENTITY % nzcis_atbdruh
+      " (01|02|03|04|05|06|07|08|09|10|11) " >
+
+<!-- ciselnik NZIS ANAMNEZA -->
+<!ENTITY % nzcis_anamneza
+      " (1|2|9) " >
+
+<!-- ciselnik NZIS ANONE - seznam hodnot  -->
+<!ENTITY % nzcis_anone
+      " (1|2) " >
+
+<!-- ciselnik NZIS ANTIKO - seznam hodnot  -->
+<!ENTITY % nzcis_antiko
+      " (1|2|3|4) " >
+
+<!-- ciselnik NZIS ASREPR - seznam hodnot  -->
+<!ENTITY % nzcis_asrepr
+      " (0|1|2) " >
+
+<!-- ciselnik NZIS CETTEH - seznam hodnot  -->
+<!ENTITY % nzcis_cetteh
+      " (0|1|2|3|4|5|6|7) " >
+
+<!-- ciselnik NZIS DISSKU - seznam hodnot  -->
+<!ENTITY % nzcis_dissku
+      " (1|2|3|4) " >
+
+<!-- ciselnik NZIS DOPHOSP - seznam hodnot  -->
+<!ENTITY % nzcis_dophosp
+      " (0|1|2|3|4|5|6|7|8|9) " >
+
+<!-- ciselnik NZIS DROPER - seznam hodnot  -->
+<!ENTITY % nzcis_droper
+      " (0|1|2) " >
+
+<!-- ciselnik NZIS DRUHLA - seznam hodnot  -->
+<!ENTITY % nzcis_druhla
+      " (1|2) " >
+
+<!-- ciselnik NZIS DRUPOT- seznam hodnot  -->
+<!ENTITY % nzcis_drupot
+      " (1|2|3|4|5) " >
+
+<!-- ciselnik NZIS DRVLA - seznam hodnot  -->
+<!ENTITY % nzcis_drvla
+      " (1|2) " >
+
+<!-- ciselnik NZIS DUPRIJ - seznam hodnot  -->
+<!ENTITY % nzcis_duprij
+      " (1|2|3|4|5|7) " >
+
+<!-- ciselnik NZIS DUVNEPR - seznam hodnot  -->
+<!ENTITY % nzcis_duvnepr
+      " (0|1|2|3|4) " >
+
+<!-- ciselnik NZIS DUVUK - seznam hodnot  -->
+<!ENTITY % nzcis_duvuk
+      " (1|2|3|4|5) " >
+
+<!-- ciselnik NZIS DUVVYS - seznam hodnot  -->
+<!ENTITY % nzcis_duvvys
+      " (1|2|3|4|5) " >
+
+<!-- ciselnik NZIS EAKTIV - seznam hodnot  -->
+<!ENTITY % nzcis_eaktiv
+      " (01|02|03|04|05|06|07|08|09|10|11|12) " >
+
+<!-- ciselnik NZIS ETNIKA - seznam hodnot  -->
+<!ENTITY % nzcis_etnika
+      " (1|2|3) " >
+
+<!-- ciselnik NZIS EVIPRO - seznam hodnot  -->
+<!ENTITY % nzcis_evipro
+      " (1|2) " >
+
+<!-- ciselnik NZIS GRAVID - seznam hodnot  -->
+<!ENTITY % nzcis_gravid
+      " (1|2) " >
+
+<!-- ciselnik NZIS HIST - seznam hodnot  -->
+<!ENTITY % nzcis_hist
+      " (1|2|3) " >
+
+<!-- ciselnik NZIS HISVYS - seznam hodnot  -->
+<!ENTITY % nzcis_hisvys
+      " (1|2|3) " >
+
+<!-- ciselnik NZIS HIV - seznam hodnot  -->
+<!ENTITY % nzcis_hiv
+      " (1|2|3) " >
+
+<!-- ciselnik NZIS HOSPRV - seznam hodnot  -->
+<!ENTITY % nzcis_hosprv
+      " (0|1|2) " >
+
+<!-- ciselnik NZIS KOURENI -->
+<!ENTITY % nzcis_koureni
+      " (1|2|3|9) " >
+
+<!-- ciselnik NZIS KOMBIN - seznam hodnot  -->
+<!ENTITY % nzcis_kombin
+      " (1|2) " >
+
+<!-- ciselnik NZIS KZAM - seznam hodnot  -->
+<!ENTITY % nzcis_kzam
+      " (0|1|2|3|4|5|6|7|8|9) " >
+
+<!-- ciselnik NZIS LATERAL (lateralita) -->
+<!ENTITY % nzcis_lateral
+      " (1|2|3|4|9) " >
+
+<!-- ciselnik NZIS LEC - seznam hodnot  -->
+<!ENTITY % nzcis_lec
+      " (1|2|3) " >
+
+<!-- ciselnik NZIS METODA - seznam hodnot  -->
+<!ENTITY % nzcis_metoda
+      " (1|2|3|4|5|6) " >
+
+<!-- ciselnik NZIS MYKMAT - seznam hodnot  -->
+<!ENTITY % nzcis_mykmat
+      " (01|02|03|04|05|06|07|08|09|10) " >
+
+      <!-- ciselnik NZIS NARODN - seznam hodnot  -->
+<!ENTITY % nzcis_narodn
+      " (0|1|2|3|4|5|6|7|8|9) " >
+      
+<!-- ciselnik NZIS NEMNAK - seznam hodnot  -->
+<!ENTITY % nzcis_nemnak
+      " (0|1|2|3|4|5) " >
+
+<!-- ciselnik NZIS NELPRO (nelecen pro)-->
+<!ENTITY % nzcis_nelpro
+      " (1|2|3|4|5|6|9) " >
+
+<!-- ciselnik NZIS OCKTBC - seznam hodnot  -->
+<!ENTITY % nzcis_ocktbc
+      " (1|2|3) " >
+
+<!-- ciselnik NZIS ODSTRNAD -->
+<!ENTITY % nzcis_odstrnad
+      " (0|1|2|3|9) " >
+
+<!-- ciselnik NZIS ONEMOC -->
+<!ENTITY % nzcis_onemoc
+      " (1|2|9) " >
+
+<!-- ciselnik NZIS PITVA pro NOR -->
+<!ENTITY % nzcis_pitva_nor
+      " (1|2) " >
+
+<!-- ciselnik NZIS PODAPE - seznam hodnot  -->
+<!ENTITY % nzcis_podape
+      " (0|1|2|3|4|5|6) " >
+
+<!-- ciselnik NZIS POHLAV - seznam hodnot  -->
+<!ENTITY % nzcis_pohlav
+      " (1|2|3) " >
+
+        <!-- ciselnik NZIS POLOHA - seznam hodnot  -->
+<!ENTITY % nzcis_poloha
+      " (1|2|3) " >
+
+<!-- ciselnik NZIS POOPKO - seznam hodnot  -->
+<!ENTITY % nzcis_poopko
+      " (0|1|2|3|4|5|6|7|8|9) " >
+
+<!-- ciselnik NZIS POUPT - seznam hodnot  -->
+<!ENTITY % nzcis_poupt
+      " (1|2) " >
+
+<!-- ciselnik NZIS PRENDIAG - seznam hodnot  -->
+<!ENTITY % nzcis_prendiag
+      " (0|1|2|3) " >
+
+<!-- ciselnik NZIS PRIJ - seznam hodnot  -->
+<!ENTITY % nzcis_prij
+      " (1|2|3) " >
+
+<!-- ciselnik NZIS POROD - seznam hodnot  -->
+<!ENTITY % nzcis_porod
+      " (1|2|3|4|5) " >
+
+<!-- ciselnik NZIS ZPUSOB - seznam hodnot  -->
+<!ENTITY % nzcis_zpusob
+      " (1|2) " >
+
+<!-- ciselnik NZIS RANES - seznam hodnot  -->
+<!ENTITY % nzcis_ranes
+      " (1|2|3) " >
+
+<!-- ciselnik NZIS RDSTAV - seznam hodnot  -->
+<!ENTITY % nzcis_rdstav
+      " (0|1|2|3|4) " >
+
+<!-- ciselnik NZIS REOPER - seznam hodnot  -->
+<!ENTITY % nzcis_reoper
+      " (0|1|2|3) " >
+<!-- ciselnik NZIS REZORTM - seznam hodnot  -->
+<!ENTITY % nzcis_rezortm
+      " (0|1|2|3|4|5) " >
+
+<!-- ciselnik NZIS RDUVUK - seznam hodnot  -->
+<!ENTITY % nzcis_rduvuk
+      " (1|2|3|4) " >
+
+<!-- ciselnik NZIS ZRIZ - seznam hodnot  -->
+<!ENTITY % nzcis_zriz
+      " (1|2|3|4|5|7|8|9) " >
+
+<!-- ciselnik NZIS RODHAD - seznam hodnot  -->
+<!ENTITY % nzcis_rodhad
+      " (1|2) " >
+
+<!-- ciselnik NZIS ROSTAV - seznam hodnot  -->
+<!ENTITY % nzcis_rostav
+      " (0|1|2|3|4|5) " >
+
+<!-- ciselnik NZIS RPLOD - seznam hodnot  -->
+<!ENTITY % nzcis_rplod
+      " (1|2|3) " >
+
+<!-- ciselnik NZIS RSC - seznam hodnot  -->
+<!ENTITY % nzcis_rsc
+      " (1|2|3|4) " >
+
+<!-- ciselnik NZIS RTG - seznam hodnot  -->
+<!ENTITY % nzcis_rtg
+      " (1|2|3) " >
+
+<!-- ciselnik NZIS RTGNAL - seznam hodnot  -->
+<!ENTITY % nzcis_rtgnal
+      " (1|2) " >
+
+<!-- ciselnik NZIS RVAGIN - seznam hodnot  -->
+<!ENTITY % nzcis_rvagin
+      " (1|2|3|4|5|6|7) " >
+
+<!-- ciselnik NZIS RVEDL - seznam hodnot  -->
+<!ENTITY % nzcis_rvedl
+      " (1|2|3|4|5|6) " >
+
+<!-- ciselnik NZIS RZHOD - seznam hodnot  -->
+<!ENTITY % nzcis_rzhod
+      " (1|2|3) " >
+
+<!-- ciselnik NZIS SEXZAM - seznam hodnot  -->
+<!ENTITY % nzcis_sexzam
+      " (1|2|3|4|5) " >
+
+<!-- ciselnik NZIS SOCPOST -->
+<!ENTITY % nzcis_socpost
+      " (1|2|3|4|5|9) " >
+
+<!-- ciselnik NZIS OBCAN - seznam hodnot  -->
+<!ENTITY % nzcis_obcan
+      " (1|2|3) " >
+
+<!-- ciselnik NZIS STAV -->
+<!ENTITY % nzcis_stav
+      " (1|2|9) " >
+
+<!-- ciselnik NZIS UKHOSP - seznam hodnot  -->
+<!ENTITY % nzcis_ukhosp
+      " (0|1|2|3|4|5|6|7|8) " >
+
+<!-- ciselnik NZIS UMRTI - seznam hodnot  -->
+<!ENTITY % nzcis_umrti
+      " (1|2|3|4|5) " >
+
+<!-- ciselnik NZIS VITALITA - seznam hodnot  -->
+<!ENTITY % nzcis_vitalita
+      " (1|2) " >
+
+<!-- ciselnik NZIS VVVROD - seznam hodnot  -->
+<!ENTITY % nzcis_vvvrod
+      " (1|2|3|4) " >
+
+<!-- ciselnik NZIS VYSETR - seznam hodnot  -->
+<!ENTITY % nzcis_vysetr
+      " (1|2|3|4|5|6|7) " >
+
+<!-- ciselnik NZIS VYSHIV - seznam hodnot  -->
+<!ENTITY % nzcis_vyshiv
+      " (1|2|3) " >
+
+<!-- ciselnik NZIS VYSKYT - seznam hodnot  -->
+<!ENTITY % nzcis_vyskyt
+      " (1|2|3) " >
+
+<!-- ciselnik NZIS VYSLTEH - seznam hodnot  -->
+<!ENTITY % nzcis_vyslteh
+      " (0|1|2|3|4|5) " >
+
+<!-- ciselnik NZIS VYZIV - seznam hodnot  -->
+<!ENTITY % nzcis_vyziv
+      " (1|2|3|4) " >
+
+<!-- ciselnik NZIS VZDELA - seznam hodnot  -->
+<!ENTITY % nzcis_vzdela
+      " (1|2|3|4|5|6|7|8|9) " >
+
+<!-- ciselnik NZIS RVZDELA - seznam hodnot  -->
+<!ENTITY % nzcis_rvzdela
+      " (1|2|3|4) " >
+
+<!-- ciselnik NZIS ZAHL - seznam hodnot  -->
+<!ENTITY % nzcis_zahl
+      " (1|2|3|4) " >
+
+<!-- ciselnik NZIS ZDROJ - seznam hodnot  -->
+<!ENTITY % nzcis_zdroj
+      " (1|2) " >
+
+<!-- ciselnik NZIS ZDUPT - seznam hodnot  -->
+<!ENTITY % nzcis_zdupt
+      " (1|2) " >
+
+<!-- ciselnik NZIS ZJIPRI -->
+<!ENTITY % nzcis_zjipri
+      " (1|2|3|4|5|9) " >
+
+<!-- ciselnik NZIS ZJISTENO - seznam hodnot  -->
+<!ENTITY % nzcis_zjisteno
+      " (1|2|3|4|5|6) " >
+
+<!-- ciselnik NZIS ZJITBC - seznam hodnot  -->
+<!ENTITY % nzcis_zjitbc
+      " (1|2|3|4|5) " >
+
+
+
+<!-- hlavni/korenovy element -->
+<!-- je dodrzena strategie jeden prijemce, vice odesilatelu, vice pacientu -->
+<!ELEMENT dasta (zdroj_is,pm,garant_dat?,(is+|pd),prot_kom?)>
+<!ATTLIST dasta
+        id_soubor   CDATA        #REQUIRED
+        verze_ds    NMTOKEN      #REQUIRED
+        verze_nclp  NMTOKEN      #REQUIRED
+        bin_priloha (T|B)        #REQUIRED
+        ur          (R|S|U|V|B|C|H|T|N)  #REQUIRED
+        typ_odesm   NMTOKEN      #REQUIRED
+        ozn_soub    CDATA        #IMPLIED
+        potvrzeni   (N|P)        #IMPLIED
+        %vytvoreni_bloku;
+        >
+
+<!-- informace o firme a IS kterym byl soubor vytvoren -->
+<!ELEMENT zdroj_is EMPTY>
+<!ATTLIST zdroj_is
+        kod_firmy   NMTOKEN      #REQUIRED
+        kod_prog    NMTOKEN      #REQUIRED
+        verze_prog  NMTOKEN      #IMPLIED
+        liccis_prog CDATA        #IMPLIED
+        >
+<!-- protokol o komunikaci - blok se pripravuje a neni doreseno 
+     jeho pouzivani ani obsah --> 
+<!ELEMENT prot_kom  EMPTY>
+<!ATTLIST prot_kom
+        pd_n        (A|E|N)      #IMPLIED  
+>
+<!-- prijmove misto -->
+<!ELEMENT pm (as, a?)>
+<!ATTLIST pm
+        ico      NMTOKEN #IMPLIED
+        icz      NMTOKEN #IMPLIED
+        icp      NMTOKEN #IMPLIED
+        icl      NMTOKEN #IMPLIED
+        pcz      NMTOKEN #IMPLIED
+        oddel    NMTOKEN #IMPLIED
+        %sr_ident_1;
+>
+
+<!-- odesilatel -->
+<!ELEMENT is (as, os*, a?, (ip+ | idu+ | ivv+ | ilb+ | ilc+ | ihe+ |text+))>
+<!ATTLIST is
+        ico      NMTOKEN #IMPLIED
+        icz      NMTOKEN #IMPLIED
+        icp      NMTOKEN #IMPLIED
+        icl      NMTOKEN #IMPLIED
+        pcz      NMTOKEN #IMPLIED
+        oddel    NMTOKEN #IMPLIED
+        oavl     NMTOKEN #IMPLIED
+        %sr_ident_1;
+>
+
+<!-- potvrzeni doruceni souboru -->
+<!ELEMENT pd (chyba_pd*,as,dat_os?,dat_ps )>
+<!ATTLIST pd 
+        id_soubor CDATA     #REQUIRED
+        stav      (A|N|O)   #REQUIRED
+>
+
+<!-- chybove hlaseni - popis chyby v prijatem souboru -->
+<!ELEMENT chyba_pd (#PCDATA)>
+<!ATTLIST chyba_pd
+        kod        NMTOKEN     #REQUIRED
+        lokalizace CDATA       #IMPLIED
+        osetreni   CDATA       #IMPLIED 
+        popis      CDATA       #IMPLIED
+>
+
+
+<!-- adresa -->
+<!ELEMENT a (dat_od?, dat_do?, jmeno, adr?, dop1?, dop2?, psc?, mesto?, stat?, gps?, vztah?, icl?, as*)>
+<!ATTLIST a
+        typ (1|2|3|4|5|6|7|8|9|L|A|S|B|P|O|X) #REQUIRED
+        ind_kont  (K)        #IMPLIED
+        %sr_ident_1;
+>
+
+<!-- adresa spojeni -->
+<!ELEMENT as (obsah?, vnitrni?, sdeleni?)>
+<!ATTLIST as
+        typ (D|T|F|S|X|M|E|I)   #REQUIRED
+        poradi NMTOKEN          #IMPLIED
+>
+
+<!-- gps -->
+<!ELEMENT gps EMPTY>
+<!ATTLIST gps
+        lat	CDATA       #REQUIRED
+        lon	CDATA       #REQUIRED
+>
+
+
+<!-- datum a cas -->
+<!ELEMENT dat_ak (#PCDATA)>
+<!ATTLIST dat_ak format  (DTS)   #IMPLIED >
+<!ELEMENT dat_de (#PCDATA)>
+<!ATTLIST dat_de format (D | DT ) #IMPLIED >
+<!ELEMENT dat_do (#PCDATA)>
+<!ATTLIST dat_do format (D | DT) #IMPLIED >
+<!ELEMENT dat_dn (#PCDATA)>
+<!ATTLIST dat_dn format (D | DT ) #IMPLIED > 
+<!ELEMENT dat_ds (#PCDATA)>
+<!ATTLIST dat_ds format (D | DTS)   #IMPLIED >
+<!ELEMENT dat_dv (#PCDATA)>
+<!ATTLIST dat_dv format (D)  #IMPLIED >
+<!ELEMENT dat_od (#PCDATA)>
+<!ATTLIST dat_od format (D | DT) #IMPLIED >
+<!ELEMENT dat_or (#PCDATA)>
+<!ATTLIST dat_or format (D | DT ) #IMPLIED >
+<!ELEMENT dat_os (#PCDATA)>
+<!ATTLIST dat_os format (DTS)   #IMPLIED >
+<!ELEMENT dat_pl (#PCDATA)>
+<!ATTLIST dat_pl format (DTS)  #IMPLIED >
+<!ELEMENT dat_po (#PCDATA)>
+<!ATTLIST dat_po format (D)  #IMPLIED >
+<!ELEMENT dat_ps (#PCDATA)>
+<!ATTLIST dat_ps format  (DTS)   #IMPLIED >
+<!ELEMENT dat_vv (#PCDATA)>
+<!ATTLIST dat_vv format (DTS)  #IMPLIED >
+<!ELEMENT dat_za (#PCDATA)>
+<!ATTLIST dat_za format (DT)  #IMPLIED >
+<!ELEMENT dat_zt (#PCDATA)>
+<!ATTLIST dat_zt format (DT)  #IMPLIED >
+<!ELEMENT dat_du (#PCDATA)>
+<!ATTLIST dat_du
+                format  (D | DT |DTS| R | MR )   #IMPLIED
+                typ     (A | O | L | I | P)      #REQUIRED
+>
+<!ELEMENT dat_up (#PCDATA)>
+<!ATTLIST dat_up format (D)  #IMPLIED >
+<!ELEMENT dat_poc_hosp (#PCDATA)>
+<!ATTLIST dat_poc_hosp format (D)  #IMPLIED >
+
+<!-- datum a cas vyplneni vykazu -->
+<!ELEMENT dat_vyp (#PCDATA)>
+<!ATTLIST dat_vyp format (DT)  #IMPLIED >
+
+<!ELEMENT dath_od (#PCDATA)>
+<!ATTLIST dath_od format (D)  #IMPLIED >
+<!ELEMENT dath_du (#PCDATA)>
+<!ATTLIST dath_du format (D)  #IMPLIED >
+<!ELEMENT dath_ru (#PCDATA)>
+<!ATTLIST dath_ru format (D)  #IMPLIED >
+<!ELEMENT dath_do (#PCDATA)>
+<!ATTLIST dath_do format (D)  #IMPLIED >
+<!ELEMENT dath_vy (#PCDATA)>
+<!ATTLIST dath_vy format (D)  #IMPLIED >
+<!ELEMENT dath_uk (#PCDATA)>
+<!ATTLIST dath_uk format (D)  #IMPLIED >
+<!ELEMENT dath_zm (#PCDATA)>
+<!ATTLIST dath_zm format (D)  #IMPLIED >
+<!ELEMENT dath_diag_zm (#PCDATA)>
+<!ATTLIST dath_diag_zm format (D)  #IMPLIED >
+
+<!-- formaty datumu a casu 
+format: popis:  struktura:
+D       datum                        YYYY-MM-DD
+DT      datum a cas                  YYYY-MM-DDTHH:MM
+DTS     datum a cas v sekundach      YYYY-MM-DDTHH:MM:SS
+MR      mesic a rok = neuplne datum  YYYY-MM    
+R       rok = neuplne datum          YYYY
+-->
+
+<!-- identifikace pacienta -->
+<!ELEMENT ip ( rodcis?, jmeno?, prijmeni,titul_pred?,titul_za?,dat_dn?,dat_de?,
+  sex?,rod_prijm?,jine_idu?,ipi_o?,ipi_v?,a*,h*,pv?,p*,n?,u?,an*,oc?,dg?,
+  le?,lek?,pn?,au?,fa*,z*,v?,lo*,zon*,loi_p*,xx?)>
+
+<!ATTLIST ip 
+       id_pac    NMTOKEN     #REQUIRED
+       >
+
+<!ELEMENT xx (text)>
+<!ATTLIST xx
+          kod_firmy    NMTOKEN     #REQUIRED
+          spec_firmy   CDATA       #REQUIRED
+>
+         
+<!ELEMENT pv (p | a)?>
+<!ATTLIST pv
+          typ_pv       (Z|P|O)     #REQUIRED
+          %aktualizace_bloku; 
+>  
+
+
+<!-- identifikacni a jine udaje pro komunikaci mezi IS -->
+<!-- odesilany blok -->
+<!ELEMENT ipi_o EMPTY >
+<!ATTLIST ipi_o
+          nem_cis       NMTOKEN     #IMPLIED  
+          kat_pac       NMTOKEN     #IMPLIED
+          cis_chor      NMTOKEN     #IMPLIED
+          cis_is        NMTOKEN     #IMPLIED 
+>
+
+<!-- identifikacni a jine udaje pro komunikaci mezi IS -->     
+<!-- vraceny blok -->
+<!ELEMENT ipi_v EMPTY>
+<!ATTLIST ipi_v
+          nem_cis       NMTOKEN     #IMPLIED
+          kat_pac       NMTOKEN     #IMPLIED
+          cis_chor      NMTOKEN     #IMPLIED
+          cis_is        NMTOKEN     #IMPLIED
+>
+
+<!-- vyska a hmotnost -->
+<!ELEMENT h EMPTY >
+<!ATTLIST h  
+          vyska         NMTOKEN     #IMPLIED
+          hmotnost      CDATA       #IMPLIED 
+          %aktualizace_bloku; >
+                       
+<!-- pojistovna -->
+<!ELEMENT p (cispoj, kodpoj, typpoj?,stat_poj?,euro_ide?, dat_od?, dat_do?,a?)>
+<!ATTLIST p 
+            %opravne_sdeleni;
+            %aktualizace_bloku;  >
+             
+<!-- udaje pro nemocnici a NZIS -->
+<!ELEMENT n EMPTY >
+<!ATTLIST n  
+           zam_text       CDATA          #IMPLIED
+           klas_zam       %nzcis_kzam;   #IMPLIED
+           rod_stav       %nzcis_rostav; #IMPLIED
+           narodnost      %nzcis_narodn; #IMPLIED
+           vzdelani       %nzcis_vzdela; #IMPLIED
+           %aktualizace_bloku;  >
+
+<!-- anamneza sdilena -->
+<!ELEMENT an (garant_dat?,text, dat_ak?)>
+<!ATTLIST an  
+           typ            CDATA          #REQUIRED
+           nazev          CDATA          #IMPLIED
+           %aktualizace_bloku;  >
+           
+<!-- urgentni informace o pacientovi neformalizovane-->
+<!ELEMENT u (garant_dat?, ua*, urf*, utm*, uks?, uot*)>
+
+<!-- urgentni informace - alergie -->
+<!ELEMENT ua (u_al, autor?, dat_du?, dat_ak?)>
+<!ATTLIST ua %aktualizace_bloku;  
+            %opravne_sdeleni; >
+
+<!-- urgentni informace - rizikove faktory -->
+<!ELEMENT urf (u_rf, autor?, dat_du?, dat_ak?)>
+<!ATTLIST urf %aktualizace_bloku;
+            %opravne_sdeleni; >
+
+<!-- urgentni informace - trvala medikace -->
+<!ELEMENT utm (u_tm, autor?, dat_du?, dat_ak?)>
+<!ATTLIST utm %aktualizace_bloku;
+            %opravne_sdeleni; >
+
+<!-- urgentni informace - krevni skupina -->
+<!ELEMENT uks ((ks_rh | (krevskup,rh?)), autor?, dat_du?, dat_ak?)>
+<!ATTLIST uks %aktualizace_bloku;
+            %opravne_sdeleni; >
+
+<!-- urgentni informace - ockovani proti tetanu -->
+<!ELEMENT uot (dat_du,autor?,dat_ak?)>
+<!ATTLIST uot %aktualizace_bloku;
+            %opravne_sdeleni; >
+
+<!-- informace o ockovani -->
+<!ELEMENT oc (garant_dat?,ocz+,dat_ak?)>
+<!ATTLIST oc %aktualizace_bloku;  >
+
+<!-- jednotlivy typ ockovani -->
+<!ELEMENT ocz (davka+, dat_po?,pozn?)>
+<!ATTLIST ocz
+          typ_oc_kod  CDATA       #REQUIRED
+          typ_oc_text CDATA       #REQUIRED
+>
+
+<!ELEMENT davka (autor?,dat_du,reakce*)>
+<!ATTLIST davka
+          cis_davky   NMTOKEN    #REQUIRED
+          %opravne_sdeleni;
+          nazev_ol    CDATA      #REQUIRED
+          gene_ol     CDATA      #IMPLIED
+          kod_ol      NMTOKEN    #IMPLIED
+          cis_sarze   CDATA      #IMPLIED
+>
+
+<!ELEMENT reakce  (dat_or, vys_or?, autor?)>
+<!ATTLIST reakce
+          typ         (F | H | N | J)   #REQUIRED
+>          
+
+
+<!-- diagnoza -->
+<!ELEMENT dg (dgz+)>
+<!ATTLIST dg %aktualizace_bloku;  >
+
+<!-- diagnoza -->
+<!ELEMENT dgz (diag, dat_du?, dat_up?, spec_dg?, autor?)>
+<!ATTLIST dgz                                                         
+    typ_dg (T|P)     #REQUIRED 
+    %opravne_sdeleni;
+    %vytvoreni_bl_imp;
+>
+
+<!-- podavane leky -->
+<!ELEMENT le (lez+)> 
+<!ATTLIST le %aktualizace_bloku;  >
+
+<!-- popis konkretniho podavaneho leku -->
+<!ELEMENT lez (dat_od?,dat_do?,rozpis_v?,magistraliter?,pozn?,autor?)>
+<!ATTLIST lez
+            typ_med    (T|P)      #REQUIRED
+            %opravne_sdeleni;
+            nazev_lek  CDATA      #REQUIRED
+            gene_lek   CDATA      #IMPLIED 
+            kod_lek    NMTOKEN    #IMPLIED
+            cis_kod_lek CDATA     #IMPLIED           
+            kod_atc    CDATA      #IMPLIED           
+            kod_atb    NMTOKEN    #IMPLIED           
+            %vytvoreni_bl_imp;
+>
+
+<!-- vydane leky -->
+<!ELEMENT lek (garant_dat?,lek_v+)> 
+<!ATTLIST lek %aktualizace_bloku;  >
+
+<!ELEMENT lek_v (dat_du?,rozpis_v?,vydal?,magistraliter?,pozn?)>
+<!ATTLIST lek_v
+            nazev_lek   CDATA      #REQUIRED
+            %opravne_sdeleni;
+            poc_bal     CDATA      #REQUIRED
+            gene_lek    CDATA      #IMPLIED 
+            kod_lek     NMTOKEN    #IMPLIED
+            kod_atc     CDATA      #IMPLIED           
+            kod_pdk     CDATA      #IMPLIED
+            id_dok_is   CDATA      #IMPLIED
+            cena        CDATA      #IMPLIED
+            icl_vyst    CDATA      #IMPLIED
+>
+
+<!-- pracovni neschopnosti -->
+<!ELEMENT pn ((pnz+|hpn|pdhpn))>
+<!ATTLIST pn %aktualizace_bloku;  >
+
+<!-- popis konkretni pracovni neschopnosti --> 
+<!ELEMENT pnz (dat_od,dat_du?,dat_do?,pozn?)>
+<!ATTLIST pnz
+            cislo_tiskopisu     CDATA   #IMPLIED
+            %opravne_sdeleni;
+            diag_poc            NMTOKEN #IMPLIED 
+            uraz_prac           (A|N)   #IMPLIED
+            uraz_ostatni        (A|N)   #IMPLIED 
+            uraz_zavineny       (A|N)   #IMPLIED 
+            nemoc_povol         (A|N)   #IMPLIED 
+            alkohol             (A|N)   #IMPLIED
+            drogy               (A|N)   #IMPLIED
+            jinemu_lekari       (A|N)   #IMPLIED
+            diag_kon            NMTOKEN #IMPLIED 
+        >
+
+
+<!-- vykony pro pojistovnu -->   
+<!ELEMENT auz (dat_du?,pozn? )>
+<!ATTLIST auz
+            indikace   (I|C|P|Z|X)   #REQUIRED 
+            doklad     NMTOKEN       #IMPLIED
+            polozka    (V|1|2|3|4)   #REQUIRED
+            diag       NMTOKEN       #IMPLIED
+            kod_vykonu CDATA         #REQUIRED
+            lok_zubu   NMTOKEN       #IMPLIED
+            mnozstvi   NMTOKEN       #IMPLIED
+            cena       NMTOKEN       #IMPLIED
+            kod_lab    NMTOKEN       #IMPLIED
+            %sr_ident_2;
+            %sr_ident_3;
+            cetnost    NMTOKEN       #REQUIRED
+            icp        NMTOKEN       #IMPLIED
+            odb        NMTOKEN       #IMPLIED
+            sr_lokalizace (Z|B|L|P)  #IMPLIED
+>
+
+<!ELEMENT  diag (#PCDATA)>
+<!ATTLIST  diag                                                               
+              poradi NMTOKEN         #REQUIRED
+        >    
+
+<!-- vykony uctovane pojistovnam --> 
+<!ELEMENT au (auz+,(zadatel|zadatel_sk)?,vykon_drg_sk?)>
+<!ATTLIST au
+            %aktualizace_bloku;
+            stav       (1|2|3)       #REQUIRED  
+            id         NMTOKEN       #REQUIRED
+>
+
+<!-- vykony uctovane pacientovi --> 
+<!ELEMENT fa (dat_du,dat_ds,fakt_cast,hraz_cast?,faz*,pozn?)>
+<!ATTLIST fa
+            stav        (P|V|N)       #REQUIRED
+            cislo       NMTOKEN       #IMPLIED
+            %aktualizace_bloku;
+        >
+        
+<!-- obsah bloku faktura / mozna bude zruseno -->
+<!ELEMENT faz (dat_du?,diag?,pozn?)>
+<!ATTLIST faz
+            indikace     (I|C|P|Z|X)   #REQUIRED
+            polozka      (V|1|2|3|4)   #REQUIRED
+            kod_vykonu   CDATA         #IMPLIED
+            lok_zubu     NMTOKEN       #IMPLIED
+            mnozstvi     NMTOKEN       #IMPLIED
+            cena         NMTOKEN       #IMPLIED
+            kod_lab      NMTOKEN       #IMPLIED
+            %sr_ident_2;
+            %sr_ident_3; 
+>        
+
+
+
+
+
+
+<!-- zprava neformalizovana --> 
+<!ELEMENT z (dat_du?,dat_od?,dat_do?,a?,pracoviste_autora?,autor?,garant_dat?,dgz*,nazev?,text,priloha*,int_pril*)>
+<!ATTLIST z
+            zadost      (E|L|P|D|N)            #REQUIRED
+            vznik       (H|P|V|A|R|N|J)        #REQUIRED
+            obsah       (D|E|NV|NL|K|KR|KG|KL|VL|PP|OP|ZR|ZN)   #REQUIRED
+            stav        (Z|R|P|N|K|D|A|S)      #REQUIRED
+            duvernost   (1|2|3)                #IMPLIED
+            oznaceni_o  CDATA                  #REQUIRED
+            oznaceni_z  CDATA                  #IMPLIED
+            pracoviste  CDATA                  #IMPLIED
+            rad_zahlavi NMTOKEN                #IMPLIED
+            rad_paty    NMTOKEN                #IMPLIED
+            poc_stran   NMTOKEN                #IMPLIED
+            %aktualizace_bloku;
+        >
+
+<!-- identifikace prilohy k zprave - popis obsahu, id souboru, url -->
+<!ELEMENT priloha (#PCDATA)>
+<!ATTLIST priloha
+            zdroj    CDATA               #REQUIRED
+            typ      CDATA               #IMPLIED
+        >
+
+<!ELEMENT int_pril (#PCDATA)>
+<!ATTLIST int_pril
+            nazev    CDATA               #REQUIRED
+            jm_sb    CDATA               #IMPLIED
+            encode   (NONE |Base64)      #REQUIRED
+            typ      CDATA               #IMPLIED
+        >
+
+<!-- odber vzorku, objednavky vysetreni -->
+<!ELEMENT lo (dat_poc_hosp?,los?,(zadatel|zadatel_sk)?,dat_du,lip*,dgz*,loi*,(lop* | lopk* | lopz* | lopr* ))>
+<!ATTLIST lo
+            id_lo_is       CDATA                 #REQUIRED  
+            indikace       (N|Z)                 #IMPLIED
+            urg            (V|S|K|R)             #IMPLIED
+            dodani         (B|R|P|L|O)           #IMPLIED 
+            duv_objed      (B|P|S|E|UZ|UP|UO|D|V|DS|DE)  #IMPLIED
+>
+
+
+<!ELEMENT los EMPTY >
+<!ATTLIST los
+            prijeti        (N|B|P)               #IMPLIED
+            kolize         (N|S|V|B|E)           #IMPLIED
+            urg_vysled     (T|E|B)              #IMPLIED
+            rut_vysled     (T|E|B)              #IMPLIED
+            ext_vysled     (T|A|B|N)             #IMPLIED
+            dodsest        (S|F|B|N)             #IMPLIED
+            dodform        (V|K|B|N)             #IMPLIED
+            dodnadpis      (T|J|Z|V|N|B)         #IMPLIED
+            dodskal        (L|J|N|B)             #IMPLIED
+            typskal        (B|R|S)               #IMPLIED
+            dodkoment      (D|N)                 #IMPLIED
+            dodgraf        (N|Z|B)               #IMPLIED  
+        >
+
+<!-- reseni kolizi -->  
+<!ELEMENT loi_p ( (prijato_ok|kolize_v+), dat_pl?)>
+<!ATTLIST loi_p
+		id_loi_is		CDATA  #REQUIRED
+		id_lis			CDATA  #IMPLIED >
+
+<!ELEMENT prijato_ok EMPTY>
+
+<!ELEMENT kolize_v EMPTY>
+<!ATTLIST kolize_v
+		stav	    (1 | 2 | 3 | 4 | 5 | 6 | 7)   #REQUIRED
+		err                     CDATA    #REQUIRED
+		klic_nclp               NMTOKEN  #IMPLIED
+		klic_nclp_novy          NMTOKEN  #IMPLIED
+		pozn			CDATA    #IMPLIED >
+
+
+      
+<!-- informace o zadateli z hlediska ZP v CR -->
+<!ELEMENT zadatel (jmeno?,pozn?,dat_za?)>
+<!ATTLIST zadatel
+            ico         NMTOKEN       #IMPLIED
+            icz         NMTOKEN       #IMPLIED
+            icp         NMTOKEN       #REQUIRED
+            odb         NMTOKEN       #REQUIRED
+            icl         NMTOKEN       #IMPLIED  
+            ns          NMTOKEN       #IMPLIED
+            id_clk      CDATA         #IMPLIED
+>
+
+<!-- informace o zadateli z hlediska ZP v SK -->
+<!ELEMENT zadatel_sk (jmeno?,pozn?,dat_za?)>
+<!ATTLIST zadatel_sk
+            %sr_ident_1;
+            odb         NMTOKEN       #IMPLIED
+            ns          NMTOKEN       #IMPLIED
+            sr_odp_kod  CDATA         #IMPLIED
+            sr_odp_lekar CDATA        #IMPLIED
+            sr_ident_drg CDATA        #IMPLIED
+>
+
+<!-- vykon DRG v SR -->
+<!ELEMENT vykon_drg_sk (dat_du?,pozn?)>
+<!ATTLIST vykon_drg_sk
+            kod_vykonu   CDATA        #IMPLIED
+            lokalizace   (Z|B|L|P)    #IMPLIED
+            pocet        NMTOKEN      #IMPLIED
+>
+
+<!-- informace o pracovnikovi, ktery zadost vystavil -->
+<!ELEMENT vystavil (jmeno?)>
+<!ATTLIST vystavil
+            kod         NMTOKEN       #IMPLIED
+            id_clk      CDATA         #IMPLIED
+>
+
+<!-- informace o vzorku -->
+<!ELEMENT loi (text?, sci*,dat_zt?,lod*,lop* )>
+<!ATTLIST loi
+            typ_znac         (T|N|E|B)   #REQUIRED
+            id_loi_is        CDATA       #REQUIRED 
+            odebral          CDATA       #IMPLIED 
+            typ_obalu        NMTOKEN     #REQUIRED
+            poc_obalu        NMTOKEN     #IMPLIED 
+            material         NMTOKEN     #REQUIRED
+            anal_vzorek      (N|S)       #IMPLIED
+            indikace         (N|Z|S)     #IMPLIED  
+            urg              (S|K|R)     #IMPLIED
+            pozn_loi         CDATA       #IMPLIED
+>
+            
+<!-- doplnujici informace o vzorku -->
+<!ELEMENT lod EMPTY >
+<!ATTLIST lod
+           priznak_kvant     (R|M|V)     #IMPLIED 
+           klic_nclp         NMTOKEN     #REQUIRED 
+           hodnota           CDATA       #REQUIRED
+>
+
+<!-- formalizovane informace vazane k pacientovi -->
+<!ELEMENT lip EMPTY >
+<!ATTLIST lip
+           priznak_kvant     (R|M|V)     #IMPLIED 
+           klic_nclp         NMTOKEN     #REQUIRED 
+           hodnota           CDATA       #REQUIRED
+>
+             
+<!-- ciselna hodnota nebo formalizovany text -->
+<!ELEMENT hodnota (#PCDATA)>
+
+<!ELEMENT jednotka (#PCDATA)>
+
+<!ELEMENT  nejistota (nejist_var1?,nejist_var2?)>
+
+<!ELEMENT nejist_var1 EMPTY >
+<!ATTLIST nejist_var1
+           t_nejist      (1 | 2)    #IMPLIED
+           h_nejist      CDATA      #REQUIRED
+>
+<!ELEMENT nejist_var2 EMPTY >
+<!ATTLIST nejist_var2
+           t_nejist_n    (1 | 2)    #IMPLIED
+           h_nejist_n    CDATA      #REQUIRED
+           k_anal_n      CDATA      #REQUIRED
+           t_nejist_v    (1 | 2)    #IMPLIED
+           h_nejist_v    CDATA      #REQUIRED
+           k_anal_v      CDATA      #REQUIRED
+>
+           
+
+<!-- pozadavky  na vysetreni, zakladni typ -->
+<!ELEMENT lop EMPTY >
+<!ATTLIST lop
+           urg       (S|R|K)    #IMPLIED 
+           klic_nclp NMTOKEN    #REQUIRED
+           pozn_lop  CDATA      #IMPLIED
+           pozn_lop_lab  CDATA      #IMPLIED
+>  
+
+<!-- pozadavky  na mikrobiologicke vysetreni typu kultivace -->
+<!ELEMENT lopk (lopok*)>
+<!ATTLIST lopk
+           klic_nclp      NMTOKEN  #REQUIRED
+           urg            (S|R|K)  #IMPLIED
+           spec_kod         CDATA  #IMPLIED
+           spec_text        CDATA  #IMPLIED
+           subspec_text     CDATA  #IMPLIED
+           ziskmat_kod      CDATA  #IMPLIED
+           ziskmat_text     CDATA  #IMPLIED
+>
+
+<!-- objednavka vysetreni kultivacniho -text -->
+<!ELEMENT lopok  EMPTY >
+<!ATTLIST lopok 
+         obj_mv_kod        NMTOKEN   #REQUIRED 
+         obj_mv_text       CDATA     #IMPLIED 
+         upresneni         CDATA     #IMPLIED
+> 
+
+<!-- pozadavky  na  vysetreni Z - 
+laboratorni nemikrobiologicke neformalizovane -->
+<!ELEMENT lopz (text?)>
+<!ATTLIST lopz
+             klic_nclp        NMTOKEN  #REQUIRED
+             urg              (S|R|K)  #IMPLIED > 
+
+<!-- pozadavky  na  vysetreni Z - 
+nelaboratorni nemikrobiologicke neformalizovane -->
+<!ELEMENT lopr (text?)>
+<!ATTLIST lopr
+             klic_nclp        NMTOKEN  #REQUIRED
+             urg              (S|R|K)  #IMPLIED  >
+
+<!-- zadosti a objednavky vysetreni neformalizovane-->
+<!ELEMENT zon (dat_du,(zadatel|zadatel_sk)?,vystavil?,dgz*,text?)>
+<!ATTLIST zon
+            urg            (S|K|R)                    #IMPLIED
+            duv_objed      (B|P|S|E|UZ|UP|UO|D|V)     #IMPLIED
+            prijeti        (N|P)                      #IMPLIED
+            oznaceni_z     CDATA                      #REQUIRED
+            storno         (A|N)      'N'
+        >
+
+<!-- vysetreni formalizovane -->   
+<!ELEMENT v (garant_dat?, vr+)>
+<!ATTLIST v
+            test_n   (0|1|2)   #REQUIRED
+            test_f   (0|1|2)   #REQUIRED
+            %vytvoreni_bloku; 
+        >
+
+<!-- vysledky vysetreni -->
+<!ELEMENT vr (dat_du,dat_zt?,dat_pl?,dat_vv?,autor?,odeslal?,pp?,sci*,nazev_lclp,text?,(vrn|vrf|vrs|vrx|vrk|vrb|vrr|vrd|vrp|vro|vrc|vrg|vrz))>
+<!ATTLIST vr
+            klic_nclp     NMTOKEN              #REQUIRED
+            klic_nclp_o   NMTOKEN              #IMPLIED
+            typ_cispol    (N|L)                #REQUIRED
+            typpol_fh     NMTOKEN              #REQUIRED   
+            stav_vys      (R|N|A|D|Z|K|P|E)    #REQUIRED 
+            urg_info      (E|R|Z|P|N)          #IMPLIED 
+            urg_zprac     (V|S|R)              #IMPLIED   
+            typ_sdel_vys  (N|A|D|L|V)          #REQUIRED
+            ind_vazb_fv   (N|Z|F)              #IMPLIED
+            ind_oprav_sd  (N|M|E|S)            #REQUIRED 
+            ind_test_nf   (0|1|2)              #IMPLIED
+            kolize        NMTOKEN              #IMPLIED
+            akreditace    (A|N)                #IMPLIED
+            duverne       NMTOKEN              #IMPLIED
+            id_lis        CDATA                #IMPLIED
+            id_lo_is      CDATA                #IMPLIED
+        >
+
+
+<!-- vysledky vysetreni pro numericke hodnoty-->
+<!ELEMENT vrn (nazvy?,prepocet?,hodnota,jednotka,nejistota?,(hodnoceni|skala)?,pozn? )>
+<!ATTLIST vrn
+            priznak_kvant  (R|M|V)   #REQUIRED > 
+
+<!-- vysledky vysetreni pro formalizovane textove hodnoty-->
+<!ELEMENT vrf (nazvy?,hodnota_kod,hodnota_text?,pozn? )>
+<!ATTLIST vrf   
+            s_hodn_ko  %s_hodnota;   #IMPLIED
+>
+
+<!-- vysledky vysetreni pro formalizovane strukturovane textove hodnoty-->
+<!ELEMENT vrs (nazvy?,vrs_h+,pozn?)>
+
+<!-- hodnota pro formalizovane textove strukturovane hodnoty --> 
+<!ELEMENT vrs_h EMPTY >
+<!ATTLIST vrs_h 
+    hodnota1_klic        CDATA    #REQUIRED
+    hodnota1_text        CDATA    #IMPLIED  
+    priznak2_kvant       (R|M|V)  #IMPLIED
+    hodnota2_cislo       CDATA    #IMPLIED
+    hodnota2_klic        CDATA    #IMPLIED
+    hodnota2_text        CDATA    #IMPLIED 
+>
+
+<!-- vysledky vysetreni pro neformalizovane textove hodnoty-->
+<!ELEMENT vrx (nazvy?,hodnota_nt,pozn?)>
+
+
+
+<!-- vysetreni mikrobiologie - kultivace -->
+<!ELEMENT vrk (nazvy?,lopok*,vrmmn*,vrkpa*,vrmahn?,vrmlpn?,vrmzhl?)>
+<!ATTLIST vrk
+           spec_kod         CDATA  #IMPLIED
+           spec_text        CDATA  #IMPLIED
+           subspec_text     CDATA  #IMPLIED
+           ziskmat_kod      CDATA  #IMPLIED
+           ziskmat_text     CDATA  #IMPLIED
+           stav_mat         CDATA  #IMPLIED
+           stav_zprac       CDATA  #REQUIRED
+>
+<!-- mikroskopicky nalez -->
+<!ELEMENT vrmmn (#PCDATA)>
+<!-- automaticke hodnoceni nalezu -->
+<!ELEMENT vrmahn (#PCDATA)>
+<!-- laboratorni poznamka k nalezu -->
+<!ELEMENT vrmlpn (#PCDATA)>
+<!-- zaverecne hodnoceni lekarem -->
+<!ELEMENT vrmzhl (#PCDATA)>
+
+
+<!-- pritomny agens pro vysetreni mikrobilogie -->           
+<!ELEMENT vrkpa (kvantita?,vrav*,vrac*,dourceni?,vrmahn?,vrmlpn?,vrmzhl?)>
+<!ATTLIST vrkpa
+           agens_kod         CDATA       #REQUIRED
+           agens_text        CDATA       #REQUIRED
+           dalsi_vys         (N|A|R|D)   #REQUIRED
+           pritomnost        (M|P|O|N) #REQUIRED
+           druh_veliciny     CDATA       #IMPLIED
+           jednotka          CDATA       #IMPLIED
+>
+  
+<!-- sdeleni vlastnosti agens -->
+<!ELEMENT vrav EMPTY >
+<!ATTLIST vrav
+           vl_kod           CDATA   #REQUIRED
+           vl_text          CDATA   #IMPLIED
+           pritomnost       (P|N|X) #REQUIRED
+           dodatek          CDATA   #IMPLIED
+>
+
+<!-- sdeleni citlivosti na mikrobialni latku -->
+<!ELEMENT vrac (kvantita? ) >
+<!ATTLIST vrac
+          latka_kod       CDATA   #REQUIRED
+          latka_text      CDATA   #IMPLIED
+          hod_citlivosti  (C|R|I|N|K|L) #REQUIRED
+>
+
+<!ELEMENT kvantita (#PCDATA)>
+<!ATTLIST kvantita
+          priznak   (R|M|V)     #REQUIRED >
+
+
+<!-- vysetreni - blok textu pro interpretace -->
+<!ELEMENT vrb (nazvy?,text,text_obj?)>
+<!ATTLIST vrb
+          typ_vzniku     (N|A|R|O)  #REQUIRED
+          misto_vzniku   (L|A|P)    #REQUIRED
+          autorizace     (N|A)      #REQUIRED
+>
+
+<!-- vysetreni - blok textu pro kompletni nalezy -->
+<!ELEMENT vrr (text)>
+<!ATTLIST vrr
+          rad_zahlavi     NMTOKEN    #IMPLIED
+          rad_paty        NMTOKEN    #IMPLIED
+          poc_stran       NMTOKEN    #IMPLIED
+          autorizace      (N|A)      #REQUIRED
+>
+
+
+<!-- vysetreni laboratorni pro sdeleni datumu -->
+<!ELEMENT vrd (nazvy?,dat_dv)>
+
+<!-- vysetreni - blok jen pro specialni pouziti -->
+<!-- resi se  a bude doplneno -->
+<!ELEMENT vrc EMPTY>
+
+<!-- vysetreni - blok jen pro specialni pouziti -->
+<!-- resi se  a bude doplneno -->
+<!ELEMENT vrg EMPTY>
+
+<!-- vysetreni laboratorni pro non-NCLP polozky -->
+<!ELEMENT vrz (text)>
+
+<!-- vysetreni - blok pro obrazove informace -->
+<!ELEMENT vro (nazvy?, text?, priloha*, int_pril*)>
+
+<!-- vysetreni - blok jen pro specialni pouziti -->
+<!ELEMENT vrp (nazvy?)>
+
+<!ELEMENT sci EMPTY >
+<!ATTLIST sci
+            id_sci_is  CDATA                #REQUIRED
+            klic_nclp  NMTOKEN              #REQUIRED
+            krok       NMTOKEN              #REQUIRED
+            prubeh     NMTOKEN              #REQUIRED     
+>
+
+<!-- skala vysledku -->
+<!ELEMENT skala (s1?,s2?,s3?,s4,s5,s6?,s7?,s8?,interpret_g_z?)> 
+<!ATTLIST skala 
+            formrm     CDATA                 #IMPLIED
+            typ        (N|L|I|J)             #IMPLIED
+            atribut    NMTOKEN               #IMPLIED 
+            udalost    NMTOKEN               #IMPLIED
+            algoritmus NMTOKEN               #IMPLIED
+            s_hodn_o   %s_hodnota;           #IMPLIED 
+            t_hodn_o   %t_hodnota;           #IMPLIED
+>
+
+<!-- hodnoty skaly -->
+<!ELEMENT s1 (#PCDATA)>
+<!ELEMENT s2 (#PCDATA)>
+<!ELEMENT s3 (#PCDATA)>
+<!ELEMENT s4 (#PCDATA)>
+<!ELEMENT s5 (#PCDATA)>
+<!ELEMENT s6 (#PCDATA)>
+<!ELEMENT s7 (#PCDATA)>
+<!ELEMENT s8 (#PCDATA)>
+
+<!-- hodnoceni vysledku -->
+<!ELEMENT hodnoceni (autor?)> 
+<!ATTLIST hodnoceni 
+            hodn_vysl (negativni|hranicni|reaktivni|slabe_poz|pozitivni|silne_poz) #REQUIRED
+>
+
+<!-- Nazvy pro nalezovou sestavu -->
+<!ELEMENT nazvy EMPTY >
+<!ATTLIST nazvy
+            typ_cispol     (N|L)           #IMPLIED 
+            nadpis_nal     CDATA           #IMPLIED
+            nadpis_nal_dop CDATA           #IMPLIED
+            system         CDATA           #IMPLIED
+            material       CDATA           #IMPLIED
+            komponenta     CDATA           #IMPLIED
+            druh_veliciny  CDATA           #IMPLIED
+            jednotka       CDATA           #IMPLIED
+            procedura      CDATA           #IMPLIED
+>
+
+<!-- prepocet pro hodnotu sdelovanou v lokalni jednotce -->
+<!ELEMENT prepocet (skala_lok?)>
+<!ATTLIST prepocet
+            hodnota_lok      CDATA            #REQUIRED
+            jednotka_lclp    CDATA            #REQUIRED
+            prepfak          CDATA            #REQUIRED
+            typpol_fh_lclp   NMTOKEN          #REQUIRED
+>
+
+<!-- skala lokalniho vysledku -->
+<!ELEMENT skala_lok (s1?,s2?,s3?,s4,s5,s6?,s7?,s8?,interpret_g_z?)> 
+<!ATTLIST skala_lok 
+            formrm     CDATA                 #IMPLIED
+            typ        (N|L|I|J)             #IMPLIED
+            atribut    NMTOKEN               #IMPLIED 
+            udalost    NMTOKEN               #IMPLIED
+            algoritmus NMTOKEN               #IMPLIED
+            s_hodn_o   %s_hodnota;           #IMPLIED 
+            t_hodn_o   %t_hodnota;           #IMPLIED >
+
+<!-- vykazane vykony a podklady pro MIS - pripravuje se -->
+<!ELEMENT ivv EMPTY>
+
+<!-- labolatorni bloky typu - prirucka, profily a pod -->
+<!ELEMENT ilb (lp?,lph?,ehk?)>
+
+<!-- labolatorni prirucka XML -->
+<!ELEMENT lp (lp_zp+) >
+<!ATTLIST lp
+           typ_s_lp         (B|V)             #REQUIRED 
+           duvod            CDATA             #IMPLIED
+           %vytvoreni_bloku;
+>
+
+<!-- labolatorni prirucka HTML -->
+<!ELEMENT lph (lphsb+) >
+<!ATTLIST lph
+           typ_s_lph        (N|O|A|B)         #REQUIRED
+           duvod            CDATA             #IMPLIED
+           verze_lp         CDATA             #REQUIRED
+           start_heslo      CDATA             #REQUIRED
+           %vytvoreni_bloku;
+>
+<!-- soubor z hypertextu labolatorni prirucka HTML -->
+<!ELEMENT lphsb (priloha, int_pril*)>
+<!ATTLIST lphsb
+          oznaceni          CDATA             #REQUIRED
+> 
+
+<!-- externi hodnoceni kvality  -->
+<!ELEMENT ehk (priloha, int_pril*) >
+<!ATTLIST ehk 
+           typ_s_ehk        (I|S|P)           #REQUIRED
+           spec_syst        CDATA             #REQUIRED
+           kod_k_c          CDATA             #REQUIRED
+>
+
+<!-- data pro hygienu a epidemiologii  -->
+<!ELEMENT ihe EMPTY>
+
+<!-- laboratorni prirucka XML - zaznam k polozce -->
+<!ELEMENT lp_zp EMPTY >
+<!ATTLIST lp_zp
+           klic_nclp           NMTOKEN          #REQUIRED
+           nclpnazlpk          CDATA            #REQUIRED
+           lclpnazevlp1        CDATA            #IMPLIED
+           lclpnazevlp2        CDATA            #IMPLIED
+           nclpsyst32          CDATA            #IMPLIED
+           nclpkomp32          CDATA            #IMPLIED
+           nclpdrvl32          CDATA            #IMPLIED
+           nclpjedn            CDATA            #IMPLIED
+           lclpjednl           CDATA            #IMPLIED
+           lclpprepfak         CDATA            #IMPLIED
+           nclpproc32          CDATA            #IMPLIED
+           lclpmat32l          CDATA            #IMPLIED
+           lclpodb_do32l       CDATA            #IMPLIED
+           lclpodb_mnj         CDATA            #IMPLIED
+           lclpanal_mnj        CDATA            #IMPLIED
+           lclpodbpozn         CDATA            #IMPLIED
+           lclpklin_info       CDATA            #IMPLIED
+           lclptransport       CDATA            #IMPLIED
+           lclpintozjt         CDATA            #IMPLIED
+           lclppaupozn         CDATA            #IMPLIED
+           lclpstbpozn         CDATA            #IMPLIED
+           lclpdosr            CDATA            #IMPLIED
+           lclpdoss            CDATA            #IMPLIED
+           lclpdosodezpozn     CDATA            #IMPLIED
+           lclpodezr           CDATA            #IMPLIED
+           lclpodezs           CDATA            #IMPLIED
+           lclptextlp          CDATA            #IMPLIED
+           lclpmez_stand       CDATA            #IMPLIED
+           lclpmez_stanh       CDATA            #IMPLIED
+           lclppokpac1         CDATA            #IMPLIED
+           lclppokpac2         CDATA            #IMPLIED
+           lclppokpac3         CDATA            #IMPLIED
+           lclppokodd1         CDATA            #IMPLIED
+           lclppokodd2         CDATA            #IMPLIED
+           lclppokodd3         CDATA            #IMPLIED
+>
+
+<!-- labolatorni ciselniky -->
+<!ELEMENT ilc (lc+) >
+
+<!ELEMENT lc (priloha, int_pril*) >
+<!ATTLIST lc
+          typ_s_lc      (B|N|O|A)       #REQUIRED
+          vyznam        NMTOKEN         #REQUIRED
+          verze_puv     NMTOKEN         #REQUIRED
+          verze_akt     NMTOKEN         #REQUIRED
+          ciselnik      CDATA           #REQUIRED  
+>
+
+<!-- texty a textove hodnoty  -->
+<!ELEMENT text  (autor?, ptext, (ktext | priloha)* ) >
+<!ELEMENT text_obj (autor?, ptext, (ktext | priloha)* ) >
+
+<!-- kodovany text -->
+<!ELEMENT ktext (#PCDATA)>
+<!ATTLIST ktext
+         encode      (NONE |Base64)      #REQUIRED
+         typ         CDATA               #IMPLIED
+>
+
+<!-- prosty text -->
+<!ELEMENT ptext (#PCDATA)>
+<!ATTLIST ptext
+      xml:space (default|preserve) 'preserve'
+>
+
+<!-- autor - kdo autorizoval -->
+<!ELEMENT autor  (#PCDATA) >
+<!ATTLIST autor
+         id_autor       CDATA          #IMPLIED
+         odbornost      CDATA          #IMPLIED
+         id_clk         CDATA          #IMPLIED
+>
+
+<!ELEMENT pracoviste_autora EMPTY >
+<!ATTLIST pracoviste_autora
+        ico      NMTOKEN #IMPLIED
+        icz      NMTOKEN #IMPLIED
+        icp      NMTOKEN #IMPLIED
+        odb      NMTOKEN #IMPLIED
+        nazev    CDATA   #IMPLIED
+>
+
+<!ELEMENT odeslal (#PCDATA) >
+<!ATTLIST odeslal
+         funkce         CDATA          #IMPLIED
+         id_clk         CDATA          #IMPLIED
+>
+
+<!-- garant posilanych dat -->
+<!ELEMENT garant_dat (#PCDATA) >
+<!ATTLIST garant_dat
+          id_garant      CDATA         #REQUIRED
+          odbornost      CDATA         #IMPLIED
+          id_clk         CDATA         #IMPLIED
+>
+
+
+<!-- ostatni elementy obsahujici primo data - abecedni poradi -->
+<!ELEMENT  adr  (#PCDATA)>
+<!ELEMENT  cispoj (#PCDATA)>
+<!ELEMENT  dop1  (#PCDATA)>
+<!ELEMENT  dop2  (#PCDATA)>
+<!ELEMENT  dourceni  (#PCDATA)>
+<!ELEMENT  euro_ide (#PCDATA)>
+<!ELEMENT  fakt_cast (#PCDATA)>
+<!ELEMENT  hraz_cast (#PCDATA)>
+<!ELEMENT  hodnota_kod (#PCDATA)>
+<!ELEMENT  hodnota_text (#PCDATA)>
+<!ELEMENT  hodnota_nt (#PCDATA)>
+<!ELEMENT  icl  (#PCDATA)>
+<!ELEMENT  interpret_g_z (#PCDATA)>
+<!ELEMENT  jine_idu  (#PCDATA)> 
+<!ELEMENT  jmeno  (#PCDATA)>
+<!ELEMENT  kodpoj  (#PCDATA)>
+<!ELEMENT  ks_rh (#PCDATA)>
+<!ELEMENT  krevskup (#PCDATA)>
+<!ELEMENT  rh (#PCDATA)>
+<!ELEMENT  magistraliter (#PCDATA)>
+<!ELEMENT  mesto  (#PCDATA)>
+<!ELEMENT  nazev (#PCDATA)>
+<!ELEMENT  nazev_lclp (#PCDATA)>
+<!ELEMENT  obsah (#PCDATA)>
+<!ELEMENT  obsah2 (#PCDATA)>
+<!ELEMENT  pozn (#PCDATA)>
+<!ELEMENT  pp (#PCDATA)>
+<!ELEMENT  prijmeni  (#PCDATA)>
+<!ELEMENT  psc   (#PCDATA)>
+<!ELEMENT  rod_prijm  (#PCDATA)>
+<!ELEMENT  rodcis  (#PCDATA)>
+<!ELEMENT  rodstav  (#PCDATA)>
+<!ELEMENT  rozpis_v (#PCDATA)>
+<!ELEMENT  sex  (#PCDATA)>
+<!ELEMENT  sdeleni  (#PCDATA)>
+<!ELEMENT  spec_dg (#PCDATA)>
+<!ELEMENT  stat (#PCDATA)>
+<!ELEMENT  stat_poj (#PCDATA)>
+<!ELEMENT  statpris (#PCDATA)>
+<!ELEMENT  titul_pred (#PCDATA)>
+<!ELEMENT  titul_za  (#PCDATA)>
+<!ELEMENT  typpoj (#PCDATA)>
+<!ELEMENT  u_al (#PCDATA)>
+<!ELEMENT  u_rf (#PCDATA)>
+<!ELEMENT  u_tm (#PCDATA)>
+<!ELEMENT  vnitrni (#PCDATA)>
+<!ELEMENT  vydal (#PCDATA)>
+<!ELEMENT  vys_or (#PCDATA)>
+<!ELEMENT  vztah (#PCDATA)>
+<!ELEMENT  astat (#PCDATA)>
+<!ELEMENT  porus_rzm_pozn (#PCDATA)>
+
+<!-- NZIS Narodni Zdravotnicky Informacni System - od V 3.00.00 -->
+<!ELEMENT idu (nr) >
+
+<!-- NZIS narodni registry -->
+<!ELEMENT nr (nrh?) >
+
+<!-- narodni registr - hospitalizace   -->
+<!ELEMENT nrh (nrhh+) >
+
+
+<!-- narodni registr - hospitalizace - hlavicka -->
+<!ELEMENT nrhh (nrhi+) >
+<!ATTLIST nrhh          
+           hobd       NMTOKEN       #REQUIRED
+           hico       NMTOKEN       #REQUIRED
+           hpcz       NMTOKEN       #REQUIRED
+           hodd       NMTOKEN       #REQUIRED
+           hpoch      NMTOKEN       #REQUIRED
+           hpocv      NMTOKEN       #REQUIRED
+          >
+
+<!-- narodni registr - hospitalizace - identifikace  -->
+<!ELEMENT nrhi (nrhv*) >
+<!ATTLIST nrhi 
+            hidcis         NMTOKEN       #REQUIRED   
+            hcispac        NMTOKEN       #IMPLIED
+            hobec          NMTOKEN       #REQUIRED
+            horp           NMTOKEN       #IMPLIED
+            hstaobc        NMTOKEN        #REQUIRED
+            hrostav        %nzcis_rostav;       #REQUIRED
+            hkzam          %nzcis_kzam;         #REQUIRED
+            hdophosp       %nzcis_dophosp;      #REQUIRED
+            hdapri         NMTOKEN       #REQUIRED
+            hduprij        %nzcis_duprij;       #REQUIRED
+            hprij          %nzcis_prij;         #REQUIRED
+            hdapr          NMTOKEN       #IMPLIED
+            hdgz           NMTOKEN       #REQUIRED
+            hhosprv        %nzcis_hosprv;       #REQUIRED
+            hdg1           NMTOKEN       #IMPLIED
+            hdg2           NMTOKEN       #IMPLIED
+            hdg3           NMTOKEN       #IMPLIED
+            hdg4           NMTOKEN       #IMPLIED
+            hdg5           NMTOKEN       #IMPLIED
+            hdaop          NMTOKEN       #IMPLIED
+            hdgo           NMTOKEN       #IMPLIED
+            hnemnak        %nzcis_nemnak;       #IMPLIED
+            hdroper        %nzcis_droper;       #IMPLIED
+            hreoper        %nzcis_reoper;       #IMPLIED
+            hpoopko1       %nzcis_poopko;       #IMPLIED
+            hpoopko2       %nzcis_poopko;       #IMPLIED
+            hpoopko3       %nzcis_poopko;       #IMPLIED
+            hpoopko4       %nzcis_poopko;       #IMPLIED
+            hdnyjip        NMTOKEN       #IMPLIED
+            hdrg           NMTOKEN       #IMPLIED    
+            hdapp          NMTOKEN       #REQUIRED
+            hdg1c          NMTOKEN       #IMPLIED
+            hdg1a          NMTOKEN       #IMPLIED
+            hukhosp        %nzcis_ukhosp;        #REQUIRED
+            hpodape        %nzcis_podape;        #REQUIRED
+            hdnykat1       NMTOKEN       #IMPLIED
+            hdnykat2       NMTOKEN       #IMPLIED
+            hdnykat3       NMTOKEN       #IMPLIED
+            hdnykat4       NMTOKEN       #IMPLIED
+            hdnykat5       NMTOKEN       #IMPLIED
+            hdnykat0       NMTOKEN       #IMPLIED
+            huhrady        NMTOKEN       #IMPLIED
+            hkrok          NMTOKEN       #IMPLIED
+            hzdrpoj        NMTOKEN       #IMPLIED
+            hdgzzz         NMTOKEN       #IMPLIED
+
+>
+
+<!-- narodni registr - hospitalizace - blok vykonu -->
+<!ELEMENT nrhv EMPTY >
+
+<!ATTLIST nrhv
+            hdavyk          NMTOKEN       #REQUIRED
+            hvyk            NMTOKEN       #REQUIRED
+            hpocvyk         NMTOKEN       #IMPLIED
+>
+
+<!-- HPN - odesilatel - spojeni -->
+<!ELEMENT os (obsah2)>
+<!ATTLIST os
+        typ       (C)           #REQUIRED
+>
+
+<!-- HPN - potvrzeni doruceni souboru -->
+<!ELEMENT pdhpn (chyba_pd*)>
+<!ATTLIST pdhpn 
+        stav      (A|N)         #REQUIRED
+>
+
+<!-- HPN - hlaseni pracovni neschopnosti -->
+<!ELEMENT hpn (chpn,idl,ahpn?,izam?,vchz?,hsp?,zpshl?,astat?,dath_diag_zm?,urssz?,pece_zm?,porus_rzm_pozn?,dath_od?,dath_du?,dath_ru?,dath_do?)>
+<!ATTLIST hpn 
+        cfrm         NMTOKEN     #REQUIRED
+        tfrm         (1|2|H)     #REQUIRED
+        ind_oprav_sd (N|E)       #IMPLIED 
+        diag_poc     NMTOKEN     #IMPLIED 
+        uraz_kod     (N|P|J|O)   #IMPLIED 
+        alkoml       (A|N)       #IMPLIED
+        diag_kon     NMTOKEN     #IMPLIED 
+        diag_zm      NMTOKEN     #IMPLIED 
+        ind_diag_zm  (A|N)       #IMPLIED
+        uk_duvod     NMTOKEN     #IMPLIED 
+        ind_porus_rzm (A|N)      #IMPLIED
+>
+
+<!-- HPN - informace o zamestnani -->
+<!ELEMENT izam EMPTY>
+<!ATTLIST izam
+        zam_text  CDATA         #IMPLIED
+        klas_zam  NMTOKEN       #REQUIRED
+>
+
+<!-- HPN - cislo hlaseni docasne pracovni neschopnosti -->
+<!ELEMENT chpn EMPTY>
+<!ATTLIST chpn
+        cpn         NMTOKEN      #IMPLIED
+        ecnicpe     NMTOKEN      #IMPLIED
+        ecnpc       NMTOKEN      #IMPLIED
+>
+
+<!-- HPN - adresa pobytu v dobe neschopnosti -->
+<!ELEMENT ahpn (a,astat?,dath_od?,dath_do?)>
+<!ATTLIST ahpn
+        acp       CDATA         #IMPLIED
+        aco       CDATA         #IMPLIED
+        az        (A|N)         #IMPLIED
+>
+
+<!-- HPN - identifikace lekare -->
+<!ELEMENT idl (idlp+)>
+
+<!-- HPN - polozka identifikace lekare -->
+<!ELEMENT idlp EMPTY>
+<!ATTLIST idlp
+        typ     (CSSZ_ICPE|ICZ) #REQUIRED
+        vyst    CDATA           #IMPLIED
+        hod     CDATA           #REQUIRED
+>
+
+<!-- HPN - vychazky -->
+<!ELEMENT vchz (dath_od?)>
+<!ATTLIST vchz
+        vch1_od     CDATA       #IMPLIED
+        vch1_do     CDATA       #IMPLIED
+        vch2_od     CDATA       #IMPLIED
+        vch2_do     CDATA       #IMPLIED
+        ind_vch_pvl (A|N)       #IMPLIED
+        ind_vch_zrs (A|N)       #IMPLIED
+>
+
+<!-- HPN - hospitalizace -->
+<!ELEMENT hsp (dath_od,dath_do?)>
+<!ATTLIST hsp
+        ind_hsp_zm   (A|N)       #IMPLIED
+>
+
+<!-- HPN - zpetny souhlas -->
+<!ELEMENT zpshl (dath_vy)>
+<!ATTLIST zpshl
+        ssz_kod     NMTOKEN      #REQUIRED
+>
+
+<!-- HPN - ukonceni rozhodnuti SSZ -->
+<!ELEMENT urssz (dath_uk)>
+<!ATTLIST urssz
+        ssz_kod     NMTOKEN      #REQUIRED
+>
+
+<!-- HPN - zmena pece -->
+<!ELEMENT pece_zm (dath_zm,idl?)>
+<!ATTLIST pece_zm
+        ind_p_pzt    (A|N)       #REQUIRED
+        ind_p_pdn    (A|N)       #REQUIRED
+>
